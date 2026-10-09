@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Scope("prototype")
 @RequiredArgsConstructor
 @Slf4j
-public class GruProducerWorker implements Runnable {
+public class GruProducerKafka implements Runnable {
 
     private final GruProducerService gruProducerService;
     private final AtomicBoolean isActive = new AtomicBoolean(true);

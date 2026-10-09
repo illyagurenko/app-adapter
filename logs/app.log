@@ -1,702 +1,54 @@
-2026-09-29 21:03:28.254 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:03:28.328 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 1388 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:03:28.329 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:03:30.300 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:03:30.314 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:03:30.318 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:03:30.318 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:03:30.394 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:03:30.394 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2011 ms
-2026-09-29 21:03:30.900 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:03:31.231 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@5002fde9
-2026-09-29 21:03:31.233 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:03:31.277 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:03:32.100 [main] INFO  liquibase.changelog - Creating database history table with name: ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:03:32.160 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:03:32.252 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
-2026-09-29 21:03:32.258 [main] INFO  liquibase.command - Using deploymentId: 0705012258
-2026-09-29 21:03:32.261 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:03:32.283 [main] INFO  liquibase.ui - Running Changeset: db/changelog/001-adapter-sequences.sql::adapter-001-io-sequence::illya
-2026-09-29 21:03:32.305 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.307 [main] INFO  liquibase.changelog - ChangeSet db/changelog/001-adapter-sequences.sql::adapter-001-io-sequence::illya ran successfully in 23ms
-2026-09-29 21:03:32.328 [main] INFO  liquibase.ui - Running Changeset: db/changelog/001-adapter-sequences.sql::adapter-002-trans-sequence::illya
-2026-09-29 21:03:32.342 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.344 [main] INFO  liquibase.changelog - ChangeSet db/changelog/001-adapter-sequences.sql::adapter-002-trans-sequence::illya ran successfully in 16ms
-2026-09-29 21:03:32.354 [main] INFO  liquibase.ui - Running Changeset: db/changelog/001-adapter-sequences.sql::adapter-003-config-sequence::illya
-2026-09-29 21:03:32.367 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.370 [main] INFO  liquibase.changelog - ChangeSet db/changelog/001-adapter-sequences.sql::adapter-003-config-sequence::illya ran successfully in 15ms
-2026-09-29 21:03:32.380 [main] INFO  liquibase.ui - Running Changeset: db/changelog/002-adapter-tables.sql::adapter-004-trans::illya
-2026-09-29 21:03:32.408 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.410 [main] INFO  liquibase.changelog - ChangeSet db/changelog/002-adapter-tables.sql::adapter-004-trans::illya ran successfully in 29ms
-2026-09-29 21:03:32.423 [main] INFO  liquibase.ui - Running Changeset: db/changelog/002-adapter-tables.sql::adapter-005-io-msgs::illya
-2026-09-29 21:03:32.543 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.545 [main] INFO  liquibase.changelog - ChangeSet db/changelog/002-adapter-tables.sql::adapter-005-io-msgs::illya ran successfully in 122ms
-2026-09-29 21:03:32.556 [main] INFO  liquibase.ui - Running Changeset: db/changelog/002-adapter-tables.sql::adapter-006-config::illya
-2026-09-29 21:03:32.573 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.575 [main] INFO  liquibase.changelog - ChangeSet db/changelog/002-adapter-tables.sql::adapter-006-config::illya ran successfully in 18ms
-2026-09-29 21:03:32.586 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-007-trans-pk::illya
-2026-09-29 21:03:32.774 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.776 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-007-trans-pk::illya ran successfully in 189ms
-2026-09-29 21:03:32.787 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-008-io-pk::illya
-2026-09-29 21:03:32.974 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:32.976 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-008-io-pk::illya ran successfully in 188ms
-2026-09-29 21:03:32.986 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-009-config-pk::illya
-2026-09-29 21:03:33.210 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:33.213 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-009-config-pk::illya ran successfully in 226ms
-2026-09-29 21:03:33.222 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-010-request-id-unique::illya
-2026-09-29 21:03:33.581 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:33.583 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-010-request-id-unique::illya ran successfully in 360ms
-2026-09-29 21:03:33.592 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-011-system-id-unique::illya
-2026-09-29 21:03:33.952 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:33.953 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-011-system-id-unique::illya ran successfully in 360ms
-2026-09-29 21:03:33.963 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-012-io-trans-fk::illya
-2026-09-29 21:03:34.488 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:34.490 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-012-io-trans-fk::illya ran successfully in 526ms
-2026-09-29 21:03:34.500 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-013-trans-status-index::illya
-2026-09-29 21:03:34.734 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:34.736 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-013-trans-status-index::illya ran successfully in 235ms
-2026-09-29 21:03:34.746 [main] INFO  liquibase.ui - Running Changeset: db/changelog/003-adapter-constraints-indexes.sql::adapter-014-io-trans-index::illya
-2026-09-29 21:03:35.238 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:35.241 [main] INFO  liquibase.changelog - ChangeSet db/changelog/003-adapter-constraints-indexes.sql::adapter-014-io-trans-index::illya ran successfully in 493ms
-2026-09-29 21:03:35.251 [main] INFO  liquibase.ui - Running Changeset: db/changelog/004-adapter-config.sql::adapter-015-gru-config::illya
-2026-09-29 21:03:35.262 [main] INFO  liquibase.changelog - Custom SQL executed
-2026-09-29 21:03:35.267 [main] INFO  liquibase.changelog - ChangeSet db/changelog/004-adapter-config.sql::adapter-015-gru-config::illya ran successfully in 16ms
-2026-09-29 21:03:35.282 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:03:35.282 [main] INFO  liquibase.util - Run:                         15
-2026-09-29 21:03:35.282 [main] INFO  liquibase.util - Previously run:               0
-2026-09-29 21:03:35.282 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:03:35.282 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:03:35.283 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:03:35.283 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:03:35.285 [main] INFO  liquibase.command - Update command completed successfully.
-2026-09-29 21:03:35.286 [main] INFO  liquibase.ui - Liquibase: Update has been successful. Rows affected: 16
-2026-09-29 21:03:35.295 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:03:35.298 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:03:35.328 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appAdapterConfigDao' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\dao\AppAdapterConfigDao.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'appAdapterConfigRepository' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\repository\AppAdapterConfigRepository.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
-2026-09-29 21:03:35.328 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-29 21:03:35.350 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-29 21:03:35.354 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-2026-09-29 21:03:35.376 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-09-29 21:03:35.398 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appAdapterConfigDao' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\dao\AppAdapterConfigDao.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'appAdapterConfigRepository' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\repository\AppAdapterConfigRepository.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
-	at ru.itone.illya4gurenko.AppAdapterRun.main(AppAdapterRun.java:12)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appAdapterConfigRepository' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\repository\AppAdapterConfigRepository.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1705)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1454)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
-	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionTemplate' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Unsatisfied dependency expressed through method 'sqlSessionTemplate' parameter 0: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
-	... 33 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
-	... 43 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:178)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
-	... 57 common frames omitted
-Caused by: java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:215)
-	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:600)
-	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:572)
-	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:712)
-	at org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sqlSessionFactory(MybatisAutoConfiguration.java:189)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146)
-	... 58 common frames omitted
-2026-09-29 21:06:59.626 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:06:59.682 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 16512 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:06:59.683 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:07:01.471 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:07:01.487 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:07:01.491 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:07:01.491 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:07:01.552 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:07:01.552 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1813 ms
-2026-09-29 21:07:02.074 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:07:02.416 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@1c74d19
-2026-09-29 21:07:02.418 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:07:02.460 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:07:04.724 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:07:04.772 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:07:04.776 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:07:04.791 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:07:04.791 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:07:04.791 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:07:04.791 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:07:04.791 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:07:04.791 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:07:04.792 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:07:04.827 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:07:04.830 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:07:05.901 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-09-29 21:07:05.983 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:07:06.008 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-09-29 21:07:06.026 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 6.984 seconds (process running for 7.426)
-2026-09-29 21:07:06.041 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-09-29 21:07:06.042 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-09-29 21:07:06.041 [scheduling-1] ERROR r.i.i.service.BadRowsService - Error during recovery job
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.GruVistaTabRepository.resetStuckRecords
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy93.resetStuckRecords(Unknown Source)
-	at ru.itone.illya4gurenko.dao.GruVistaDao.resetStuckRecords(GruVistaDao.java:30)
-	at ru.itone.illya4gurenko.service.BadRowsService.recoverStuckRecords(BadRowsService.java:20)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
-	at io.micrometer.observation.Observation.observe(Observation.java:499)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2026-09-29 21:07:06.067 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.AppAdapterConfigRepository.findBySystemId
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy89.findBySystemId(Unknown Source)
-	at ru.itone.illya4gurenko.dao.AppAdapterConfigDao.getBySystemId(AppAdapterConfigDao.java:14)
-	at ru.itone.illya4gurenko.сonfig.AppInitializer.run(AppInitializer.java:44)
-	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790)
-	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83)
-	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
-	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789)
-	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:342)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
-	at ru.itone.illya4gurenko.AppAdapterRun.main(AppAdapterRun.java:12)
-2026-09-29 21:07:06.094 [main] INFO  r.i.i.сonfig.AppInitializer - Shutting down application, stopping producers and consumers...
-2026-09-29 21:07:06.098 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-29 21:07:06.123 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-29 21:07:53.795 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:07:53.857 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 19076 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:07:53.858 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:07:56.067 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:07:56.080 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:07:56.084 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:07:56.085 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:07:56.160 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:07:56.160 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2246 ms
-2026-09-29 21:07:56.691 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:07:57.011 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@4d7cac24
-2026-09-29 21:07:57.014 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:07:57.062 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:07:59.124 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:07:59.175 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:07:59.178 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:07:59.191 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:07:59.192 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:07:59.192 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:07:59.192 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:07:59.192 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:07:59.192 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:07:59.193 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:07:59.220 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:07:59.223 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:08:00.179 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-09-29 21:08:00.261 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:08:00.285 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-09-29 21:08:00.302 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 7.148 seconds (process running for 7.687)
-2026-09-29 21:08:00.327 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-09-29 21:08:00.329 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-09-29 21:08:00.328 [scheduling-1] ERROR r.i.i.service.BadRowsService - Error during recovery job
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.GruVistaTabRepository.resetStuckRecords
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy93.resetStuckRecords(Unknown Source)
-	at ru.itone.illya4gurenko.dao.GruVistaDao.resetStuckRecords(GruVistaDao.java:30)
-	at ru.itone.illya4gurenko.service.BadRowsService.recoverStuckRecords(BadRowsService.java:20)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
-	at io.micrometer.observation.Observation.observe(Observation.java:499)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2026-09-29 21:08:00.347 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.AppAdapterConfigRepository.findBySystemId
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy89.findBySystemId(Unknown Source)
-	at ru.itone.illya4gurenko.dao.AppAdapterConfigDao.getBySystemId(AppAdapterConfigDao.java:14)
-	at ru.itone.illya4gurenko.сonfig.AppInitializer.run(AppInitializer.java:44)
-	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790)
-	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83)
-	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
-	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789)
-	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:342)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
-	at ru.itone.illya4gurenko.AppAdapterRun.main(AppAdapterRun.java:12)
-2026-09-29 21:08:00.371 [main] INFO  r.i.i.сonfig.AppInitializer - Shutting down application, stopping producers and consumers...
-2026-09-29 21:08:00.375 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-29 21:08:00.398 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-29 21:09:26.284 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:09:26.334 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 14132 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:09:26.335 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:09:28.246 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:09:28.258 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:09:28.263 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:09:28.264 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:09:28.327 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:09:28.327 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1938 ms
-2026-09-29 21:09:28.792 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:09:29.074 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@4466cf5d
-2026-09-29 21:09:29.075 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:09:29.127 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:09:30.614 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:09:30.658 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:09:30.661 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:09:30.673 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:09:30.673 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:09:30.673 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:09:30.674 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:09:30.674 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:09:30.674 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:09:30.674 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:09:30.699 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:09:30.702 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:09:31.631 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-09-29 21:09:31.715 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:09:31.735 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-09-29 21:09:31.752 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 6.061 seconds (process running for 6.468)
-2026-09-29 21:09:31.769 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-09-29 21:09:31.770 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-09-29 21:09:31.770 [scheduling-1] ERROR r.i.i.service.BadRowsService - Error during recovery job
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.GruVistaTabRepository.resetStuckRecords
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy93.resetStuckRecords(Unknown Source)
-	at ru.itone.illya4gurenko.dao.GruVistaDao.resetStuckRecords(GruVistaDao.java:30)
-	at ru.itone.illya4gurenko.service.BadRowsService.recoverStuckRecords(BadRowsService.java:20)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
-	at io.micrometer.observation.Observation.observe(Observation.java:499)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2026-09-29 21:09:31.792 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.AppAdapterConfigRepository.findBySystemId
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy89.findBySystemId(Unknown Source)
-	at ru.itone.illya4gurenko.dao.AppAdapterConfigDao.getBySystemId(AppAdapterConfigDao.java:14)
-	at ru.itone.illya4gurenko.сonfig.AppInitializer.run(AppInitializer.java:44)
-	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790)
-	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83)
-	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
-	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789)
-	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:342)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
-	at ru.itone.illya4gurenko.AppAdapterRun.main(AppAdapterRun.java:12)
-2026-09-29 21:09:31.816 [main] INFO  r.i.i.сonfig.AppInitializer - Shutting down application, stopping producers and consumers...
-2026-09-29 21:09:31.820 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-29 21:09:31.841 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-29 21:09:45.027 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:09:45.081 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 18648 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:09:45.082 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:09:46.910 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:09:46.922 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:09:46.926 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:09:46.926 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:09:46.982 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:09:46.983 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1853 ms
-2026-09-29 21:09:47.462 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:09:47.738 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@20a3e10c
-2026-09-29 21:09:47.740 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:09:47.785 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:09:49.159 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:09:49.201 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:09:49.204 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:09:49.215 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:09:49.216 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:09:49.216 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:09:49.216 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:09:49.216 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:09:49.216 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:09:49.217 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:09:49.241 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:09:49.244 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:09:50.165 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-09-29 21:09:50.245 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:09:50.263 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-09-29 21:09:50.280 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 6.001 seconds (process running for 6.524)
-2026-09-29 21:09:50.295 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-09-29 21:09:50.298 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-09-29 21:09:50.295 [scheduling-1] ERROR r.i.i.service.BadRowsService - Error during recovery job
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.GruVistaTabRepository.resetStuckRecords
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy93.resetStuckRecords(Unknown Source)
-	at ru.itone.illya4gurenko.dao.GruVistaDao.resetStuckRecords(GruVistaDao.java:30)
-	at ru.itone.illya4gurenko.service.BadRowsService.recoverStuckRecords(BadRowsService.java:20)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
-	at io.micrometer.observation.Observation.observe(Observation.java:499)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2026-09-29 21:09:50.320 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): ru.itone.illya4gurenko.repository.AppAdapterConfigRepository.findBySystemId
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
-	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
-	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
-	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
-	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy89.findBySystemId(Unknown Source)
-	at ru.itone.illya4gurenko.dao.AppAdapterConfigDao.getBySystemId(AppAdapterConfigDao.java:14)
-	at ru.itone.illya4gurenko.сonfig.AppInitializer.run(AppInitializer.java:44)
-	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790)
-	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83)
-	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
-	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798)
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789)
-	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:342)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
-	at ru.itone.illya4gurenko.AppAdapterRun.main(AppAdapterRun.java:12)
-2026-09-29 21:09:50.345 [main] INFO  r.i.i.сonfig.AppInitializer - Shutting down application, stopping producers and consumers...
-2026-09-29 21:09:50.348 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-29 21:09:50.373 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-29 21:11:29.531 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:11:29.601 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 18192 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:11:29.601 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:11:31.585 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:11:31.598 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:11:31.603 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:11:31.603 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:11:31.672 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:11:31.672 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2012 ms
-2026-09-29 21:11:32.194 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:11:32.527 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@f559c74
-2026-09-29 21:11:32.530 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:11:32.582 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:11:34.182 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:11:34.235 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:11:34.238 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:11:34.252 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:11:34.252 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:11:34.252 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:11:34.252 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:11:34.252 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:11:34.252 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:11:34.253 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:11:34.279 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:11:34.282 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:11:34.317 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appAdapterConfigDao' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\dao\AppAdapterConfigDao.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'appAdapterConfigRepository' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\repository\AppAdapterConfigRepository.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
-2026-09-29 21:11:34.317 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-09-29 21:11:34.339 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-09-29 21:11:34.344 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-2026-09-29 21:11:34.364 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-09-29 21:11:34.401 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'appAdapterConfigDao' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\dao\AppAdapterConfigDao.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'appAdapterConfigRepository' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\repository\AppAdapterConfigRepository.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
-	at ru.itone.illya4gurenko.AppAdapterRun.main(AppAdapterRun.java:12)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'appAdapterConfigRepository' defined in file [D:\gpb_tasks\app-adapter\build\classes\java\main\ru\itone\illya4gurenko\repository\AppAdapterConfigRepository.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1705)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1454)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
-	... 19 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionTemplate' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Unsatisfied dependency expressed through method 'sqlSessionTemplate' parameter 0: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
-	... 33 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
-	... 43 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:178)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
-	... 57 common frames omitted
-Caused by: java.io.FileNotFoundException: class path resource [mybatis-config.xml] cannot be opened because it does not exist
-	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:215)
-	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:600)
-	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:572)
-	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:712)
-	at org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sqlSessionFactory(MybatisAutoConfiguration.java:189)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146)
-	... 58 common frames omitted
-2026-09-29 21:14:50.169 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:14:50.219 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 13744 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:14:50.220 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:14:52.124 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:14:52.135 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:14:52.139 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:14:52.139 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:14:52.200 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:14:52.200 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1927 ms
-2026-09-29 21:14:52.648 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:14:52.918 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@25f0c5e7
-2026-09-29 21:14:52.920 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:14:52.971 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:14:54.402 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:14:54.446 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:14:54.450 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:14:54.463 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:14:54.463 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:14:54.463 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:14:54.463 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:14:54.463 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:14:54.463 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:14:54.464 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:14:54.488 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:14:54.490 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:14:55.893 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-09-29 21:14:55.977 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:14:56.024 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-09-29 21:14:56.044 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 6.433 seconds (process running for 6.822)
-2026-09-29 21:14:56.060 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-09-29 21:14:56.094 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 Producers...
-2026-09-29 21:14:56.095 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-09-29 21:14:56.097 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 Consumers...
-2026-09-29 21:14:56.097 [producer-worker-thread] INFO  r.i.i.service.GruProducerWorker - Producer [1] started for topic: gru.balance.response
-2026-09-29 21:14:56.101 [main] INFO  r.i.i.service.GruConsumerWorker - Starting Consumer [1] for topic: gru.balance.request
-2026-09-29 21:14:56.190 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
+2026-10-06 15:23:04.069 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-10-06 15:23:04.165 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 8040 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
+2026-10-06 15:23:04.167 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
+2026-10-06 15:23:06.329 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
+2026-10-06 15:23:06.346 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2026-10-06 15:23:06.350 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-06 15:23:06.350 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-10-06 15:23:06.425 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-06 15:23:06.426 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2178 ms
+2026-10-06 15:23:06.917 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-06 15:23:07.277 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2e4eda17
+2026-10-06 15:23:07.280 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-06 15:23:07.329 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
+2026-10-06 15:23:09.716 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
+2026-10-06 15:23:09.774 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-10-06 15:23:09.778 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
+2026-10-06 15:23:09.794 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-10-06 15:23:09.794 [main] INFO  liquibase.util - Run:                          0
+2026-10-06 15:23:09.794 [main] INFO  liquibase.util - Previously run:              15
+2026-10-06 15:23:09.794 [main] INFO  liquibase.util - Filtered out:                 0
+2026-10-06 15:23:09.794 [main] INFO  liquibase.util - -------------------------------
+2026-10-06 15:23:09.795 [main] INFO  liquibase.util - Total change sets:           15
+2026-10-06 15:23:09.795 [main] INFO  liquibase.util - Update summary generated
+2026-10-06 15:23:09.834 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2026-10-06 15:23:09.837 [main] INFO  liquibase.command - Command execution complete
+2026-10-06 15:23:10.959 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-10-06 15:23:11.043 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2026-10-06 15:23:11.066 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
+2026-10-06 15:23:11.082 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 7.777 seconds (process running for 8.253)
+2026-10-06 15:23:11.092 [main] INFO  r.i.i.сonfig.AppInitializer - Loading APP_ADAPTER_CONFIG for systemId=GRU
+2026-10-06 15:23:11.095 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
+2026-10-06 15:23:11.131 [main] INFO  r.i.i.сonfig.AppInitializer - APP_ADAPTER_CONFIG loaded: topicIn=gru.balance.response, statusIn=1, topicOut=gru.balance.request, statusOut=1
+2026-10-06 15:23:11.131 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 producer(s) for topic gru.balance.request
+2026-10-06 15:23:11.134 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 consumer(s) for topic gru.balance.response
+2026-10-06 15:23:11.134 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerWorker - Producer [1] started for topic: gru.balance.request
+2026-10-06 15:23:11.138 [main] INFO  r.i.i.service.GruConsumerWorker - Starting Consumer [1] for topic: gru.balance.response
+2026-10-06 15:23:11.144 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
+2026-10-06 15:23:11.233 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerService - found batch 100 rows requestId=f1b4f021-b57b-4161-a3e5-451585c0f1dd
+2026-10-06 15:23:11.244 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.include.jmx.reporter = true
 	auto.offset.reset = earliest
-	bootstrap.servers = [localhost:9092]
+	bootstrap.servers = [localhost:9092, localhost:9093, localhost:9094]
 	check.crcs = true
 	client.dns.lookup = use_all_dns_ips
 	client.id = consumer-my-consumer-group-1
 	client.rack = 
 	connections.max.idle.ms = 540000
 	default.api.timeout.ms = 60000
-	enable.auto.commit = false
+	enable.auto.commit = true
 	enable.metrics.push = true
 	exclude.internal.topics = true
 	fetch.max.bytes = 52428800
@@ -782,204 +134,218 @@ Caused by: java.io.FileNotFoundException: class path resource [mybatis-config.xm
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-09-29 21:14:56.283 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
-2026-09-29 21:14:56.311 [producer-worker-thread] INFO  r.i.i.service.GruProducerService - found batch 100 rows requestId=7570189a-d768-4fe5-b1ec-8a4ffd369f15
-2026-09-29 21:14:56.370 [producer-worker-thread] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
-{"actualTimestamp":1790705696304,"systemId":"GRU","requestId":"7570189a-d768-4fe5-b1ec-8a4ffd369f15","eventType":"BALANCE","events":[{"id":1,"systemAccount":"372240969673583","currency":"222","xalfa":743274,"operation":"DR"},{"id":2,"systemAccount":"371121907938935","currency":"222","xalfa":534150,"operation":"CR"},{"id":3,"systemAccount":"377402696687162","currency":"222","xalfa":598123,"operation":"ZR"},{"id":4,"systemAccount":"375827408136599","currency":"222","xalfa":43920,"operation":"ZR"},{"id":5,"systemAccount":"346713992163502","currency":"222","xalfa":370357,"operation":"CR"},{"id":6,"systemAccount":"348691179988537","currency":"222","xalfa":791066,"operation":"DR"},{"id":7,"systemAccount":"375406153349721","currency":"222","xalfa":17080,"operation":"DR"},{"id":8,"systemAccount":"371279809454649","currency":"222","xalfa":592762,"operation":"ZR"},{"id":9,"systemAccount":"376695280752950","currency":"222","xalfa":746531,"operation":"ZR"},{"id":10,"systemAccount":"379004362432275","currency":"222","xalfa":955428,"operation":"ZR"},{"id":11,"systemAccount":"377256150054297","currency":"222","xalfa":347131,"operation":"DR"},{"id":12,"systemAccount":"371585235097327","currency":"222","xalfa":327296,"operation":"DR"},{"id":13,"systemAccount":"340013877866725","currency":"222","xalfa":685104,"operation":"DR"},{"id":14,"systemAccount":"373799803273289","currency":"222","xalfa":5691,"operation":"CR"},{"id":15,"systemAccount":"341430306947182","currency":"222","xalfa":809829,"operation":"CR"},{"id":16,"systemAccount":"340405242715530","currency":"222","xalfa":92839,"operation":"ZR"},{"id":17,"systemAccount":"375021539757917","currency":"222","xalfa":79677,"operation":"ZR"},{"id":18,"systemAccount":"370763187940916","currency":"222","xalfa":720458,"operation":"ZR"},{"id":19,"systemAccount":"378303413543358","currency":"222","xalfa":696536,"operation":"ZR"},{"id":20,"systemAccount":"371249926114087","currency":"222","xalfa":379309,"operation":"DR"},{"id":21,"systemAccount":"346655929439499","currency":"222","xalfa":175538,"operation":"DR"},{"id":22,"systemAccount":"341055136880392","currency":"222","xalfa":786751,"operation":"ZR"},{"id":23,"systemAccount":"341581078124077","currency":"222","xalfa":950045,"operation":"CR"},{"id":24,"systemAccount":"340970250863670","currency":"222","xalfa":553141,"operation":"CR"},{"id":25,"systemAccount":"342011916512894","currency":"222","xalfa":822071,"operation":"ZR"},{"id":26,"systemAccount":"347289734622518","currency":"222","xalfa":783606,"operation":"DR"},{"id":27,"systemAccount":"373726650577041","currency":"222","xalfa":994939,"operation":"CR"},{"id":28,"systemAccount":"348615755165467","currency":"222","xalfa":323564,"operation":"DR"},{"id":29,"systemAccount":"346686967681502","currency":"222","xalfa":864956,"operation":"ZR"},{"id":30,"systemAccount":"346493584610232","currency":"222","xalfa":270711,"operation":"CR"},{"id":31,"systemAccount":"370943487629159","currency":"222","xalfa":4341,"operation":"CR"},{"id":32,"systemAccount":"348349494242656","currency":"222","xalfa":561938,"operation":"DR"},{"id":33,"systemAccount":"347992407908227","currency":"222","xalfa":777557,"operation":"ZR"},{"id":34,"systemAccount":"371662784190249","currency":"222","xalfa":50596,"operation":"DR"},{"id":35,"systemAccount":"371370438562983","currency":"222","xalfa":32243,"operation":"DR"},{"id":36,"systemAccount":"345618234883190","currency":"222","xalfa":533271,"operation":"DR"},{"id":37,"systemAccount":"379202519741628","currency":"222","xalfa":335215,"operation":"CR"},{"id":38,"systemAccount":"371583642562967","currency":"222","xalfa":688930,"operation":"DR"},{"id":39,"systemAccount":"374241893917680","currency":"222","xalfa":921662,"operation":"ZR"},{"id":40,"systemAccount":"377439623581480","currency":"222","xalfa":791957,"operation":"DR"},{"id":41,"systemAccount":"340957197619265","currency":"222","xalfa":298761,"operation":"DR"},{"id":42,"systemAccount":"344501542480365","currency":"222","xalfa":250735,"operation":"CR"},{"id":43,"systemAccount":"342716687764058","currency":"222","xalfa":142658,"operation":"DR"},{"id":44,"systemAccount":"370106528144154","currency":"222","xalfa":101318,"operation":"DR"},{"id":45,"systemAccount":"345877030891480","currency":"222","xalfa":647801,"operation":"CR"},{"id":46,"systemAccount":"343431074863328","currency":"222","xalfa":627980,"operation":"ZR"},{"id":47,"systemAccount":"376466252736730","currency":"222","xalfa":547654,"operation":"ZR"},{"id":48,"systemAccount":"376620183399485","currency":"222","xalfa":104035,"operation":"CR"},{"id":49,"systemAccount":"374696153547891","currency":"222","xalfa":450042,"operation":"DR"},{"id":50,"systemAccount":"370194784434329","currency":"222","xalfa":297670,"operation":"DR"},{"id":51,"systemAccount":"347855357591311","currency":"222","xalfa":478971,"operation":"ZR"},{"id":52,"systemAccount":"373057604769652","currency":"222","xalfa":731370,"operation":"CR"},{"id":53,"systemAccount":"378514138689264","currency":"222","xalfa":554269,"operation":"ZR"},{"id":54,"systemAccount":"372060563492473","currency":"222","xalfa":782280,"operation":"DR"},{"id":55,"systemAccount":"343427621806075","currency":"222","xalfa":239653,"operation":"CR"},{"id":56,"systemAccount":"377284085009848","currency":"222","xalfa":420310,"operation":"DR"},{"id":57,"systemAccount":"342470880129434","currency":"222","xalfa":936229,"operation":"DR"},{"id":58,"systemAccount":"345896392055369","currency":"222","xalfa":717613,"operation":"CR"},{"id":59,"systemAccount":"342018298302646","currency":"222","xalfa":116932,"operation":"CR"},{"id":60,"systemAccount":"375894383157396","currency":"222","xalfa":286785,"operation":"CR"},{"id":61,"systemAccount":"378090556380926","currency":"222","xalfa":23763,"operation":"ZR"},{"id":62,"systemAccount":"343711588968451","currency":"222","xalfa":224387,"operation":"CR"},{"id":63,"systemAccount":"342269725140634","currency":"222","xalfa":44759,"operation":"DR"},{"id":64,"systemAccount":"347172056518581","currency":"222","xalfa":665112,"operation":"ZR"},{"id":65,"systemAccount":"373363400444247","currency":"222","xalfa":951732,"operation":"ZR"},{"id":66,"systemAccount":"376813182371767","currency":"222","xalfa":28487,"operation":"CR"},{"id":67,"systemAccount":"346804785943372","currency":"222","xalfa":24785,"operation":"CR"},{"id":68,"systemAccount":"372112765690758","currency":"222","xalfa":232834,"operation":"DR"},{"id":69,"systemAccount":"378199421138078","currency":"222","xalfa":37311,"operation":"DR"},{"id":70,"systemAccount":"344156737349717","currency":"222","xalfa":455097,"operation":"DR"},{"id":71,"systemAccount":"377983290195322","currency":"222","xalfa":491074,"operation":"ZR"},{"id":72,"systemAccount":"378040804634046","currency":"222","xalfa":846908,"operation":"ZR"},{"id":73,"systemAccount":"371710933288719","currency":"222","xalfa":253444,"operation":"DR"},{"id":74,"systemAccount":"344288461930816","currency":"222","xalfa":33672,"operation":"ZR"},{"id":75,"systemAccount":"372770382944302","currency":"222","xalfa":877200,"operation":"CR"},{"id":76,"systemAccount":"379692204705146","currency":"222","xalfa":610029,"operation":"DR"},{"id":77,"systemAccount":"377981347982767","currency":"222","xalfa":546815,"operation":"DR"},{"id":78,"systemAccount":"375568354384342","currency":"222","xalfa":890811,"operation":"CR"},{"id":79,"systemAccount":"349453271087034","currency":"222","xalfa":148822,"operation":"ZR"},{"id":80,"systemAccount":"343131693114737","currency":"222","xalfa":947153,"operation":"ZR"},{"id":81,"systemAccount":"345660137975012","currency":"222","xalfa":948772,"operation":"DR"},{"id":82,"systemAccount":"346734716144354","currency":"222","xalfa":278554,"operation":"CR"},{"id":83,"systemAccount":"345133040745856","currency":"222","xalfa":421697,"operation":"ZR"},{"id":84,"systemAccount":"370105839148458","currency":"222","xalfa":378936,"operation":"DR"},{"id":85,"systemAccount":"373121580702176","currency":"222","xalfa":662891,"operation":"CR"},{"id":86,"systemAccount":"372595966881517","currency":"222","xalfa":223637,"operation":"DR"},{"id":87,"systemAccount":"374203649197413","currency":"222","xalfa":79592,"operation":"DR"},{"id":88,"systemAccount":"370864691181961","currency":"222","xalfa":475461,"operation":"ZR"},{"id":89,"systemAccount":"377832914037933","currency":"222","xalfa":759469,"operation":"DR"},{"id":90,"systemAccount":"374183026364556","currency":"222","xalfa":164187,"operation":"ZR"},{"id":91,"systemAccount":"371017796533458","currency":"222","xalfa":469031,"operation":"DR"},{"id":92,"systemAccount":"374658538533459","currency":"222","xalfa":330058,"operation":"DR"},{"id":93,"systemAccount":"343836741394103","currency":"222","xalfa":812126,"operation":"ZR"},{"id":94,"systemAccount":"374715216686551","currency":"222","xalfa":247515,"operation":"CR"},{"id":95,"systemAccount":"370133913985595","currency":"222","xalfa":639645,"operation":"DR"},{"id":96,"systemAccount":"341073809317766","currency":"222","xalfa":588684,"operation":"DR"},{"id":97,"systemAccount":"379181768636566","currency":"222","xalfa":688745,"operation":"DR"},{"id":98,"systemAccount":"372001094525837","currency":"222","xalfa":62128,"operation":"DR"},{"id":99,"systemAccount":"374968517037608","currency":"222","xalfa":160115,"operation":"CR"},{"id":100,"systemAccount":"375431131127908","currency":"222","xalfa":375812,"operation":"CR"}]}
-2026-09-29 21:14:56.421 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
-2026-09-29 21:14:56.421 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
-2026-09-29 21:14:56.421 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1790705696418
-2026-09-29 21:14:56.426 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.request
-2026-09-29 21:14:56.434 [main] INFO  r.i.i.service.GruConsumerWorker - Consumer [1] container started successfully
-2026-09-29 21:14:56.598 [producer-worker-thread] ERROR r.i.i.service.GruProducerWorker - Producer [1] tech error
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
+2026-10-06 15:23:11.307 [producer-worker-thread-1] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
+{"actualTimestamp":1791289391226,"systemId":"GRU","requestId":"f1b4f021-b57b-4161-a3e5-451585c0f1dd","eventType":"BALANCE","events":[{"id":1003364763,"systemAccount":"38188397909101","currency":"RUB","xalfa":83421.278,"operation":"DR"},{"id":1076949425,"systemAccount":"5019748466364355","currency":"RUB","xalfa":22450.458,"operation":"DR"},{"id":1136996537,"systemAccount":"372115348321023","currency":"RUB","xalfa":73771.916,"operation":"CR"},{"id":1192544652,"systemAccount":"675967359782848147","currency":"RUB","xalfa":59661.089,"operation":"DR"},{"id":1427174249,"systemAccount":"36738886073827","currency":"RUB","xalfa":71886.669,"operation":"DR"},{"id":1453089682,"systemAccount":"6706080259293823","currency":"RUB","xalfa":31323.619,"operation":"DR"},{"id":1489726777,"systemAccount":"5019651591483415","currency":"RUB","xalfa":91546.858,"operation":"CR"},{"id":1491809063,"systemAccount":"372111624707183","currency":"RUB","xalfa":16688.335,"operation":"CR"},{"id":1531664596,"systemAccount":"5019018868564345","currency":"RUB","xalfa":33315.301,"operation":"DR"},{"id":1623652926,"systemAccount":"322052166767873","currency":"RUB","xalfa":96980.058,"operation":"CR"},{"id":1626572409,"systemAccount":"30691660481672","currency":"RUB","xalfa":28565.956,"operation":"ZR"},{"id":1783226108,"systemAccount":"5019695672782039","currency":"RUB","xalfa":5174.569,"operation":"ZR"},{"id":1804365961,"systemAccount":"5045850706075011","currency":"RUB","xalfa":95547.694,"operation":"DR"},{"id":1880973331,"systemAccount":"6706165836733886","currency":"RUB","xalfa":47346.368,"operation":"DR"},{"id":1984496164,"systemAccount":"378967602526604","currency":"RUB","xalfa":53166.5,"operation":"ZR"},{"id":2040941011,"systemAccount":"6709117907639416","currency":"RUB","xalfa":954.593,"operation":"ZR"},{"id":2063761627,"systemAccount":"2123646771837083","currency":"RUB","xalfa":90275.99,"operation":"ZR"},{"id":2125139036,"systemAccount":"6011008491704869","currency":"RUB","xalfa":3529.816,"operation":"ZR"},{"id":2232340258,"systemAccount":"6767686358597827","currency":"RUB","xalfa":35288.079,"operation":"CR"},{"id":2238800355,"systemAccount":"6011108890569564","currency":"RUB","xalfa":62328.61,"operation":"ZR"},{"id":2350473766,"systemAccount":"4556714956878298","currency":"RUB","xalfa":1459.157,"operation":"CR"},{"id":2465762206,"systemAccount":"6771510880298502","currency":"RUB","xalfa":26309.434,"operation":"DR"},{"id":2490548395,"systemAccount":"4354673707871859","currency":"RUB","xalfa":86799.498,"operation":"DR"},{"id":2634166777,"systemAccount":"6304641271445661","currency":"RUB","xalfa":71933.926,"operation":"CR"},{"id":2659257375,"systemAccount":"1800833622959561","currency":"RUB","xalfa":29062.612,"operation":"DR"},{"id":2675175136,"systemAccount":"38003001347889","currency":"RUB","xalfa":75211.155,"operation":"ZR"},{"id":2797617502,"systemAccount":"6516212927906235","currency":"RUB","xalfa":61909.794,"operation":"CR"},{"id":2814975894,"systemAccount":"6759417348570314","currency":"RUB","xalfa":7850.851,"operation":"DR"},{"id":2842354729,"systemAccount":"5019991120210420","currency":"RUB","xalfa":47719.968,"operation":"CR"},{"id":2914405806,"systemAccount":"5019364773520042","currency":"RUB","xalfa":82610.029,"operation":"DR"},{"id":2998657386,"systemAccount":"5019450481302961","currency":"RUB","xalfa":44615.535,"operation":"DR"},{"id":3146193751,"systemAccount":"4530662081759464","currency":"RUB","xalfa":31939.279,"operation":"DR"},{"id":3320916450,"systemAccount":"6304786445556578","currency":"RUB","xalfa":6709.122,"operation":"CR"},{"id":3578576291,"systemAccount":"675970534450513869","currency":"RUB","xalfa":37378.659,"operation":"CR"},{"id":3590518056,"systemAccount":"675988197589674398","currency":"RUB","xalfa":36178.791,"operation":"DR"},{"id":3593684374,"systemAccount":"6011004934938297","currency":"RUB","xalfa":65900.841,"operation":"DR"},{"id":3812110719,"systemAccount":"343411368552340","currency":"RUB","xalfa":2868.347,"operation":"DR"},{"id":3817077931,"systemAccount":"5493590350593334","currency":"RUB","xalfa":49432.312,"operation":"DR"},{"id":3852210213,"systemAccount":"4582716670407013","currency":"RUB","xalfa":34485.783,"operation":"DR"},{"id":3956726200,"systemAccount":"371574281890256","currency":"RUB","xalfa":55187.502,"operation":"DR"},{"id":4097298794,"systemAccount":"4901448736343552","currency":"RUB","xalfa":88413.562,"operation":"DR"},{"id":4132623261,"systemAccount":"6771165720185896","currency":"RUB","xalfa":36281.409,"operation":"DR"},{"id":4202541489,"systemAccount":"6007220307384234","currency":"RUB","xalfa":171.42,"operation":"DR"},{"id":4261916793,"systemAccount":"374276597264625","currency":"RUB","xalfa":72552.997,"operation":"ZR"},{"id":4278161382,"systemAccount":"5019934087431266","currency":"RUB","xalfa":5210.162,"operation":"DR"},{"id":4497705349,"systemAccount":"370633639783828","currency":"RUB","xalfa":4723.032,"operation":"ZR"},{"id":4722860068,"systemAccount":"6007224640988461","currency":"RUB","xalfa":13827.635,"operation":"CR"},{"id":4744729009,"systemAccount":"6007221179476314","currency":"RUB","xalfa":62457.039,"operation":"CR"},{"id":4898636902,"systemAccount":"5181133620436542","currency":"RUB","xalfa":30329.578,"operation":"ZR"},{"id":4921681114,"systemAccount":"5382968514789663","currency":"RUB","xalfa":81226.543,"operation":"DR"},{"id":4964773611,"systemAccount":"6007228589811071","currency":"RUB","xalfa":17952.113,"operation":"ZR"},{"id":5003002828,"systemAccount":"340568963044552","currency":"RUB","xalfa":875.034,"operation":"CR"},{"id":5147514507,"systemAccount":"6007226047422457","currency":"RUB","xalfa":65746.783,"operation":"CR"},{"id":5297304204,"systemAccount":"1800264407925330","currency":"RUB","xalfa":89364.832,"operation":"DR"},{"id":5441922010,"systemAccount":"4152533141399731","currency":"RUB","xalfa":92961.04,"operation":"ZR"},{"id":5463737842,"systemAccount":"5019888483776569","currency":"RUB","xalfa":28199.35,"operation":"CR"},{"id":5503178355,"systemAccount":"38855224978810","currency":"RUB","xalfa":32486.943,"operation":"CR"},{"id":5536281376,"systemAccount":"2123649360197729","currency":"RUB","xalfa":4931.735,"operation":"DR"},{"id":5630395601,"systemAccount":"6516212989406066","currency":"RUB","xalfa":33539.318,"operation":"CR"},{"id":5655048934,"systemAccount":"6767381247873072","currency":"RUB","xalfa":35320.708,"operation":"CR"},{"id":5866375282,"systemAccount":"6759034552786625","currency":"RUB","xalfa":3272.474,"operation":"CR"},{"id":5916853277,"systemAccount":"5312309184585393","currency":"RUB","xalfa":85251.326,"operation":"ZR"},{"id":5996598311,"systemAccount":"676722389010998707","currency":"RUB","xalfa":64706.198,"operation":"CR"},{"id":6167257977,"systemAccount":"6007226072433437","currency":"RUB","xalfa":14725.532,"operation":"DR"},{"id":6537864326,"systemAccount":"38071068828059","currency":"RUB","xalfa":65905.711,"operation":"CR"},{"id":6655147972,"systemAccount":"303455420868937","currency":"RUB","xalfa":70168.358,"operation":"DR"},{"id":6800748625,"systemAccount":"2123408739266263","currency":"RUB","xalfa":48151.981,"operation":"ZR"},{"id":6859283106,"systemAccount":"4987434309350452","currency":"RUB","xalfa":38180.307,"operation":"CR"},{"id":7354443372,"systemAccount":"30219505786384","currency":"RUB","xalfa":90536.392,"operation":"CR"},{"id":7363335190,"systemAccount":"1800533359407129","currency":"RUB","xalfa":67317.764,"operation":"DR"},{"id":7369295923,"systemAccount":"6011208187995637","currency":"RUB","xalfa":82992.408,"operation":"CR"},{"id":7392481851,"systemAccount":"6011006931495213","currency":"RUB","xalfa":8259.555,"operation":"ZR"},{"id":7601878425,"systemAccount":"305356225158979","currency":"RUB","xalfa":22443.684,"operation":"CR"},{"id":7620279218,"systemAccount":"5542338284057005","currency":"RUB","xalfa":16937.727,"operation":"ZR"},{"id":7854510724,"systemAccount":"2123702188619695","currency":"RUB","xalfa":13809.673,"operation":"CR"},{"id":7883135653,"systemAccount":"30241052791823","currency":"RUB","xalfa":47078.523,"operation":"ZR"},{"id":7907474498,"systemAccount":"5019096297747087","currency":"RUB","xalfa":82626.678,"operation":"ZR"},{"id":7964655759,"systemAccount":"6516213901203383","currency":"RUB","xalfa":9531.671,"operation":"CR"},{"id":8010025977,"systemAccount":"349029168949005","currency":"RUB","xalfa":86870.858,"operation":"CR"},{"id":8063364358,"systemAccount":"6759033806147099481","currency":"RUB","xalfa":1140.645,"operation":"DR"},{"id":8082511109,"systemAccount":"6709509985601849","currency":"RUB","xalfa":49831.364,"operation":"DR"},{"id":8097916362,"systemAccount":"5019103509718623","currency":"RUB","xalfa":18307.56,"operation":"ZR"},{"id":8230127329,"systemAccount":"4604534831931662","currency":"RUB","xalfa":4586.893,"operation":"CR"},{"id":8568796805,"systemAccount":"6759469027125051294","currency":"RUB","xalfa":80302.599,"operation":"ZR"},{"id":8671427108,"systemAccount":"6759633327732119","currency":"RUB","xalfa":18864.593,"operation":"DR"},{"id":8790934717,"systemAccount":"6007220658887041","currency":"RUB","xalfa":73980.788,"operation":"CR"},{"id":8932793426,"systemAccount":"5019937048027404","currency":"RUB","xalfa":66361.53,"operation":"ZR"},{"id":8981506530,"systemAccount":"675958235365625436","currency":"RUB","xalfa":4821.544,"operation":"ZR"},{"id":8998477297,"systemAccount":"6771965637890649","currency":"RUB","xalfa":76820.136,"operation":"ZR"},{"id":9049198430,"systemAccount":"5019864200704283","currency":"RUB","xalfa":80798.855,"operation":"ZR"},{"id":9184520026,"systemAccount":"6706816958379151","currency":"RUB","xalfa":35993.916,"operation":"DR"},{"id":9195720883,"systemAccount":"343755896273955","currency":"RUB","xalfa":38035.787,"operation":"DR"},{"id":9357414338,"systemAccount":"2123892504459437","currency":"RUB","xalfa":27773.351,"operation":"CR"},{"id":9371368188,"systemAccount":"5544819054905950","currency":"RUB","xalfa":38269.735,"operation":"DR"},{"id":9403366744,"systemAccount":"6767709369248716509","currency":"RUB","xalfa":39932.345,"operation":"CR"},{"id":9418873080,"systemAccount":"6007225199665962","currency":"RUB","xalfa":20424.508,"operation":"CR"},{"id":9438788532,"systemAccount":"5019646887679270","currency":"RUB","xalfa":3921.373,"operation":"DR"},{"id":9460128634,"systemAccount":"6767065214312938332","currency":"RUB","xalfa":12040.567,"operation":"DR"},{"id":9477432920,"systemAccount":"676712027885328475","currency":"RUB","xalfa":97533.563,"operation":"ZR"},{"id":9625545389,"systemAccount":"4262562562757140","currency":"RUB","xalfa":48383.678,"operation":"CR"}]}
+2026-10-06 15:23:11.347 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-10-06 15:23:11.464 [producer-worker-thread-1] INFO  o.a.k.c.producer.ProducerConfig - ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092, localhost:9093, localhost:9094]
+	buffer.memory = 67108864
+	client.dns.lookup = use_all_dns_ips
+	client.id = publisher-change-food-card-producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	enable.metrics.push = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 3
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
 
-### The error may exist in mappers/app-adapter-trans-mapper.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: INSERT INTO ACC_APP_ADAPTER.APP_ADAPTER_TRANS (         SYSTEM_ID, REQUEST_ID, EVENT_TYPE, DATA, STATUS,         RESP_CODE, RESP_DESC, INS_TS, UPD_TS         )         VALUES (         ?, ?, ?, ?, ?,         ?, ?, ?, ?         )
-### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-; ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:93)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
-	at jdk.proxy2/jdk.proxy2.$Proxy88.insert(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:224)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy91.save(Unknown Source)
-	at ru.itone.illya4gurenko.dao.AppAdapterTransDao.save(AppAdapterTransDao.java:14)
-	at ru.itone.illya4gurenko.service.GruProducerService.produce(GruProducerService.java:48)
-	at ru.itone.illya4gurenko.service.GruProducerWorker.run(GruProducerWorker.java:35)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:629)
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:563)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1230)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:771)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:298)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:511)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:162)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1240)
-	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:1819)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1471)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3760)
-	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:4135)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1013)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
-	... 14 common frames omitted
-Caused by: oracle.jdbc.OracleDatabaseException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:636)
-	... 38 common frames omitted
-2026-09-29 21:14:57.032 [consumer-vista-container-1-C-1] WARN  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Error while fetching metadata with correlation id 2 : {gru.balance.request=LEADER_NOT_AVAILABLE}
-2026-09-29 21:14:57.035 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: Ua8hugpnSTabqhD6E0Q9Nw
-2026-09-29 21:14:57.036 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-2026-09-29 21:14:57.041 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-09-29 21:14:57.086 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-7649a44c-7219-4ebc-86e4-58c9dec4e438
-2026-09-29 21:14:57.087 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-09-29 21:15:00.192 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=3, memberId='consumer-my-consumer-group-1-7649a44c-7219-4ebc-86e4-58c9dec4e438', protocol='range'}
-2026-09-29 21:15:00.199 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 3: {consumer-my-consumer-group-1-7649a44c-7219-4ebc-86e4-58c9dec4e438=Assignment(partitions=[gru.balance.request-0])}
-2026-09-29 21:15:00.236 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=3, memberId='consumer-my-consumer-group-1-7649a44c-7219-4ebc-86e4-58c9dec4e438', protocol='range'}
-2026-09-29 21:15:00.236 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.request-0])
-2026-09-29 21:15:00.239 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.request-0
-2026-09-29 21:15:00.240 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.request-0]
-2026-09-29 21:15:00.256 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Found no committed offset for partition gru.balance.request-0
-2026-09-29 21:15:00.273 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Resetting offset for partition gru.balance.request-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}.
-2026-09-29 21:15:06.657 [producer-worker-thread] INFO  r.i.i.service.GruProducerService - found batch 92 rows requestId=b8a4fe72-c290-41f1-adda-d795b0bbf500
-2026-09-29 21:15:06.659 [producer-worker-thread] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
-{"actualTimestamp":1790705706652,"systemId":"GRU","requestId":"b8a4fe72-c290-41f1-adda-d795b0bbf500","eventType":"BALANCE","events":[{"id":101,"systemAccount":"375726624494230","currency":"222","xalfa":243046,"operation":"ZR"},{"id":102,"systemAccount":"346524465463034","currency":"222","xalfa":909481,"operation":"DR"},{"id":103,"systemAccount":"344298466089328","currency":"222","xalfa":705615,"operation":"DR"},{"id":104,"systemAccount":"376616854502969","currency":"222","xalfa":549388,"operation":"ZR"},{"id":105,"systemAccount":"349728484668146","currency":"222","xalfa":308178,"operation":"CR"},{"id":106,"systemAccount":"379679467404970","currency":"222","xalfa":997185,"operation":"DR"},{"id":107,"systemAccount":"340620642545465","currency":"222","xalfa":913208,"operation":"CR"},{"id":108,"systemAccount":"372202119378232","currency":"222","xalfa":991346,"operation":"DR"},{"id":109,"systemAccount":"377917680394202","currency":"222","xalfa":800372,"operation":"ZR"},{"id":110,"systemAccount":"374872834730624","currency":"222","xalfa":520612,"operation":"DR"},{"id":111,"systemAccount":"375230490636628","currency":"222","xalfa":65412,"operation":"DR"},{"id":112,"systemAccount":"344127612462024","currency":"222","xalfa":483543,"operation":"CR"},{"id":113,"systemAccount":"342015733477389","currency":"222","xalfa":916865,"operation":"CR"},{"id":114,"systemAccount":"376920423067631","currency":"222","xalfa":223512,"operation":"CR"},{"id":115,"systemAccount":"376460864402492","currency":"222","xalfa":532418,"operation":"ZR"},{"id":116,"systemAccount":"377306066257839","currency":"222","xalfa":747001,"operation":"CR"},{"id":117,"systemAccount":"347891232249999","currency":"222","xalfa":345040,"operation":"ZR"},{"id":118,"systemAccount":"349588971037142","currency":"222","xalfa":403281,"operation":"ZR"},{"id":119,"systemAccount":"379435464307918","currency":"222","xalfa":247976,"operation":"CR"},{"id":120,"systemAccount":"347609040134850","currency":"222","xalfa":43825,"operation":"CR"},{"id":121,"systemAccount":"348708114440745","currency":"222","xalfa":537682,"operation":"DR"},{"id":122,"systemAccount":"343569524821154","currency":"222","xalfa":727596,"operation":"ZR"},{"id":123,"systemAccount":"370789952404622","currency":"222","xalfa":101509,"operation":"ZR"},{"id":124,"systemAccount":"375129198312245","currency":"222","xalfa":981786,"operation":"ZR"},{"id":125,"systemAccount":"344883418070888","currency":"222","xalfa":62646,"operation":"CR"},{"id":126,"systemAccount":"346842182318079","currency":"222","xalfa":309926,"operation":"ZR"},{"id":127,"systemAccount":"374344616574968","currency":"222","xalfa":480029,"operation":"CR"},{"id":128,"systemAccount":"344713777791479","currency":"222","xalfa":365942,"operation":"DR"},{"id":129,"systemAccount":"348857355697180","currency":"222","xalfa":630022,"operation":"DR"},{"id":130,"systemAccount":"340706981962039","currency":"222","xalfa":453190,"operation":"ZR"},{"id":131,"systemAccount":"370807936304286","currency":"222","xalfa":981301,"operation":"ZR"},{"id":132,"systemAccount":"345714851576553","currency":"222","xalfa":7122,"operation":"DR"},{"id":133,"systemAccount":"370266366053253","currency":"222","xalfa":640473,"operation":"DR"},{"id":134,"systemAccount":"374081009541143","currency":"222","xalfa":345824,"operation":"CR"},{"id":135,"systemAccount":"348655725899142","currency":"222","xalfa":406507,"operation":"CR"},{"id":136,"systemAccount":"341058575069899","currency":"222","xalfa":980836,"operation":"ZR"},{"id":137,"systemAccount":"378415734638467","currency":"222","xalfa":15185,"operation":"DR"},{"id":138,"systemAccount":"377934554612270","currency":"222","xalfa":348616,"operation":"DR"},{"id":139,"systemAccount":"344432133706929","currency":"222","xalfa":164353,"operation":"CR"},{"id":140,"systemAccount":"345675968093156","currency":"222","xalfa":404735,"operation":"ZR"},{"id":141,"systemAccount":"348974444175902","currency":"222","xalfa":449265,"operation":"CR"},{"id":142,"systemAccount":"378984326548921","currency":"222","xalfa":945719,"operation":"ZR"},{"id":143,"systemAccount":"346669385478263","currency":"222","xalfa":829019,"operation":"CR"},{"id":144,"systemAccount":"379335576688041","currency":"222","xalfa":463997,"operation":"DR"},{"id":145,"systemAccount":"372345300063749","currency":"222","xalfa":985749,"operation":"ZR"},{"id":146,"systemAccount":"342857279757397","currency":"222","xalfa":887778,"operation":"CR"},{"id":147,"systemAccount":"370018253765394","currency":"222","xalfa":804563,"operation":"CR"},{"id":148,"systemAccount":"374549929337370","currency":"222","xalfa":253011,"operation":"DR"},{"id":149,"systemAccount":"345675941135074","currency":"222","xalfa":752252,"operation":"ZR"},{"id":150,"systemAccount":"379068188075451","currency":"222","xalfa":863190,"operation":"CR"},{"id":151,"systemAccount":"375332525968461","currency":"222","xalfa":704188,"operation":"CR"},{"id":152,"systemAccount":"347201983538790","currency":"222","xalfa":673321,"operation":"CR"},{"id":153,"systemAccount":"373587667048636","currency":"222","xalfa":907452,"operation":"CR"},{"id":154,"systemAccount":"341016093662728","currency":"222","xalfa":647987,"operation":"ZR"},{"id":155,"systemAccount":"342173141465957","currency":"222","xalfa":890419,"operation":"CR"},{"id":156,"systemAccount":"372246689223195","currency":"222","xalfa":564169,"operation":"ZR"},{"id":157,"systemAccount":"348450133773885","currency":"222","xalfa":557271,"operation":"DR"},{"id":158,"systemAccount":"376937475734033","currency":"222","xalfa":882168,"operation":"ZR"},{"id":159,"systemAccount":"373693638726092","currency":"222","xalfa":282185,"operation":"DR"},{"id":160,"systemAccount":"379775326677192","currency":"222","xalfa":496724,"operation":"DR"},{"id":161,"systemAccount":"342093921314912","currency":"222","xalfa":587529,"operation":"CR"},{"id":162,"systemAccount":"345870057714651","currency":"222","xalfa":331523,"operation":"ZR"},{"id":163,"systemAccount":"378963184205246","currency":"222","xalfa":304243,"operation":"ZR"},{"id":164,"systemAccount":"379620577680422","currency":"222","xalfa":59952,"operation":"ZR"},{"id":165,"systemAccount":"375051058942491","currency":"222","xalfa":715723,"operation":"CR"},{"id":166,"systemAccount":"370511638963320","currency":"222","xalfa":587010,"operation":"DR"},{"id":167,"systemAccount":"373008061708394","currency":"222","xalfa":914172,"operation":"DR"},{"id":168,"systemAccount":"370192459542442","currency":"222","xalfa":553850,"operation":"CR"},{"id":169,"systemAccount":"343014264094746","currency":"222","xalfa":431953,"operation":"ZR"},{"id":170,"systemAccount":"347044472026491","currency":"222","xalfa":180936,"operation":"CR"},{"id":171,"systemAccount":"376950345450045","currency":"222","xalfa":215143,"operation":"DR"},{"id":172,"systemAccount":"379913525282494","currency":"222","xalfa":2656,"operation":"DR"},{"id":173,"systemAccount":"340999762165571","currency":"222","xalfa":973502,"operation":"CR"},{"id":174,"systemAccount":"348541489933931","currency":"222","xalfa":632654,"operation":"DR"},{"id":175,"systemAccount":"341361944001316","currency":"222","xalfa":757631,"operation":"CR"},{"id":176,"systemAccount":"341836628195104","currency":"222","xalfa":836473,"operation":"CR"},{"id":177,"systemAccount":"349634152343105","currency":"222","xalfa":764558,"operation":"CR"},{"id":178,"systemAccount":"373352767462306","currency":"222","xalfa":324006,"operation":"CR"},{"id":179,"systemAccount":"379210633121569","currency":"222","xalfa":738568,"operation":"CR"},{"id":180,"systemAccount":"347703407272369","currency":"222","xalfa":157125,"operation":"CR"},{"id":181,"systemAccount":"349938317650704","currency":"222","xalfa":763045,"operation":"ZR"},{"id":182,"systemAccount":"345254778690153","currency":"222","xalfa":588362,"operation":"CR"},{"id":183,"systemAccount":"375189225127453","currency":"222","xalfa":361602,"operation":"CR"},{"id":184,"systemAccount":"348709438865088","currency":"222","xalfa":244408,"operation":"CR"},{"id":185,"systemAccount":"347331861990811","currency":"222","xalfa":360226,"operation":"ZR"},{"id":186,"systemAccount":"344615777291303","currency":"222","xalfa":341202,"operation":"CR"},{"id":187,"systemAccount":"346729207744787","currency":"222","xalfa":482074,"operation":"DR"},{"id":188,"systemAccount":"348308060286265","currency":"222","xalfa":598,"operation":"DR"},{"id":189,"systemAccount":"345941141571181","currency":"222","xalfa":2562,"operation":"DR"},{"id":190,"systemAccount":"347399775416967","currency":"222","xalfa":837891,"operation":"CR"},{"id":191,"systemAccount":"376485260241178","currency":"222","xalfa":741631,"operation":"DR"},{"id":192,"systemAccount":"346887501857372","currency":"222","xalfa":925221,"operation":"DR"}]}
-2026-09-29 21:15:07.013 [producer-worker-thread] ERROR r.i.i.service.GruProducerWorker - Producer [1] tech error
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-### The error may exist in mappers/app-adapter-trans-mapper.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: INSERT INTO ACC_APP_ADAPTER.APP_ADAPTER_TRANS (         SYSTEM_ID, REQUEST_ID, EVENT_TYPE, DATA, STATUS,         RESP_CODE, RESP_DESC, INS_TS, UPD_TS         )         VALUES (         ?, ?, ?, ?, ?,         ?, ?, ?, ?         )
-### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-; ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:93)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
-	at jdk.proxy2/jdk.proxy2.$Proxy88.insert(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:224)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy91.save(Unknown Source)
-	at ru.itone.illya4gurenko.dao.AppAdapterTransDao.save(AppAdapterTransDao.java:14)
-	at ru.itone.illya4gurenko.service.GruProducerService.produce(GruProducerService.java:48)
-	at ru.itone.illya4gurenko.service.GruProducerWorker.run(GruProducerWorker.java:35)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:629)
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:563)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1230)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:771)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:298)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:511)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:162)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:1240)
-	at oracle.jdbc.driver.OracleStatement.executeSQLStatement(OracleStatement.java:1819)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1471)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3760)
-	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:4135)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1013)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
-	... 14 common frames omitted
-Caused by: oracle.jdbc.OracleDatabaseException: ORA-01400: cannot insert NULL into ("ACC_APP_ADAPTER"."APP_ADAPTER_TRANS"."ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:636)
-	... 38 common frames omitted
-2026-09-29 21:18:00.496 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-09-29 21:18:00.555 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 17976 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-09-29 21:18:00.556 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-09-29 21:18:02.641 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-09-29 21:18:02.656 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:18:02.661 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-29 21:18:02.661 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-09-29 21:18:02.735 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-29 21:18:02.736 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2124 ms
-2026-09-29 21:18:03.246 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-09-29 21:18:03.555 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@720f56e2
-2026-09-29 21:18:03.558 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-09-29 21:18:03.605 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-09-29 21:18:05.202 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:18:05.247 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-09-29 21:18:05.250 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-09-29 21:18:05.263 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-09-29 21:18:05.263 [main] INFO  liquibase.util - Run:                          0
-2026-09-29 21:18:05.263 [main] INFO  liquibase.util - Previously run:              15
-2026-09-29 21:18:05.263 [main] INFO  liquibase.util - Filtered out:                 0
-2026-09-29 21:18:05.263 [main] INFO  liquibase.util - -------------------------------
-2026-09-29 21:18:05.263 [main] INFO  liquibase.util - Total change sets:           15
-2026-09-29 21:18:05.265 [main] INFO  liquibase.util - Update summary generated
-2026-09-29 21:18:05.288 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-09-29 21:18:05.291 [main] INFO  liquibase.command - Command execution complete
-2026-09-29 21:18:06.375 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-09-29 21:18:06.469 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-09-29 21:18:06.491 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-09-29 21:18:06.510 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 6.64 seconds (process running for 7.059)
-2026-09-29 21:18:06.523 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-09-29 21:18:06.564 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-09-29 21:18:06.564 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 Producers...
-2026-09-29 21:18:06.570 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 Consumers...
-2026-09-29 21:18:06.571 [producer-worker-thread] INFO  r.i.i.service.GruProducerWorker - Producer [1] started for topic: gru.balance.response
-2026-09-29 21:18:06.576 [main] INFO  r.i.i.service.GruConsumerWorker - Starting Consumer [1] for topic: gru.balance.request
-2026-09-29 21:18:06.716 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
+2026-10-06 15:23:11.471 [producer-worker-thread-1] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-10-06 15:23:11.514 [producer-worker-thread-1] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Instantiated an idempotent producer.
+2026-10-06 15:23:11.605 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2026-10-06 15:23:11.605 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2026-10-06 15:23:11.606 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791289391600
+2026-10-06 15:23:11.632 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2026-10-06 15:23:11.632 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2026-10-06 15:23:11.632 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791289391632
+2026-10-06 15:23:11.637 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.response
+2026-10-06 15:23:11.648 [main] INFO  r.i.i.service.GruConsumerWorker - Consumer [1] container started successfully
+2026-10-06 15:23:11.655 [main] INFO  r.i.i.сonfig.AppInitializer - Workers initialized. running=true, producers=1, consumers=1
+2026-10-06 15:23:11.658 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - App-adapter shutdown hook registered
+2026-10-06 15:23:12.265 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  org.apache.kafka.clients.Metadata - [Producer clientId=publisher-change-food-card-producer-1] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
+2026-10-06 15:23:12.265 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
+2026-10-06 15:23:12.267 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-10-06 15:23:12.275 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
+2026-10-06 15:23:12.293 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.a.k.c.p.i.TransactionManager - [Producer clientId=publisher-change-food-card-producer-1] ProducerId set to 5000 with epoch 0
+2026-10-06 15:23:12.312 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98
+2026-10-06 15:23:12.312 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
+2026-10-06 15:23:12.381 [producer-worker-thread-1] INFO  r.i.i.s.sender.KafkaProducerSender - Success produce in kafka topic: gru.balance.request, partition: 1, offset: 1
+2026-10-06 15:23:15.325 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=12, memberId='consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98', protocol='range'}
+2026-10-06 15:23:15.332 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 12: {consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98=Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])}
+2026-10-06 15:23:15.356 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=12, memberId='consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98', protocol='range'}
+2026-10-06 15:23:15.358 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])
+2026-10-06 15:23:15.360 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
+2026-10-06 15:23:15.361 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
+2026-10-06 15:23:15.377 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=9}}
+2026-10-06 15:23:15.378 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-1 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[2], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=11}}
+2026-10-06 15:23:15.378 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[4], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9093 (id: 2 rack: null)], epoch=12}}
+2026-10-06 15:23:37.924 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-06 15:23:37.924 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-10-06 15:23:37.928 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2026-10-06 15:23:37.969 [http-nio-8082-exec-1] WARN  r.i.i.controller.AdminController - ADMIN: full application shutdown requested
+2026-10-06 15:23:38.473 [admin-shutdown-thread] WARN  r.i.i.controller.AdminController - ADMIN: shutting down JVM
+2026-10-06 15:23:38.476 [app-adapter-shutdown-hook] INFO  r.itone.illya4gurenko.AppAdapterRun - JVM shutdown hook received. Stopping app-adapter workers...
+2026-10-06 15:23:38.479 [app-adapter-shutdown-hook] INFO  r.i.i.сonfig.AppInitializer - Stopping workers. Producers=1, Consumers=1
+2026-10-06 15:23:38.482 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerWorker - Producer [1] interrupted
+2026-10-06 15:23:38.484 [app-adapter-shutdown-hook] INFO  r.i.i.service.GruConsumerWorker - Stopping Consumer [1]...
+2026-10-06 15:23:38.489 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Revoke previously assigned partitions gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
+2026-10-06 15:23:38.491 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions revoked: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
+2026-10-06 15:23:38.492 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-06 15:23:38.492 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Member consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+2026-10-06 15:23:38.493 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-10-06 15:23:38.494 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: consumer pro-actively leaving the group
+2026-10-06 15:23:38.494 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Unsubscribed all topics or patterns and assigned partitions
+2026-10-06 15:23:38.496 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-10-06 15:23:38.496 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: consumer pro-actively leaving the group
+2026-10-06 15:23:38.520 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-10-06 15:23:38.525 [SpringApplicationShutdownHook] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Closing the Kafka producer with timeoutMillis = 30000 ms.
+2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
+2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed
+2026-10-06 15:23:38.538 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.producer for publisher-change-food-card-producer-1 unregistered
+2026-10-06 15:23:38.666 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
+2026-10-06 15:23:38.667 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-10-06 15:23:38.667 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-10-06 15:23:38.667 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed
+2026-10-06 15:23:38.679 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-my-consumer-group-1 unregistered
+2026-10-06 15:23:38.680 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: Consumer stopped
+2026-10-06 15:23:38.681 [app-adapter-shutdown-hook] INFO  r.i.i.сonfig.AppInitializer - All app-adapter workers stopped
+2026-10-06 15:23:38.681 [app-adapter-shutdown-hook] INFO  r.itone.illya4gurenko.AppAdapterRun - App-adapter workers successfully stopped
+2026-10-06 15:23:38.681 [SpringApplicationShutdownHook] INFO  r.i.i.сonfig.AppInitializer - AppInitializer @PreDestroy invoked
+2026-10-06 15:23:38.681 [SpringApplicationShutdownHook] INFO  r.i.i.сonfig.AppInitializer - Stopping workers. Producers=0, Consumers=0
+2026-10-06 15:23:38.681 [SpringApplicationShutdownHook] INFO  r.i.i.сonfig.AppInitializer - All app-adapter workers stopped
+2026-10-06 15:23:38.683 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-10-06 15:23:38.717 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-10-06 15:23:51.859 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-10-06 15:23:51.913 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 15872 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
+2026-10-06 15:23:51.914 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
+2026-10-06 15:23:53.935 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
+2026-10-06 15:23:53.952 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2026-10-06 15:23:53.957 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-06 15:23:53.957 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-10-06 15:23:54.029 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-06 15:23:54.029 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2055 ms
+2026-10-06 15:23:54.571 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-06 15:23:54.866 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@4f213a2
+2026-10-06 15:23:54.868 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-06 15:23:54.913 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
+2026-10-06 15:23:56.925 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
+2026-10-06 15:23:56.968 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-10-06 15:23:56.971 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
+2026-10-06 15:23:56.984 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Run:                          0
+2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Previously run:              15
+2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Filtered out:                 0
+2026-10-06 15:23:56.984 [main] INFO  liquibase.util - -------------------------------
+2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Total change sets:           15
+2026-10-06 15:23:56.985 [main] INFO  liquibase.util - Update summary generated
+2026-10-06 15:23:57.015 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2026-10-06 15:23:57.018 [main] INFO  liquibase.command - Command execution complete
+2026-10-06 15:23:58.280 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-10-06 15:23:58.382 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2026-10-06 15:23:58.418 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
+2026-10-06 15:23:58.451 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 7.293 seconds (process running for 7.749)
+2026-10-06 15:23:58.465 [main] INFO  r.i.i.сonfig.AppInitializer - Loading APP_ADAPTER_CONFIG for systemId=GRU
+2026-10-06 15:23:58.484 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
+2026-10-06 15:23:58.522 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
+2026-10-06 15:23:58.524 [main] INFO  r.i.i.сonfig.AppInitializer - APP_ADAPTER_CONFIG loaded: topicIn=gru.balance.response, statusIn=1, topicOut=gru.balance.request, statusOut=1
+2026-10-06 15:23:58.525 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 producer(s) for topic gru.balance.request
+2026-10-06 15:23:58.529 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 consumer(s) for topic gru.balance.response
+2026-10-06 15:23:58.529 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerWorker - Producer [1] started for topic: gru.balance.request
+2026-10-06 15:23:58.532 [main] INFO  r.i.i.service.GruConsumerWorker - Starting Consumer [1] for topic: gru.balance.response
+2026-10-06 15:23:58.619 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.include.jmx.reporter = true
 	auto.offset.reset = earliest
-	bootstrap.servers = [localhost:9092]
+	bootstrap.servers = [localhost:9092, localhost:9093, localhost:9094]
 	check.crcs = true
 	client.dns.lookup = use_all_dns_ips
 	client.id = consumer-my-consumer-group-1
 	client.rack = 
 	connections.max.idle.ms = 540000
 	default.api.timeout.ms = 60000
-	enable.auto.commit = false
+	enable.auto.commit = true
 	enable.metrics.push = true
 	exclude.internal.topics = true
 	fetch.max.bytes = 52428800
@@ -1065,22 +431,140 @@ Caused by: oracle.jdbc.OracleDatabaseException: ORA-01400: cannot insert NULL in
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-09-29 21:18:06.771 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
-2026-09-29 21:18:06.876 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
-2026-09-29 21:18:06.877 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
-2026-09-29 21:18:06.877 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1790705886875
-2026-09-29 21:18:06.881 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.request
-2026-09-29 21:18:06.887 [main] INFO  r.i.i.service.GruConsumerWorker - Consumer [1] container started successfully
-2026-09-29 21:18:07.209 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: Ua8hugpnSTabqhD6E0Q9Nw
-2026-09-29 21:18:07.210 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-2026-09-29 21:18:07.213 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-09-29 21:18:07.237 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-d7a7d23c-ba91-45a1-b7ef-7a66e0b9bb02
-2026-09-29 21:18:07.238 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-09-29 21:18:25.680 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=4, memberId='consumer-my-consumer-group-1-d7a7d23c-ba91-45a1-b7ef-7a66e0b9bb02', protocol='range'}
-2026-09-29 21:18:25.688 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 4: {consumer-my-consumer-group-1-d7a7d23c-ba91-45a1-b7ef-7a66e0b9bb02=Assignment(partitions=[gru.balance.request-0])}
-2026-09-29 21:18:25.697 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=4, memberId='consumer-my-consumer-group-1-d7a7d23c-ba91-45a1-b7ef-7a66e0b9bb02', protocol='range'}
-2026-09-29 21:18:25.697 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.request-0])
-2026-09-29 21:18:25.699 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.request-0
-2026-09-29 21:18:25.701 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.request-0]
-2026-09-29 21:18:25.709 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Found no committed offset for partition gru.balance.request-0
-2026-09-29 21:18:25.723 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Resetting offset for partition gru.balance.request-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}.
+2026-10-06 15:23:58.691 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-10-06 15:23:58.803 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2026-10-06 15:23:58.804 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2026-10-06 15:23:58.804 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791289438801
+2026-10-06 15:23:58.809 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.response
+2026-10-06 15:23:58.817 [main] INFO  r.i.i.service.GruConsumerWorker - Consumer [1] container started successfully
+2026-10-06 15:23:58.817 [main] INFO  r.i.i.сonfig.AppInitializer - Workers initialized. running=true, producers=1, consumers=1
+2026-10-06 15:23:58.819 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - App-adapter shutdown hook registered
+2026-10-06 15:23:59.287 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
+2026-10-06 15:23:59.288 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-10-06 15:23:59.296 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
+2026-10-06 15:23:59.317 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e
+2026-10-06 15:23:59.317 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
+2026-10-06 15:24:02.331 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=14, memberId='consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e', protocol='range'}
+2026-10-06 15:24:02.337 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 14: {consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e=Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])}
+2026-10-06 15:24:02.351 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=14, memberId='consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e', protocol='range'}
+2026-10-06 15:24:02.351 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])
+2026-10-06 15:24:02.353 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
+2026-10-06 15:24:02.354 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
+2026-10-06 15:24:02.364 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=9}}
+2026-10-06 15:24:02.365 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-1 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[2], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=11}}
+2026-10-06 15:24:02.365 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[4], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9093 (id: 2 rack: null)], epoch=12}}
+2026-10-06 15:32:59.339 [consumer-vista-container-1-C-1] INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Node -1 disconnected.
+2026-10-06 15:32:59.341 [kafka-coordinator-heartbeat-thread | my-consumer-group] INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Node -3 disconnected.
+2026-10-06 15:38:58.523 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
+2026-10-06 15:38:58.528 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
+2026-10-06 15:42:59.544 [consumer-vista-container-1-C-1] INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Node -3 disconnected.
+2026-10-06 15:53:58.529 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
+2026-10-06 15:53:58.547 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
+2026-10-06 15:54:00.376 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerService - found batch 100 rows requestId=f9acbe5f-cc40-436a-ad91-451b651362db
+2026-10-06 15:54:00.426 [producer-worker-thread-1] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
+{"actualTimestamp":1791291240370,"systemId":"GRU","requestId":"f9acbe5f-cc40-436a-ad91-451b651362db","eventType":"BALANCE","events":[{"id":1003364763,"systemAccount":"38188397909101","currency":"RUB","xalfa":83421.278,"operation":"DR"},{"id":1076949425,"systemAccount":"5019748466364355","currency":"RUB","xalfa":22450.458,"operation":"DR"},{"id":1136996537,"systemAccount":"372115348321023","currency":"RUB","xalfa":73771.916,"operation":"CR"},{"id":1192544652,"systemAccount":"675967359782848147","currency":"RUB","xalfa":59661.089,"operation":"DR"},{"id":1427174249,"systemAccount":"36738886073827","currency":"RUB","xalfa":71886.669,"operation":"DR"},{"id":1453089682,"systemAccount":"6706080259293823","currency":"RUB","xalfa":31323.619,"operation":"DR"},{"id":1489726777,"systemAccount":"5019651591483415","currency":"RUB","xalfa":91546.858,"operation":"CR"},{"id":1491809063,"systemAccount":"372111624707183","currency":"RUB","xalfa":16688.335,"operation":"CR"},{"id":1531664596,"systemAccount":"5019018868564345","currency":"RUB","xalfa":33315.301,"operation":"DR"},{"id":1623652926,"systemAccount":"322052166767873","currency":"RUB","xalfa":96980.058,"operation":"CR"},{"id":1626572409,"systemAccount":"30691660481672","currency":"RUB","xalfa":28565.956,"operation":"ZR"},{"id":1783226108,"systemAccount":"5019695672782039","currency":"RUB","xalfa":5174.569,"operation":"ZR"},{"id":1804365961,"systemAccount":"5045850706075011","currency":"RUB","xalfa":95547.694,"operation":"DR"},{"id":1880973331,"systemAccount":"6706165836733886","currency":"RUB","xalfa":47346.368,"operation":"DR"},{"id":1984496164,"systemAccount":"378967602526604","currency":"RUB","xalfa":53166.5,"operation":"ZR"},{"id":2040941011,"systemAccount":"6709117907639416","currency":"RUB","xalfa":954.593,"operation":"ZR"},{"id":2063761627,"systemAccount":"2123646771837083","currency":"RUB","xalfa":90275.99,"operation":"ZR"},{"id":2125139036,"systemAccount":"6011008491704869","currency":"RUB","xalfa":3529.816,"operation":"ZR"},{"id":2232340258,"systemAccount":"6767686358597827","currency":"RUB","xalfa":35288.079,"operation":"CR"},{"id":2238800355,"systemAccount":"6011108890569564","currency":"RUB","xalfa":62328.61,"operation":"ZR"},{"id":2350473766,"systemAccount":"4556714956878298","currency":"RUB","xalfa":1459.157,"operation":"CR"},{"id":2465762206,"systemAccount":"6771510880298502","currency":"RUB","xalfa":26309.434,"operation":"DR"},{"id":2490548395,"systemAccount":"4354673707871859","currency":"RUB","xalfa":86799.498,"operation":"DR"},{"id":2634166777,"systemAccount":"6304641271445661","currency":"RUB","xalfa":71933.926,"operation":"CR"},{"id":2659257375,"systemAccount":"1800833622959561","currency":"RUB","xalfa":29062.612,"operation":"DR"},{"id":2675175136,"systemAccount":"38003001347889","currency":"RUB","xalfa":75211.155,"operation":"ZR"},{"id":2797617502,"systemAccount":"6516212927906235","currency":"RUB","xalfa":61909.794,"operation":"CR"},{"id":2814975894,"systemAccount":"6759417348570314","currency":"RUB","xalfa":7850.851,"operation":"DR"},{"id":2842354729,"systemAccount":"5019991120210420","currency":"RUB","xalfa":47719.968,"operation":"CR"},{"id":2914405806,"systemAccount":"5019364773520042","currency":"RUB","xalfa":82610.029,"operation":"DR"},{"id":2998657386,"systemAccount":"5019450481302961","currency":"RUB","xalfa":44615.535,"operation":"DR"},{"id":3146193751,"systemAccount":"4530662081759464","currency":"RUB","xalfa":31939.279,"operation":"DR"},{"id":3320916450,"systemAccount":"6304786445556578","currency":"RUB","xalfa":6709.122,"operation":"CR"},{"id":3578576291,"systemAccount":"675970534450513869","currency":"RUB","xalfa":37378.659,"operation":"CR"},{"id":3590518056,"systemAccount":"675988197589674398","currency":"RUB","xalfa":36178.791,"operation":"DR"},{"id":3593684374,"systemAccount":"6011004934938297","currency":"RUB","xalfa":65900.841,"operation":"DR"},{"id":3812110719,"systemAccount":"343411368552340","currency":"RUB","xalfa":2868.347,"operation":"DR"},{"id":3817077931,"systemAccount":"5493590350593334","currency":"RUB","xalfa":49432.312,"operation":"DR"},{"id":3852210213,"systemAccount":"4582716670407013","currency":"RUB","xalfa":34485.783,"operation":"DR"},{"id":3956726200,"systemAccount":"371574281890256","currency":"RUB","xalfa":55187.502,"operation":"DR"},{"id":4097298794,"systemAccount":"4901448736343552","currency":"RUB","xalfa":88413.562,"operation":"DR"},{"id":4132623261,"systemAccount":"6771165720185896","currency":"RUB","xalfa":36281.409,"operation":"DR"},{"id":4202541489,"systemAccount":"6007220307384234","currency":"RUB","xalfa":171.42,"operation":"DR"},{"id":4261916793,"systemAccount":"374276597264625","currency":"RUB","xalfa":72552.997,"operation":"ZR"},{"id":4278161382,"systemAccount":"5019934087431266","currency":"RUB","xalfa":5210.162,"operation":"DR"},{"id":4497705349,"systemAccount":"370633639783828","currency":"RUB","xalfa":4723.032,"operation":"ZR"},{"id":4722860068,"systemAccount":"6007224640988461","currency":"RUB","xalfa":13827.635,"operation":"CR"},{"id":4744729009,"systemAccount":"6007221179476314","currency":"RUB","xalfa":62457.039,"operation":"CR"},{"id":4898636902,"systemAccount":"5181133620436542","currency":"RUB","xalfa":30329.578,"operation":"ZR"},{"id":4921681114,"systemAccount":"5382968514789663","currency":"RUB","xalfa":81226.543,"operation":"DR"},{"id":4964773611,"systemAccount":"6007228589811071","currency":"RUB","xalfa":17952.113,"operation":"ZR"},{"id":5003002828,"systemAccount":"340568963044552","currency":"RUB","xalfa":875.034,"operation":"CR"},{"id":5147514507,"systemAccount":"6007226047422457","currency":"RUB","xalfa":65746.783,"operation":"CR"},{"id":5297304204,"systemAccount":"1800264407925330","currency":"RUB","xalfa":89364.832,"operation":"DR"},{"id":5441922010,"systemAccount":"4152533141399731","currency":"RUB","xalfa":92961.04,"operation":"ZR"},{"id":5463737842,"systemAccount":"5019888483776569","currency":"RUB","xalfa":28199.35,"operation":"CR"},{"id":5503178355,"systemAccount":"38855224978810","currency":"RUB","xalfa":32486.943,"operation":"CR"},{"id":5536281376,"systemAccount":"2123649360197729","currency":"RUB","xalfa":4931.735,"operation":"DR"},{"id":5630395601,"systemAccount":"6516212989406066","currency":"RUB","xalfa":33539.318,"operation":"CR"},{"id":5655048934,"systemAccount":"6767381247873072","currency":"RUB","xalfa":35320.708,"operation":"CR"},{"id":5866375282,"systemAccount":"6759034552786625","currency":"RUB","xalfa":3272.474,"operation":"CR"},{"id":5916853277,"systemAccount":"5312309184585393","currency":"RUB","xalfa":85251.326,"operation":"ZR"},{"id":5996598311,"systemAccount":"676722389010998707","currency":"RUB","xalfa":64706.198,"operation":"CR"},{"id":6167257977,"systemAccount":"6007226072433437","currency":"RUB","xalfa":14725.532,"operation":"DR"},{"id":6537864326,"systemAccount":"38071068828059","currency":"RUB","xalfa":65905.711,"operation":"CR"},{"id":6655147972,"systemAccount":"303455420868937","currency":"RUB","xalfa":70168.358,"operation":"DR"},{"id":6800748625,"systemAccount":"2123408739266263","currency":"RUB","xalfa":48151.981,"operation":"ZR"},{"id":6859283106,"systemAccount":"4987434309350452","currency":"RUB","xalfa":38180.307,"operation":"CR"},{"id":7354443372,"systemAccount":"30219505786384","currency":"RUB","xalfa":90536.392,"operation":"CR"},{"id":7363335190,"systemAccount":"1800533359407129","currency":"RUB","xalfa":67317.764,"operation":"DR"},{"id":7369295923,"systemAccount":"6011208187995637","currency":"RUB","xalfa":82992.408,"operation":"CR"},{"id":7392481851,"systemAccount":"6011006931495213","currency":"RUB","xalfa":8259.555,"operation":"ZR"},{"id":7601878425,"systemAccount":"305356225158979","currency":"RUB","xalfa":22443.684,"operation":"CR"},{"id":7620279218,"systemAccount":"5542338284057005","currency":"RUB","xalfa":16937.727,"operation":"ZR"},{"id":7854510724,"systemAccount":"2123702188619695","currency":"RUB","xalfa":13809.673,"operation":"CR"},{"id":7883135653,"systemAccount":"30241052791823","currency":"RUB","xalfa":47078.523,"operation":"ZR"},{"id":7907474498,"systemAccount":"5019096297747087","currency":"RUB","xalfa":82626.678,"operation":"ZR"},{"id":7964655759,"systemAccount":"6516213901203383","currency":"RUB","xalfa":9531.671,"operation":"CR"},{"id":8010025977,"systemAccount":"349029168949005","currency":"RUB","xalfa":86870.858,"operation":"CR"},{"id":8063364358,"systemAccount":"6759033806147099481","currency":"RUB","xalfa":1140.645,"operation":"DR"},{"id":8082511109,"systemAccount":"6709509985601849","currency":"RUB","xalfa":49831.364,"operation":"DR"},{"id":8097916362,"systemAccount":"5019103509718623","currency":"RUB","xalfa":18307.56,"operation":"ZR"},{"id":8230127329,"systemAccount":"4604534831931662","currency":"RUB","xalfa":4586.893,"operation":"CR"},{"id":8568796805,"systemAccount":"6759469027125051294","currency":"RUB","xalfa":80302.599,"operation":"ZR"},{"id":8671427108,"systemAccount":"6759633327732119","currency":"RUB","xalfa":18864.593,"operation":"DR"},{"id":8790934717,"systemAccount":"6007220658887041","currency":"RUB","xalfa":73980.788,"operation":"CR"},{"id":8932793426,"systemAccount":"5019937048027404","currency":"RUB","xalfa":66361.53,"operation":"ZR"},{"id":8981506530,"systemAccount":"675958235365625436","currency":"RUB","xalfa":4821.544,"operation":"ZR"},{"id":8998477297,"systemAccount":"6771965637890649","currency":"RUB","xalfa":76820.136,"operation":"ZR"},{"id":9049198430,"systemAccount":"5019864200704283","currency":"RUB","xalfa":80798.855,"operation":"ZR"},{"id":9184520026,"systemAccount":"6706816958379151","currency":"RUB","xalfa":35993.916,"operation":"DR"},{"id":9195720883,"systemAccount":"343755896273955","currency":"RUB","xalfa":38035.787,"operation":"DR"},{"id":9357414338,"systemAccount":"2123892504459437","currency":"RUB","xalfa":27773.351,"operation":"CR"},{"id":9371368188,"systemAccount":"5544819054905950","currency":"RUB","xalfa":38269.735,"operation":"DR"},{"id":9403366744,"systemAccount":"6767709369248716509","currency":"RUB","xalfa":39932.345,"operation":"CR"},{"id":9418873080,"systemAccount":"6007225199665962","currency":"RUB","xalfa":20424.508,"operation":"CR"},{"id":9438788532,"systemAccount":"5019646887679270","currency":"RUB","xalfa":3921.373,"operation":"DR"},{"id":9460128634,"systemAccount":"6767065214312938332","currency":"RUB","xalfa":12040.567,"operation":"DR"},{"id":9477432920,"systemAccount":"676712027885328475","currency":"RUB","xalfa":97533.563,"operation":"ZR"},{"id":9625545389,"systemAccount":"4262562562757140","currency":"RUB","xalfa":48383.678,"operation":"CR"}]}
+2026-10-06 15:54:00.514 [producer-worker-thread-1] INFO  o.a.k.c.producer.ProducerConfig - ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092, localhost:9093, localhost:9094]
+	buffer.memory = 67108864
+	client.dns.lookup = use_all_dns_ips
+	client.id = publisher-change-food-card-producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	enable.metrics.push = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 3
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2026-10-06 15:54:00.515 [producer-worker-thread-1] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-10-06 15:54:00.527 [producer-worker-thread-1] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Instantiated an idempotent producer.
+2026-10-06 15:54:00.544 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2026-10-06 15:54:00.545 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2026-10-06 15:54:00.545 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791291240544
+2026-10-06 15:54:00.556 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  org.apache.kafka.clients.Metadata - [Producer clientId=publisher-change-food-card-producer-1] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
+2026-10-06 15:54:00.583 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.a.k.c.p.i.TransactionManager - [Producer clientId=publisher-change-food-card-producer-1] ProducerId set to 6000 with epoch 0
+2026-10-06 15:54:00.677 [producer-worker-thread-1] INFO  r.i.i.s.sender.KafkaProducerSender - Success produce in kafka topic: gru.balance.request, partition: 0, offset: 1
+2026-10-06 16:03:00.603 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.apache.kafka.clients.NetworkClient - [Producer clientId=publisher-change-food-card-producer-1] Node -1 disconnected.
+2026-10-06 16:03:00.605 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.apache.kafka.clients.NetworkClient - [Producer clientId=publisher-change-food-card-producer-1] Node -2 disconnected.
+2026-10-06 16:08:58.548 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
+2026-10-06 16:08:58.552 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
+2026-10-06 16:13:00.601 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.apache.kafka.clients.NetworkClient - [Producer clientId=publisher-change-food-card-producer-1] Node -2 disconnected.

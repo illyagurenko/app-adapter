@@ -1,8 +1,7 @@
 --liquibase formatted sql
 
 --changeset illya:adapter-015-gru-config
-INSERT INTO ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
-(
+INSERT INTO ACC_APP_ADAPTER.APP_ADAPTER_CONFIG (
     ID,
     SYSTEMID,
     EVENT_TYPE,
@@ -14,18 +13,15 @@ INSERT INTO ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
     INS_TS,
     UPD_TS
 )
-VALUES
-(
+VALUES (
     ACC_APP_ADAPTER.APP_ADAPTER_CONFIG_SEQ.NEXTVAL,
     'GRU',
     'BALANCE',
     'ACCOUNT',
-    '${gruTopicIn}',
+    'gru.balance.response',
     1,
-    '${gruTopicOut}',
+    'gru.balance.request',
     1,
     SYSDATE,
     SYSDATE
 );
-
---rollback DELETE FROM ACC_APP_ADAPTER.APP_ADAPTER_CONFIG WHERE SYSTEMID = 'GRU';

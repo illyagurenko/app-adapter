@@ -1,22 +1,25 @@
 server:
   port: 8082
+  shutdown: graceful
 
 spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
   application:
     name: publisher-change-food-card
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
     parameters:
-      gruTopicIn: gru.balance.request
-      gruTopicOut: gru.balance.response
+      gruTopicIn: gru.balance.response
+      gruTopicOut: gru.balance.request
   datasource:
     url: jdbc:oracle:thin:@//localhost:1521/xe
     username: acc_app_adapter
     password: root
     driver-class-name: oracle.jdbc.OracleDriver
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
     consumer:
       group-id: my-consumer-group
 mybatis:

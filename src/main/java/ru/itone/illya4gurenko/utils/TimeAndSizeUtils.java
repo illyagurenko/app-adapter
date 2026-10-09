@@ -1,6 +1,10 @@
 package ru.itone.illya4gurenko.utils;
 
-public class TimeAndSizeUtils {
+public final class TimeAndSizeUtils {
+
+    private TimeAndSizeUtils() {
+    }
+
     public static long kb(long value) {
         return value * 1024L;
     }

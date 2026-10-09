@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @RequiredArgsConstructor
 @Slf4j
-public class GruConsumerWorker {
+public class GruConsumerKafka {
 
     private final ConsumerFactory<String, String> consumerFactory;
     private final GruConsumerService gruConsumerService;
