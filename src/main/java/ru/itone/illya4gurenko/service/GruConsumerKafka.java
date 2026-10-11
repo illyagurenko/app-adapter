@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Scope;
 import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.listener.AcknowledgingMessageListener;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
-import org.springframework.kafka.listener.MessageListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,34 +19,73 @@ public class GruConsumerKafka {
     private final GruConsumerService gruConsumerService;
 
     private KafkaMessageListenerContainer<String, String> container;
+
     private int consumerId;
 
-    public void start(String topicIn, int consumerId) {
+    public void start(
+            String topicIn,
+            int consumerId
+    ) {
+
         this.consumerId = consumerId;
-        log.info("Starting Consumer [{}] for topic: {}", consumerId, topicIn);
 
-        ContainerProperties properties = new ContainerProperties(topicIn);
+        log.info("starting consumer [{}] for topic: {}", consumerId, topicIn);
 
-        properties.setMessageListener((MessageListener<String, String>) record -> {
-            try {
-                log.info("Consumer [{}] got message: key={}, offset={}", consumerId, record.key(), record.offset());
-                gruConsumerService.consume(record.value());
-            } catch (Exception e) {
-                log.error("Consumer [{}] error processing message", consumerId, e);
-            }
-        });
+        ContainerProperties properties =
+                new ContainerProperties(topicIn);
 
+        properties.setAckMode(
+                ContainerProperties.AckMode.MANUAL_IMMEDIATE
+        );
+
+        properties.setSyncCommits(true);
+
+        properties.setMessageListener(
+                (AcknowledgingMessageListener<String, String>)
+                        (record, acknowledgment) -> {
+                            log.info("consumer [{}] got message: " +
+                                            "topic={}, partition={}, offset={}, key={}",
+                                    consumerId,
+                                    record.topic(),
+                                    record.partition(),
+                                    record.offset(),
+                                    record.key());
+                            try {
+                                gruConsumerService.consume(record.value());
+
+                                acknowledgment.acknowledge();
+                                log.info("consumer [{}] successfully processed " +
+                                                "and acknowledged message. " +
+                                                "partition={}, offset={}",
+                                        consumerId, record.partition(), record.offset());
+
+                            } catch (RuntimeException e) {
+                                log.error("consumer [{}] failed processing message. " +
+                                                "Message was NOT acknowledged. " +
+                                                "partition={}, offset={}",
+                                        consumerId, record.partition(), record.offset(), e);
+
+                                throw e;
+                            }
+                        }
+        );
         container = new KafkaMessageListenerContainer<>(consumerFactory, properties);
-        container.setBeanName("consumer-vista-container-" + consumerId);
-        container.start();
 
-        log.info("Consumer [{}] container started successfully", consumerId);
+        container.setBeanName("consumer-vista-container-" + consumerId);
+
+        container.start();
+        log.info("consumer [{}] container started successfully", consumerId);
     }
 
     public void stop() {
-        if (container != null) {
-            log.info("Stopping Consumer [{}]...", consumerId);
-            container.stop();
+        if (container == null) {
+            return;
         }
+
+        log.info("stopping Consumer [{}]...", consumerId);
+
+        container.stop();
+
+        log.info("consumer [{}] stopped", consumerId);
     }
 }

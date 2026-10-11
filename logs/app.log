@@ -1,42 +1,41 @@
-2026-10-06 15:23:04.069 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-10-06 15:23:04.165 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 8040 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-10-06 15:23:04.167 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-10-06 15:23:06.329 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-10-06 15:23:06.346 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-10-06 15:23:06.350 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-10-06 15:23:06.350 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-10-06 15:23:06.425 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-10-06 15:23:06.426 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2178 ms
-2026-10-06 15:23:06.917 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-10-06 15:23:07.277 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2e4eda17
-2026-10-06 15:23:07.280 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-10-06 15:23:07.329 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-10-06 15:23:09.716 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-10-06 15:23:09.774 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-10-06 15:23:09.778 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-10-06 15:23:09.794 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-10-06 15:23:09.794 [main] INFO  liquibase.util - Run:                          0
-2026-10-06 15:23:09.794 [main] INFO  liquibase.util - Previously run:              15
-2026-10-06 15:23:09.794 [main] INFO  liquibase.util - Filtered out:                 0
-2026-10-06 15:23:09.794 [main] INFO  liquibase.util - -------------------------------
-2026-10-06 15:23:09.795 [main] INFO  liquibase.util - Total change sets:           15
-2026-10-06 15:23:09.795 [main] INFO  liquibase.util - Update summary generated
-2026-10-06 15:23:09.834 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-10-06 15:23:09.837 [main] INFO  liquibase.command - Command execution complete
-2026-10-06 15:23:10.959 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-10-06 15:23:11.043 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-10-06 15:23:11.066 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-10-06 15:23:11.082 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 7.777 seconds (process running for 8.253)
-2026-10-06 15:23:11.092 [main] INFO  r.i.i.сonfig.AppInitializer - Loading APP_ADAPTER_CONFIG for systemId=GRU
-2026-10-06 15:23:11.095 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-10-06 15:23:11.131 [main] INFO  r.i.i.сonfig.AppInitializer - APP_ADAPTER_CONFIG loaded: topicIn=gru.balance.response, statusIn=1, topicOut=gru.balance.request, statusOut=1
-2026-10-06 15:23:11.131 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 producer(s) for topic gru.balance.request
-2026-10-06 15:23:11.134 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 consumer(s) for topic gru.balance.response
-2026-10-06 15:23:11.134 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerWorker - Producer [1] started for topic: gru.balance.request
-2026-10-06 15:23:11.138 [main] INFO  r.i.i.service.GruConsumerWorker - Starting Consumer [1] for topic: gru.balance.response
-2026-10-06 15:23:11.144 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-10-06 15:23:11.233 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerService - found batch 100 rows requestId=f1b4f021-b57b-4161-a3e5-451585c0f1dd
-2026-10-06 15:23:11.244 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
+2026-10-11 12:03:40.323 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-10-11 12:03:40.398 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 15588 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
+2026-10-11 12:03:40.399 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
+2026-10-11 12:03:42.355 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
+2026-10-11 12:03:42.367 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2026-10-11 12:03:42.372 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-11 12:03:42.372 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-10-11 12:03:42.469 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-11 12:03:42.470 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2002 ms
+2026-10-11 12:03:42.994 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-11 12:03:43.316 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@33bdd01
+2026-10-11 12:03:43.319 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-11 12:03:43.366 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
+2026-10-11 12:03:45.733 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
+2026-10-11 12:03:45.784 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-10-11 12:03:45.787 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
+2026-10-11 12:03:45.799 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-10-11 12:03:45.799 [main] INFO  liquibase.util - Run:                          0
+2026-10-11 12:03:45.799 [main] INFO  liquibase.util - Previously run:              15
+2026-10-11 12:03:45.799 [main] INFO  liquibase.util - Filtered out:                 0
+2026-10-11 12:03:45.800 [main] INFO  liquibase.util - -------------------------------
+2026-10-11 12:03:45.800 [main] INFO  liquibase.util - Total change sets:           15
+2026-10-11 12:03:45.801 [main] INFO  liquibase.util - Update summary generated
+2026-10-11 12:03:45.834 [main] INFO  liquibase.lockservice - Successfully released change log lock
+2026-10-11 12:03:45.838 [main] INFO  liquibase.command - Command execution complete
+2026-10-11 12:03:47.006 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-10-11 12:03:47.108 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2026-10-11 12:03:47.131 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
+2026-10-11 12:03:47.148 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 7.481 seconds (process running for 7.914)
+2026-10-11 12:03:47.161 [main] INFO  r.i.i.сonfig.AppInitializer - Loading APP_ADAPTER_CONFIG for systemId=GRU
+2026-10-11 12:03:47.163 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
+2026-10-11 12:03:47.201 [main] INFO  r.i.i.сonfig.AppInitializer - APP_ADAPTER_CONFIG loaded: topicIn=gru.balance.response, statusIn=1, topicOut=gru.balance.request, statusOut=1
+2026-10-11 12:03:47.201 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 producer(s) for topic gru.balance.request
+2026-10-11 12:03:47.204 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 consumer(s) for topic gru.balance.response
+2026-10-11 12:03:47.204 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerKafka - producer [1] started for topic: gru.balance.request
+2026-10-11 12:03:47.208 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
+2026-10-11 12:03:47.208 [main] INFO  r.i.i.service.GruConsumerKafka - starting consumer [1] for topic: gru.balance.response
+2026-10-11 12:03:47.305 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.include.jmx.reporter = true
@@ -48,7 +47,7 @@
 	client.rack = 
 	connections.max.idle.ms = 540000
 	default.api.timeout.ms = 60000
-	enable.auto.commit = true
+	enable.auto.commit = false
 	enable.metrics.push = true
 	exclude.internal.topics = true
 	fetch.max.bytes = 52428800
@@ -66,7 +65,7 @@
 	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
 	max.partition.fetch.bytes = 1048576
 	max.poll.interval.ms = 300000
-	max.poll.records = 500
+	max.poll.records = 1
 	metadata.max.age.ms = 300000
 	metric.reporters = []
 	metrics.num.samples = 2
@@ -134,10 +133,11 @@
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-10-06 15:23:11.307 [producer-worker-thread-1] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
-{"actualTimestamp":1791289391226,"systemId":"GRU","requestId":"f1b4f021-b57b-4161-a3e5-451585c0f1dd","eventType":"BALANCE","events":[{"id":1003364763,"systemAccount":"38188397909101","currency":"RUB","xalfa":83421.278,"operation":"DR"},{"id":1076949425,"systemAccount":"5019748466364355","currency":"RUB","xalfa":22450.458,"operation":"DR"},{"id":1136996537,"systemAccount":"372115348321023","currency":"RUB","xalfa":73771.916,"operation":"CR"},{"id":1192544652,"systemAccount":"675967359782848147","currency":"RUB","xalfa":59661.089,"operation":"DR"},{"id":1427174249,"systemAccount":"36738886073827","currency":"RUB","xalfa":71886.669,"operation":"DR"},{"id":1453089682,"systemAccount":"6706080259293823","currency":"RUB","xalfa":31323.619,"operation":"DR"},{"id":1489726777,"systemAccount":"5019651591483415","currency":"RUB","xalfa":91546.858,"operation":"CR"},{"id":1491809063,"systemAccount":"372111624707183","currency":"RUB","xalfa":16688.335,"operation":"CR"},{"id":1531664596,"systemAccount":"5019018868564345","currency":"RUB","xalfa":33315.301,"operation":"DR"},{"id":1623652926,"systemAccount":"322052166767873","currency":"RUB","xalfa":96980.058,"operation":"CR"},{"id":1626572409,"systemAccount":"30691660481672","currency":"RUB","xalfa":28565.956,"operation":"ZR"},{"id":1783226108,"systemAccount":"5019695672782039","currency":"RUB","xalfa":5174.569,"operation":"ZR"},{"id":1804365961,"systemAccount":"5045850706075011","currency":"RUB","xalfa":95547.694,"operation":"DR"},{"id":1880973331,"systemAccount":"6706165836733886","currency":"RUB","xalfa":47346.368,"operation":"DR"},{"id":1984496164,"systemAccount":"378967602526604","currency":"RUB","xalfa":53166.5,"operation":"ZR"},{"id":2040941011,"systemAccount":"6709117907639416","currency":"RUB","xalfa":954.593,"operation":"ZR"},{"id":2063761627,"systemAccount":"2123646771837083","currency":"RUB","xalfa":90275.99,"operation":"ZR"},{"id":2125139036,"systemAccount":"6011008491704869","currency":"RUB","xalfa":3529.816,"operation":"ZR"},{"id":2232340258,"systemAccount":"6767686358597827","currency":"RUB","xalfa":35288.079,"operation":"CR"},{"id":2238800355,"systemAccount":"6011108890569564","currency":"RUB","xalfa":62328.61,"operation":"ZR"},{"id":2350473766,"systemAccount":"4556714956878298","currency":"RUB","xalfa":1459.157,"operation":"CR"},{"id":2465762206,"systemAccount":"6771510880298502","currency":"RUB","xalfa":26309.434,"operation":"DR"},{"id":2490548395,"systemAccount":"4354673707871859","currency":"RUB","xalfa":86799.498,"operation":"DR"},{"id":2634166777,"systemAccount":"6304641271445661","currency":"RUB","xalfa":71933.926,"operation":"CR"},{"id":2659257375,"systemAccount":"1800833622959561","currency":"RUB","xalfa":29062.612,"operation":"DR"},{"id":2675175136,"systemAccount":"38003001347889","currency":"RUB","xalfa":75211.155,"operation":"ZR"},{"id":2797617502,"systemAccount":"6516212927906235","currency":"RUB","xalfa":61909.794,"operation":"CR"},{"id":2814975894,"systemAccount":"6759417348570314","currency":"RUB","xalfa":7850.851,"operation":"DR"},{"id":2842354729,"systemAccount":"5019991120210420","currency":"RUB","xalfa":47719.968,"operation":"CR"},{"id":2914405806,"systemAccount":"5019364773520042","currency":"RUB","xalfa":82610.029,"operation":"DR"},{"id":2998657386,"systemAccount":"5019450481302961","currency":"RUB","xalfa":44615.535,"operation":"DR"},{"id":3146193751,"systemAccount":"4530662081759464","currency":"RUB","xalfa":31939.279,"operation":"DR"},{"id":3320916450,"systemAccount":"6304786445556578","currency":"RUB","xalfa":6709.122,"operation":"CR"},{"id":3578576291,"systemAccount":"675970534450513869","currency":"RUB","xalfa":37378.659,"operation":"CR"},{"id":3590518056,"systemAccount":"675988197589674398","currency":"RUB","xalfa":36178.791,"operation":"DR"},{"id":3593684374,"systemAccount":"6011004934938297","currency":"RUB","xalfa":65900.841,"operation":"DR"},{"id":3812110719,"systemAccount":"343411368552340","currency":"RUB","xalfa":2868.347,"operation":"DR"},{"id":3817077931,"systemAccount":"5493590350593334","currency":"RUB","xalfa":49432.312,"operation":"DR"},{"id":3852210213,"systemAccount":"4582716670407013","currency":"RUB","xalfa":34485.783,"operation":"DR"},{"id":3956726200,"systemAccount":"371574281890256","currency":"RUB","xalfa":55187.502,"operation":"DR"},{"id":4097298794,"systemAccount":"4901448736343552","currency":"RUB","xalfa":88413.562,"operation":"DR"},{"id":4132623261,"systemAccount":"6771165720185896","currency":"RUB","xalfa":36281.409,"operation":"DR"},{"id":4202541489,"systemAccount":"6007220307384234","currency":"RUB","xalfa":171.42,"operation":"DR"},{"id":4261916793,"systemAccount":"374276597264625","currency":"RUB","xalfa":72552.997,"operation":"ZR"},{"id":4278161382,"systemAccount":"5019934087431266","currency":"RUB","xalfa":5210.162,"operation":"DR"},{"id":4497705349,"systemAccount":"370633639783828","currency":"RUB","xalfa":4723.032,"operation":"ZR"},{"id":4722860068,"systemAccount":"6007224640988461","currency":"RUB","xalfa":13827.635,"operation":"CR"},{"id":4744729009,"systemAccount":"6007221179476314","currency":"RUB","xalfa":62457.039,"operation":"CR"},{"id":4898636902,"systemAccount":"5181133620436542","currency":"RUB","xalfa":30329.578,"operation":"ZR"},{"id":4921681114,"systemAccount":"5382968514789663","currency":"RUB","xalfa":81226.543,"operation":"DR"},{"id":4964773611,"systemAccount":"6007228589811071","currency":"RUB","xalfa":17952.113,"operation":"ZR"},{"id":5003002828,"systemAccount":"340568963044552","currency":"RUB","xalfa":875.034,"operation":"CR"},{"id":5147514507,"systemAccount":"6007226047422457","currency":"RUB","xalfa":65746.783,"operation":"CR"},{"id":5297304204,"systemAccount":"1800264407925330","currency":"RUB","xalfa":89364.832,"operation":"DR"},{"id":5441922010,"systemAccount":"4152533141399731","currency":"RUB","xalfa":92961.04,"operation":"ZR"},{"id":5463737842,"systemAccount":"5019888483776569","currency":"RUB","xalfa":28199.35,"operation":"CR"},{"id":5503178355,"systemAccount":"38855224978810","currency":"RUB","xalfa":32486.943,"operation":"CR"},{"id":5536281376,"systemAccount":"2123649360197729","currency":"RUB","xalfa":4931.735,"operation":"DR"},{"id":5630395601,"systemAccount":"6516212989406066","currency":"RUB","xalfa":33539.318,"operation":"CR"},{"id":5655048934,"systemAccount":"6767381247873072","currency":"RUB","xalfa":35320.708,"operation":"CR"},{"id":5866375282,"systemAccount":"6759034552786625","currency":"RUB","xalfa":3272.474,"operation":"CR"},{"id":5916853277,"systemAccount":"5312309184585393","currency":"RUB","xalfa":85251.326,"operation":"ZR"},{"id":5996598311,"systemAccount":"676722389010998707","currency":"RUB","xalfa":64706.198,"operation":"CR"},{"id":6167257977,"systemAccount":"6007226072433437","currency":"RUB","xalfa":14725.532,"operation":"DR"},{"id":6537864326,"systemAccount":"38071068828059","currency":"RUB","xalfa":65905.711,"operation":"CR"},{"id":6655147972,"systemAccount":"303455420868937","currency":"RUB","xalfa":70168.358,"operation":"DR"},{"id":6800748625,"systemAccount":"2123408739266263","currency":"RUB","xalfa":48151.981,"operation":"ZR"},{"id":6859283106,"systemAccount":"4987434309350452","currency":"RUB","xalfa":38180.307,"operation":"CR"},{"id":7354443372,"systemAccount":"30219505786384","currency":"RUB","xalfa":90536.392,"operation":"CR"},{"id":7363335190,"systemAccount":"1800533359407129","currency":"RUB","xalfa":67317.764,"operation":"DR"},{"id":7369295923,"systemAccount":"6011208187995637","currency":"RUB","xalfa":82992.408,"operation":"CR"},{"id":7392481851,"systemAccount":"6011006931495213","currency":"RUB","xalfa":8259.555,"operation":"ZR"},{"id":7601878425,"systemAccount":"305356225158979","currency":"RUB","xalfa":22443.684,"operation":"CR"},{"id":7620279218,"systemAccount":"5542338284057005","currency":"RUB","xalfa":16937.727,"operation":"ZR"},{"id":7854510724,"systemAccount":"2123702188619695","currency":"RUB","xalfa":13809.673,"operation":"CR"},{"id":7883135653,"systemAccount":"30241052791823","currency":"RUB","xalfa":47078.523,"operation":"ZR"},{"id":7907474498,"systemAccount":"5019096297747087","currency":"RUB","xalfa":82626.678,"operation":"ZR"},{"id":7964655759,"systemAccount":"6516213901203383","currency":"RUB","xalfa":9531.671,"operation":"CR"},{"id":8010025977,"systemAccount":"349029168949005","currency":"RUB","xalfa":86870.858,"operation":"CR"},{"id":8063364358,"systemAccount":"6759033806147099481","currency":"RUB","xalfa":1140.645,"operation":"DR"},{"id":8082511109,"systemAccount":"6709509985601849","currency":"RUB","xalfa":49831.364,"operation":"DR"},{"id":8097916362,"systemAccount":"5019103509718623","currency":"RUB","xalfa":18307.56,"operation":"ZR"},{"id":8230127329,"systemAccount":"4604534831931662","currency":"RUB","xalfa":4586.893,"operation":"CR"},{"id":8568796805,"systemAccount":"6759469027125051294","currency":"RUB","xalfa":80302.599,"operation":"ZR"},{"id":8671427108,"systemAccount":"6759633327732119","currency":"RUB","xalfa":18864.593,"operation":"DR"},{"id":8790934717,"systemAccount":"6007220658887041","currency":"RUB","xalfa":73980.788,"operation":"CR"},{"id":8932793426,"systemAccount":"5019937048027404","currency":"RUB","xalfa":66361.53,"operation":"ZR"},{"id":8981506530,"systemAccount":"675958235365625436","currency":"RUB","xalfa":4821.544,"operation":"ZR"},{"id":8998477297,"systemAccount":"6771965637890649","currency":"RUB","xalfa":76820.136,"operation":"ZR"},{"id":9049198430,"systemAccount":"5019864200704283","currency":"RUB","xalfa":80798.855,"operation":"ZR"},{"id":9184520026,"systemAccount":"6706816958379151","currency":"RUB","xalfa":35993.916,"operation":"DR"},{"id":9195720883,"systemAccount":"343755896273955","currency":"RUB","xalfa":38035.787,"operation":"DR"},{"id":9357414338,"systemAccount":"2123892504459437","currency":"RUB","xalfa":27773.351,"operation":"CR"},{"id":9371368188,"systemAccount":"5544819054905950","currency":"RUB","xalfa":38269.735,"operation":"DR"},{"id":9403366744,"systemAccount":"6767709369248716509","currency":"RUB","xalfa":39932.345,"operation":"CR"},{"id":9418873080,"systemAccount":"6007225199665962","currency":"RUB","xalfa":20424.508,"operation":"CR"},{"id":9438788532,"systemAccount":"5019646887679270","currency":"RUB","xalfa":3921.373,"operation":"DR"},{"id":9460128634,"systemAccount":"6767065214312938332","currency":"RUB","xalfa":12040.567,"operation":"DR"},{"id":9477432920,"systemAccount":"676712027885328475","currency":"RUB","xalfa":97533.563,"operation":"ZR"},{"id":9625545389,"systemAccount":"4262562562757140","currency":"RUB","xalfa":48383.678,"operation":"CR"}]}
-2026-10-06 15:23:11.347 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
-2026-10-06 15:23:11.464 [producer-worker-thread-1] INFO  o.a.k.c.producer.ProducerConfig - ProducerConfig values: 
+2026-10-11 12:03:47.311 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerService - found batch 100 rows requestId=cce593f6-fe7d-4f9f-ae21-236bbee7ee1f
+2026-10-11 12:03:47.371 [producer-worker-thread-1] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
+{"actualTimestamp":1791709427304,"systemId":"GRU","requestId":"cce593f6-fe7d-4f9f-ae21-236bbee7ee1f","eventType":"BALANCE","events":[{"id":1003364763,"systemAccount":"38188397909101","currency":"RUB","xalfa":83421.278,"operation":"DR"},{"id":1076949425,"systemAccount":"5019748466364355","currency":"RUB","xalfa":22450.458,"operation":"DR"},{"id":1136996537,"systemAccount":"372115348321023","currency":"RUB","xalfa":73771.916,"operation":"CR"},{"id":1192544652,"systemAccount":"675967359782848147","currency":"RUB","xalfa":59661.089,"operation":"DR"},{"id":1427174249,"systemAccount":"36738886073827","currency":"RUB","xalfa":71886.669,"operation":"DR"},{"id":1453089682,"systemAccount":"6706080259293823","currency":"RUB","xalfa":31323.619,"operation":"DR"},{"id":1489726777,"systemAccount":"5019651591483415","currency":"RUB","xalfa":91546.858,"operation":"CR"},{"id":1491809063,"systemAccount":"372111624707183","currency":"RUB","xalfa":16688.335,"operation":"CR"},{"id":1531664596,"systemAccount":"5019018868564345","currency":"RUB","xalfa":33315.301,"operation":"DR"},{"id":1623652926,"systemAccount":"322052166767873","currency":"RUB","xalfa":96980.058,"operation":"CR"},{"id":1626572409,"systemAccount":"30691660481672","currency":"RUB","xalfa":28565.956,"operation":"ZR"},{"id":1783226108,"systemAccount":"5019695672782039","currency":"RUB","xalfa":5174.569,"operation":"ZR"},{"id":1804365961,"systemAccount":"5045850706075011","currency":"RUB","xalfa":95547.694,"operation":"DR"},{"id":1880973331,"systemAccount":"6706165836733886","currency":"RUB","xalfa":47346.368,"operation":"DR"},{"id":1984496164,"systemAccount":"378967602526604","currency":"RUB","xalfa":53166.5,"operation":"ZR"},{"id":2040941011,"systemAccount":"6709117907639416","currency":"RUB","xalfa":954.593,"operation":"ZR"},{"id":2063761627,"systemAccount":"2123646771837083","currency":"RUB","xalfa":90275.99,"operation":"ZR"},{"id":2125139036,"systemAccount":"6011008491704869","currency":"RUB","xalfa":3529.816,"operation":"ZR"},{"id":2232340258,"systemAccount":"6767686358597827","currency":"RUB","xalfa":35288.079,"operation":"CR"},{"id":2238800355,"systemAccount":"6011108890569564","currency":"RUB","xalfa":62328.61,"operation":"ZR"},{"id":2350473766,"systemAccount":"4556714956878298","currency":"RUB","xalfa":1459.157,"operation":"CR"},{"id":2465762206,"systemAccount":"6771510880298502","currency":"RUB","xalfa":26309.434,"operation":"DR"},{"id":2490548395,"systemAccount":"4354673707871859","currency":"RUB","xalfa":86799.498,"operation":"DR"},{"id":2634166777,"systemAccount":"6304641271445661","currency":"RUB","xalfa":71933.926,"operation":"CR"},{"id":2659257375,"systemAccount":"1800833622959561","currency":"RUB","xalfa":29062.612,"operation":"DR"},{"id":2675175136,"systemAccount":"38003001347889","currency":"RUB","xalfa":75211.155,"operation":"ZR"},{"id":2797617502,"systemAccount":"6516212927906235","currency":"RUB","xalfa":61909.794,"operation":"CR"},{"id":2814975894,"systemAccount":"6759417348570314","currency":"RUB","xalfa":7850.851,"operation":"DR"},{"id":2842354729,"systemAccount":"5019991120210420","currency":"RUB","xalfa":47719.968,"operation":"CR"},{"id":2914405806,"systemAccount":"5019364773520042","currency":"RUB","xalfa":82610.029,"operation":"DR"},{"id":2998657386,"systemAccount":"5019450481302961","currency":"RUB","xalfa":44615.535,"operation":"DR"},{"id":3146193751,"systemAccount":"4530662081759464","currency":"RUB","xalfa":31939.279,"operation":"DR"},{"id":3320916450,"systemAccount":"6304786445556578","currency":"RUB","xalfa":6709.122,"operation":"CR"},{"id":3578576291,"systemAccount":"675970534450513869","currency":"RUB","xalfa":37378.659,"operation":"CR"},{"id":3590518056,"systemAccount":"675988197589674398","currency":"RUB","xalfa":36178.791,"operation":"DR"},{"id":3593684374,"systemAccount":"6011004934938297","currency":"RUB","xalfa":65900.841,"operation":"DR"},{"id":3812110719,"systemAccount":"343411368552340","currency":"RUB","xalfa":2868.347,"operation":"DR"},{"id":3817077931,"systemAccount":"5493590350593334","currency":"RUB","xalfa":49432.312,"operation":"DR"},{"id":3852210213,"systemAccount":"4582716670407013","currency":"RUB","xalfa":34485.783,"operation":"DR"},{"id":3956726200,"systemAccount":"371574281890256","currency":"RUB","xalfa":55187.502,"operation":"DR"},{"id":4097298794,"systemAccount":"4901448736343552","currency":"RUB","xalfa":88413.562,"operation":"DR"},{"id":4132623261,"systemAccount":"6771165720185896","currency":"RUB","xalfa":36281.409,"operation":"DR"},{"id":4202541489,"systemAccount":"6007220307384234","currency":"RUB","xalfa":171.42,"operation":"DR"},{"id":4261916793,"systemAccount":"374276597264625","currency":"RUB","xalfa":72552.997,"operation":"ZR"},{"id":4278161382,"systemAccount":"5019934087431266","currency":"RUB","xalfa":5210.162,"operation":"DR"},{"id":4497705349,"systemAccount":"370633639783828","currency":"RUB","xalfa":4723.032,"operation":"ZR"},{"id":4722860068,"systemAccount":"6007224640988461","currency":"RUB","xalfa":13827.635,"operation":"CR"},{"id":4744729009,"systemAccount":"6007221179476314","currency":"RUB","xalfa":62457.039,"operation":"CR"},{"id":4898636902,"systemAccount":"5181133620436542","currency":"RUB","xalfa":30329.578,"operation":"ZR"},{"id":4921681114,"systemAccount":"5382968514789663","currency":"RUB","xalfa":81226.543,"operation":"DR"},{"id":4964773611,"systemAccount":"6007228589811071","currency":"RUB","xalfa":17952.113,"operation":"ZR"},{"id":5003002828,"systemAccount":"340568963044552","currency":"RUB","xalfa":875.034,"operation":"CR"},{"id":5147514507,"systemAccount":"6007226047422457","currency":"RUB","xalfa":65746.783,"operation":"CR"},{"id":5297304204,"systemAccount":"1800264407925330","currency":"RUB","xalfa":89364.832,"operation":"DR"},{"id":5441922010,"systemAccount":"4152533141399731","currency":"RUB","xalfa":92961.04,"operation":"ZR"},{"id":5463737842,"systemAccount":"5019888483776569","currency":"RUB","xalfa":28199.35,"operation":"CR"},{"id":5503178355,"systemAccount":"38855224978810","currency":"RUB","xalfa":32486.943,"operation":"CR"},{"id":5536281376,"systemAccount":"2123649360197729","currency":"RUB","xalfa":4931.735,"operation":"DR"},{"id":5630395601,"systemAccount":"6516212989406066","currency":"RUB","xalfa":33539.318,"operation":"CR"},{"id":5655048934,"systemAccount":"6767381247873072","currency":"RUB","xalfa":35320.708,"operation":"CR"},{"id":5866375282,"systemAccount":"6759034552786625","currency":"RUB","xalfa":3272.474,"operation":"CR"},{"id":5916853277,"systemAccount":"5312309184585393","currency":"RUB","xalfa":85251.326,"operation":"ZR"},{"id":5996598311,"systemAccount":"676722389010998707","currency":"RUB","xalfa":64706.198,"operation":"CR"},{"id":6167257977,"systemAccount":"6007226072433437","currency":"RUB","xalfa":14725.532,"operation":"DR"},{"id":6537864326,"systemAccount":"38071068828059","currency":"RUB","xalfa":65905.711,"operation":"CR"},{"id":6655147972,"systemAccount":"303455420868937","currency":"RUB","xalfa":70168.358,"operation":"DR"},{"id":6800748625,"systemAccount":"2123408739266263","currency":"RUB","xalfa":48151.981,"operation":"ZR"},{"id":6859283106,"systemAccount":"4987434309350452","currency":"RUB","xalfa":38180.307,"operation":"CR"},{"id":7354443372,"systemAccount":"30219505786384","currency":"RUB","xalfa":90536.392,"operation":"CR"},{"id":7363335190,"systemAccount":"1800533359407129","currency":"RUB","xalfa":67317.764,"operation":"DR"},{"id":7369295923,"systemAccount":"6011208187995637","currency":"RUB","xalfa":82992.408,"operation":"CR"},{"id":7392481851,"systemAccount":"6011006931495213","currency":"RUB","xalfa":8259.555,"operation":"ZR"},{"id":7601878425,"systemAccount":"305356225158979","currency":"RUB","xalfa":22443.684,"operation":"CR"},{"id":7620279218,"systemAccount":"5542338284057005","currency":"RUB","xalfa":16937.727,"operation":"ZR"},{"id":7854510724,"systemAccount":"2123702188619695","currency":"RUB","xalfa":13809.673,"operation":"CR"},{"id":7883135653,"systemAccount":"30241052791823","currency":"RUB","xalfa":47078.523,"operation":"ZR"},{"id":7907474498,"systemAccount":"5019096297747087","currency":"RUB","xalfa":82626.678,"operation":"ZR"},{"id":7964655759,"systemAccount":"6516213901203383","currency":"RUB","xalfa":9531.671,"operation":"CR"},{"id":8010025977,"systemAccount":"349029168949005","currency":"RUB","xalfa":86870.858,"operation":"CR"},{"id":8063364358,"systemAccount":"6759033806147099481","currency":"RUB","xalfa":1140.645,"operation":"DR"},{"id":8082511109,"systemAccount":"6709509985601849","currency":"RUB","xalfa":49831.364,"operation":"DR"},{"id":8097916362,"systemAccount":"5019103509718623","currency":"RUB","xalfa":18307.56,"operation":"ZR"},{"id":8230127329,"systemAccount":"4604534831931662","currency":"RUB","xalfa":4586.893,"operation":"CR"},{"id":8568796805,"systemAccount":"6759469027125051294","currency":"RUB","xalfa":80302.599,"operation":"ZR"},{"id":8671427108,"systemAccount":"6759633327732119","currency":"RUB","xalfa":18864.593,"operation":"DR"},{"id":8790934717,"systemAccount":"6007220658887041","currency":"RUB","xalfa":73980.788,"operation":"CR"},{"id":8932793426,"systemAccount":"5019937048027404","currency":"RUB","xalfa":66361.53,"operation":"ZR"},{"id":8981506530,"systemAccount":"675958235365625436","currency":"RUB","xalfa":4821.544,"operation":"ZR"},{"id":8998477297,"systemAccount":"6771965637890649","currency":"RUB","xalfa":76820.136,"operation":"ZR"},{"id":9049198430,"systemAccount":"5019864200704283","currency":"RUB","xalfa":80798.855,"operation":"ZR"},{"id":9184520026,"systemAccount":"6706816958379151","currency":"RUB","xalfa":35993.916,"operation":"DR"},{"id":9195720883,"systemAccount":"343755896273955","currency":"RUB","xalfa":38035.787,"operation":"DR"},{"id":9357414338,"systemAccount":"2123892504459437","currency":"RUB","xalfa":27773.351,"operation":"CR"},{"id":9371368188,"systemAccount":"5544819054905950","currency":"RUB","xalfa":38269.735,"operation":"DR"},{"id":9403366744,"systemAccount":"6767709369248716509","currency":"RUB","xalfa":39932.345,"operation":"CR"},{"id":9418873080,"systemAccount":"6007225199665962","currency":"RUB","xalfa":20424.508,"operation":"CR"},{"id":9438788532,"systemAccount":"5019646887679270","currency":"RUB","xalfa":3921.373,"operation":"DR"},{"id":9460128634,"systemAccount":"6767065214312938332","currency":"RUB","xalfa":12040.567,"operation":"DR"},{"id":9477432920,"systemAccount":"676712027885328475","currency":"RUB","xalfa":97533.563,"operation":"ZR"},{"id":9625545389,"systemAccount":"4262562562757140","currency":"RUB","xalfa":48383.678,"operation":"CR"}]}
+2026-10-11 12:03:47.390 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-10-11 12:03:47.474 [producer-worker-thread-1] INFO  o.a.k.c.producer.ProducerConfig - ProducerConfig values: 
 	acks = -1
 	auto.include.jmx.reporter = true
 	batch.size = 16384
@@ -229,342 +229,33 @@
 	transactional.id = null
 	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
 
-2026-10-06 15:23:11.471 [producer-worker-thread-1] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
-2026-10-06 15:23:11.514 [producer-worker-thread-1] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Instantiated an idempotent producer.
-2026-10-06 15:23:11.605 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
-2026-10-06 15:23:11.605 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
-2026-10-06 15:23:11.606 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791289391600
-2026-10-06 15:23:11.632 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
-2026-10-06 15:23:11.632 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
-2026-10-06 15:23:11.632 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791289391632
-2026-10-06 15:23:11.637 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.response
-2026-10-06 15:23:11.648 [main] INFO  r.i.i.service.GruConsumerWorker - Consumer [1] container started successfully
-2026-10-06 15:23:11.655 [main] INFO  r.i.i.сonfig.AppInitializer - Workers initialized. running=true, producers=1, consumers=1
-2026-10-06 15:23:11.658 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - App-adapter shutdown hook registered
-2026-10-06 15:23:12.265 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  org.apache.kafka.clients.Metadata - [Producer clientId=publisher-change-food-card-producer-1] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
-2026-10-06 15:23:12.265 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
-2026-10-06 15:23:12.267 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-2026-10-06 15:23:12.275 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-10-06 15:23:12.293 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.a.k.c.p.i.TransactionManager - [Producer clientId=publisher-change-food-card-producer-1] ProducerId set to 5000 with epoch 0
-2026-10-06 15:23:12.312 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98
-2026-10-06 15:23:12.312 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-10-06 15:23:12.381 [producer-worker-thread-1] INFO  r.i.i.s.sender.KafkaProducerSender - Success produce in kafka topic: gru.balance.request, partition: 1, offset: 1
-2026-10-06 15:23:15.325 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=12, memberId='consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98', protocol='range'}
-2026-10-06 15:23:15.332 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 12: {consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98=Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])}
-2026-10-06 15:23:15.356 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=12, memberId='consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98', protocol='range'}
-2026-10-06 15:23:15.358 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])
-2026-10-06 15:23:15.360 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
-2026-10-06 15:23:15.361 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
-2026-10-06 15:23:15.377 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=9}}
-2026-10-06 15:23:15.378 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-1 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[2], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=11}}
-2026-10-06 15:23:15.378 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[4], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9093 (id: 2 rack: null)], epoch=12}}
-2026-10-06 15:23:37.924 [http-nio-8082-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-10-06 15:23:37.924 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-10-06 15:23:37.928 [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
-2026-10-06 15:23:37.969 [http-nio-8082-exec-1] WARN  r.i.i.controller.AdminController - ADMIN: full application shutdown requested
-2026-10-06 15:23:38.473 [admin-shutdown-thread] WARN  r.i.i.controller.AdminController - ADMIN: shutting down JVM
-2026-10-06 15:23:38.476 [app-adapter-shutdown-hook] INFO  r.itone.illya4gurenko.AppAdapterRun - JVM shutdown hook received. Stopping app-adapter workers...
-2026-10-06 15:23:38.479 [app-adapter-shutdown-hook] INFO  r.i.i.сonfig.AppInitializer - Stopping workers. Producers=1, Consumers=1
-2026-10-06 15:23:38.482 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerWorker - Producer [1] interrupted
-2026-10-06 15:23:38.484 [app-adapter-shutdown-hook] INFO  r.i.i.service.GruConsumerWorker - Stopping Consumer [1]...
-2026-10-06 15:23:38.489 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Revoke previously assigned partitions gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
-2026-10-06 15:23:38.491 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions revoked: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
-2026-10-06 15:23:38.492 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-10-06 15:23:38.492 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Member consumer-my-consumer-group-1-837414a4-251f-4ac0-8556-15c88a81fa98 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
-2026-10-06 15:23:38.493 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
-2026-10-06 15:23:38.494 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: consumer pro-actively leaving the group
-2026-10-06 15:23:38.494 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Unsubscribed all topics or patterns and assigned partitions
-2026-10-06 15:23:38.496 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
-2026-10-06 15:23:38.496 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: consumer pro-actively leaving the group
-2026-10-06 15:23:38.520 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-10-06 15:23:38.525 [SpringApplicationShutdownHook] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Closing the Kafka producer with timeoutMillis = 30000 ms.
-2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
-2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
-2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
-2026-10-06 15:23:38.537 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed
-2026-10-06 15:23:38.538 [SpringApplicationShutdownHook] INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.producer for publisher-change-food-card-producer-1 unregistered
-2026-10-06 15:23:38.666 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed
-2026-10-06 15:23:38.667 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
-2026-10-06 15:23:38.667 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
-2026-10-06 15:23:38.667 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed
-2026-10-06 15:23:38.679 [consumer-vista-container-1-C-1] INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-my-consumer-group-1 unregistered
-2026-10-06 15:23:38.680 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: Consumer stopped
-2026-10-06 15:23:38.681 [app-adapter-shutdown-hook] INFO  r.i.i.сonfig.AppInitializer - All app-adapter workers stopped
-2026-10-06 15:23:38.681 [app-adapter-shutdown-hook] INFO  r.itone.illya4gurenko.AppAdapterRun - App-adapter workers successfully stopped
-2026-10-06 15:23:38.681 [SpringApplicationShutdownHook] INFO  r.i.i.сonfig.AppInitializer - AppInitializer @PreDestroy invoked
-2026-10-06 15:23:38.681 [SpringApplicationShutdownHook] INFO  r.i.i.сonfig.AppInitializer - Stopping workers. Producers=0, Consumers=0
-2026-10-06 15:23:38.681 [SpringApplicationShutdownHook] INFO  r.i.i.сonfig.AppInitializer - All app-adapter workers stopped
-2026-10-06 15:23:38.683 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-10-06 15:23:38.717 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-10-06 15:23:51.859 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
-2026-10-06 15:23:51.913 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Starting AppAdapterRun using Java 21.0.9 with PID 15872 (D:\gpb_tasks\app-adapter\build\classes\java\main started by USER in D:\gpb_tasks\app-adapter)
-2026-10-06 15:23:51.914 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - No active profile set, falling back to 1 default profile: "default"
-2026-10-06 15:23:53.935 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (http)
-2026-10-06 15:23:53.952 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
-2026-10-06 15:23:53.957 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-10-06 15:23:53.957 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-10-06 15:23:54.029 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-10-06 15:23:54.029 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2055 ms
-2026-10-06 15:23:54.571 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-10-06 15:23:54.866 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@4f213a2
-2026-10-06 15:23:54.868 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-10-06 15:23:54.913 [main] INFO  liquibase.database - Could not set remarks reporting on OracleDatabase: com.zaxxer.hikari.pool.HikariProxyConnection.setRemarksReporting(boolean)
-2026-10-06 15:23:56.925 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-10-06 15:23:56.968 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
-2026-10-06 15:23:56.971 [main] INFO  liquibase.changelog - Reading from ACC_APP_ADAPTER.DATABASECHANGELOG
-2026-10-06 15:23:56.984 [main] INFO  liquibase.util - UPDATE SUMMARY
-2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Run:                          0
-2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Previously run:              15
-2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Filtered out:                 0
-2026-10-06 15:23:56.984 [main] INFO  liquibase.util - -------------------------------
-2026-10-06 15:23:56.984 [main] INFO  liquibase.util - Total change sets:           15
-2026-10-06 15:23:56.985 [main] INFO  liquibase.util - Update summary generated
-2026-10-06 15:23:57.015 [main] INFO  liquibase.lockservice - Successfully released change log lock
-2026-10-06 15:23:57.018 [main] INFO  liquibase.command - Command execution complete
-2026-10-06 15:23:58.280 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2026-10-06 15:23:58.382 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
-2026-10-06 15:23:58.418 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8082 (http) with context path '/'
-2026-10-06 15:23:58.451 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - Started AppAdapterRun in 7.293 seconds (process running for 7.749)
-2026-10-06 15:23:58.465 [main] INFO  r.i.i.сonfig.AppInitializer - Loading APP_ADAPTER_CONFIG for systemId=GRU
-2026-10-06 15:23:58.484 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-10-06 15:23:58.522 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-10-06 15:23:58.524 [main] INFO  r.i.i.сonfig.AppInitializer - APP_ADAPTER_CONFIG loaded: topicIn=gru.balance.response, statusIn=1, topicOut=gru.balance.request, statusOut=1
-2026-10-06 15:23:58.525 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 producer(s) for topic gru.balance.request
-2026-10-06 15:23:58.529 [main] INFO  r.i.i.сonfig.AppInitializer - Initializing 1 consumer(s) for topic gru.balance.response
-2026-10-06 15:23:58.529 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerWorker - Producer [1] started for topic: gru.balance.request
-2026-10-06 15:23:58.532 [main] INFO  r.i.i.service.GruConsumerWorker - Starting Consumer [1] for topic: gru.balance.response
-2026-10-06 15:23:58.619 [main] INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
-	allow.auto.create.topics = true
-	auto.commit.interval.ms = 5000
-	auto.include.jmx.reporter = true
-	auto.offset.reset = earliest
-	bootstrap.servers = [localhost:9092, localhost:9093, localhost:9094]
-	check.crcs = true
-	client.dns.lookup = use_all_dns_ips
-	client.id = consumer-my-consumer-group-1
-	client.rack = 
-	connections.max.idle.ms = 540000
-	default.api.timeout.ms = 60000
-	enable.auto.commit = true
-	enable.metrics.push = true
-	exclude.internal.topics = true
-	fetch.max.bytes = 52428800
-	fetch.max.wait.ms = 500
-	fetch.min.bytes = 1
-	group.id = my-consumer-group
-	group.instance.id = null
-	group.protocol = classic
-	group.remote.assignor = null
-	heartbeat.interval.ms = 3000
-	interceptor.classes = []
-	internal.leave.group.on.close = true
-	internal.throw.on.fetch.stable.offset.unsupported = false
-	isolation.level = read_uncommitted
-	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
-	max.partition.fetch.bytes = 1048576
-	max.poll.interval.ms = 300000
-	max.poll.records = 500
-	metadata.max.age.ms = 300000
-	metric.reporters = []
-	metrics.num.samples = 2
-	metrics.recording.level = INFO
-	metrics.sample.window.ms = 30000
-	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
-	receive.buffer.bytes = 65536
-	reconnect.backoff.max.ms = 1000
-	reconnect.backoff.ms = 50
-	request.timeout.ms = 30000
-	retry.backoff.max.ms = 1000
-	retry.backoff.ms = 100
-	sasl.client.callback.handler.class = null
-	sasl.jaas.config = null
-	sasl.kerberos.kinit.cmd = /usr/bin/kinit
-	sasl.kerberos.min.time.before.relogin = 60000
-	sasl.kerberos.service.name = null
-	sasl.kerberos.ticket.renew.jitter = 0.05
-	sasl.kerberos.ticket.renew.window.factor = 0.8
-	sasl.login.callback.handler.class = null
-	sasl.login.class = null
-	sasl.login.connect.timeout.ms = null
-	sasl.login.read.timeout.ms = null
-	sasl.login.refresh.buffer.seconds = 300
-	sasl.login.refresh.min.period.seconds = 60
-	sasl.login.refresh.window.factor = 0.8
-	sasl.login.refresh.window.jitter = 0.05
-	sasl.login.retry.backoff.max.ms = 10000
-	sasl.login.retry.backoff.ms = 100
-	sasl.mechanism = GSSAPI
-	sasl.oauthbearer.clock.skew.seconds = 30
-	sasl.oauthbearer.expected.audience = null
-	sasl.oauthbearer.expected.issuer = null
-	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
-	sasl.oauthbearer.jwks.endpoint.url = null
-	sasl.oauthbearer.scope.claim.name = scope
-	sasl.oauthbearer.sub.claim.name = sub
-	sasl.oauthbearer.token.endpoint.url = null
-	security.protocol = PLAINTEXT
-	security.providers = null
-	send.buffer.bytes = 131072
-	session.timeout.ms = 45000
-	socket.connection.setup.timeout.max.ms = 30000
-	socket.connection.setup.timeout.ms = 10000
-	ssl.cipher.suites = null
-	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
-	ssl.endpoint.identification.algorithm = https
-	ssl.engine.factory.class = null
-	ssl.key.password = null
-	ssl.keymanager.algorithm = SunX509
-	ssl.keystore.certificate.chain = null
-	ssl.keystore.key = null
-	ssl.keystore.location = null
-	ssl.keystore.password = null
-	ssl.keystore.type = JKS
-	ssl.protocol = TLSv1.3
-	ssl.provider = null
-	ssl.secure.random.implementation = null
-	ssl.trustmanager.algorithm = PKIX
-	ssl.truststore.certificates = null
-	ssl.truststore.location = null
-	ssl.truststore.password = null
-	ssl.truststore.type = JKS
-	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-
-2026-10-06 15:23:58.691 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
-2026-10-06 15:23:58.803 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
-2026-10-06 15:23:58.804 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
-2026-10-06 15:23:58.804 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791289438801
-2026-10-06 15:23:58.809 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.response
-2026-10-06 15:23:58.817 [main] INFO  r.i.i.service.GruConsumerWorker - Consumer [1] container started successfully
-2026-10-06 15:23:58.817 [main] INFO  r.i.i.сonfig.AppInitializer - Workers initialized. running=true, producers=1, consumers=1
-2026-10-06 15:23:58.819 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - App-adapter shutdown hook registered
-2026-10-06 15:23:59.287 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
-2026-10-06 15:23:59.288 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-2026-10-06 15:23:59.296 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-10-06 15:23:59.317 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e
-2026-10-06 15:23:59.317 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
-2026-10-06 15:24:02.331 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=14, memberId='consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e', protocol='range'}
-2026-10-06 15:24:02.337 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 14: {consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e=Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])}
-2026-10-06 15:24:02.351 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=14, memberId='consumer-my-consumer-group-1-fe6d66b4-36a2-4da0-b8eb-7ef5f86c006e', protocol='range'}
-2026-10-06 15:24:02.351 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])
-2026-10-06 15:24:02.353 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
-2026-10-06 15:24:02.354 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
-2026-10-06 15:24:02.364 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=9}}
-2026-10-06 15:24:02.365 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-1 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[2], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=11}}
-2026-10-06 15:24:02.365 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[4], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9093 (id: 2 rack: null)], epoch=12}}
-2026-10-06 15:32:59.339 [consumer-vista-container-1-C-1] INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Node -1 disconnected.
-2026-10-06 15:32:59.341 [kafka-coordinator-heartbeat-thread | my-consumer-group] INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Node -3 disconnected.
-2026-10-06 15:38:58.523 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-10-06 15:38:58.528 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-10-06 15:42:59.544 [consumer-vista-container-1-C-1] INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Node -3 disconnected.
-2026-10-06 15:53:58.529 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-10-06 15:53:58.547 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-10-06 15:54:00.376 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerService - found batch 100 rows requestId=f9acbe5f-cc40-436a-ad91-451b651362db
-2026-10-06 15:54:00.426 [producer-worker-thread-1] ERROR r.i.illya4gurenko.utils.MapperUtils - success mapping
-{"actualTimestamp":1791291240370,"systemId":"GRU","requestId":"f9acbe5f-cc40-436a-ad91-451b651362db","eventType":"BALANCE","events":[{"id":1003364763,"systemAccount":"38188397909101","currency":"RUB","xalfa":83421.278,"operation":"DR"},{"id":1076949425,"systemAccount":"5019748466364355","currency":"RUB","xalfa":22450.458,"operation":"DR"},{"id":1136996537,"systemAccount":"372115348321023","currency":"RUB","xalfa":73771.916,"operation":"CR"},{"id":1192544652,"systemAccount":"675967359782848147","currency":"RUB","xalfa":59661.089,"operation":"DR"},{"id":1427174249,"systemAccount":"36738886073827","currency":"RUB","xalfa":71886.669,"operation":"DR"},{"id":1453089682,"systemAccount":"6706080259293823","currency":"RUB","xalfa":31323.619,"operation":"DR"},{"id":1489726777,"systemAccount":"5019651591483415","currency":"RUB","xalfa":91546.858,"operation":"CR"},{"id":1491809063,"systemAccount":"372111624707183","currency":"RUB","xalfa":16688.335,"operation":"CR"},{"id":1531664596,"systemAccount":"5019018868564345","currency":"RUB","xalfa":33315.301,"operation":"DR"},{"id":1623652926,"systemAccount":"322052166767873","currency":"RUB","xalfa":96980.058,"operation":"CR"},{"id":1626572409,"systemAccount":"30691660481672","currency":"RUB","xalfa":28565.956,"operation":"ZR"},{"id":1783226108,"systemAccount":"5019695672782039","currency":"RUB","xalfa":5174.569,"operation":"ZR"},{"id":1804365961,"systemAccount":"5045850706075011","currency":"RUB","xalfa":95547.694,"operation":"DR"},{"id":1880973331,"systemAccount":"6706165836733886","currency":"RUB","xalfa":47346.368,"operation":"DR"},{"id":1984496164,"systemAccount":"378967602526604","currency":"RUB","xalfa":53166.5,"operation":"ZR"},{"id":2040941011,"systemAccount":"6709117907639416","currency":"RUB","xalfa":954.593,"operation":"ZR"},{"id":2063761627,"systemAccount":"2123646771837083","currency":"RUB","xalfa":90275.99,"operation":"ZR"},{"id":2125139036,"systemAccount":"6011008491704869","currency":"RUB","xalfa":3529.816,"operation":"ZR"},{"id":2232340258,"systemAccount":"6767686358597827","currency":"RUB","xalfa":35288.079,"operation":"CR"},{"id":2238800355,"systemAccount":"6011108890569564","currency":"RUB","xalfa":62328.61,"operation":"ZR"},{"id":2350473766,"systemAccount":"4556714956878298","currency":"RUB","xalfa":1459.157,"operation":"CR"},{"id":2465762206,"systemAccount":"6771510880298502","currency":"RUB","xalfa":26309.434,"operation":"DR"},{"id":2490548395,"systemAccount":"4354673707871859","currency":"RUB","xalfa":86799.498,"operation":"DR"},{"id":2634166777,"systemAccount":"6304641271445661","currency":"RUB","xalfa":71933.926,"operation":"CR"},{"id":2659257375,"systemAccount":"1800833622959561","currency":"RUB","xalfa":29062.612,"operation":"DR"},{"id":2675175136,"systemAccount":"38003001347889","currency":"RUB","xalfa":75211.155,"operation":"ZR"},{"id":2797617502,"systemAccount":"6516212927906235","currency":"RUB","xalfa":61909.794,"operation":"CR"},{"id":2814975894,"systemAccount":"6759417348570314","currency":"RUB","xalfa":7850.851,"operation":"DR"},{"id":2842354729,"systemAccount":"5019991120210420","currency":"RUB","xalfa":47719.968,"operation":"CR"},{"id":2914405806,"systemAccount":"5019364773520042","currency":"RUB","xalfa":82610.029,"operation":"DR"},{"id":2998657386,"systemAccount":"5019450481302961","currency":"RUB","xalfa":44615.535,"operation":"DR"},{"id":3146193751,"systemAccount":"4530662081759464","currency":"RUB","xalfa":31939.279,"operation":"DR"},{"id":3320916450,"systemAccount":"6304786445556578","currency":"RUB","xalfa":6709.122,"operation":"CR"},{"id":3578576291,"systemAccount":"675970534450513869","currency":"RUB","xalfa":37378.659,"operation":"CR"},{"id":3590518056,"systemAccount":"675988197589674398","currency":"RUB","xalfa":36178.791,"operation":"DR"},{"id":3593684374,"systemAccount":"6011004934938297","currency":"RUB","xalfa":65900.841,"operation":"DR"},{"id":3812110719,"systemAccount":"343411368552340","currency":"RUB","xalfa":2868.347,"operation":"DR"},{"id":3817077931,"systemAccount":"5493590350593334","currency":"RUB","xalfa":49432.312,"operation":"DR"},{"id":3852210213,"systemAccount":"4582716670407013","currency":"RUB","xalfa":34485.783,"operation":"DR"},{"id":3956726200,"systemAccount":"371574281890256","currency":"RUB","xalfa":55187.502,"operation":"DR"},{"id":4097298794,"systemAccount":"4901448736343552","currency":"RUB","xalfa":88413.562,"operation":"DR"},{"id":4132623261,"systemAccount":"6771165720185896","currency":"RUB","xalfa":36281.409,"operation":"DR"},{"id":4202541489,"systemAccount":"6007220307384234","currency":"RUB","xalfa":171.42,"operation":"DR"},{"id":4261916793,"systemAccount":"374276597264625","currency":"RUB","xalfa":72552.997,"operation":"ZR"},{"id":4278161382,"systemAccount":"5019934087431266","currency":"RUB","xalfa":5210.162,"operation":"DR"},{"id":4497705349,"systemAccount":"370633639783828","currency":"RUB","xalfa":4723.032,"operation":"ZR"},{"id":4722860068,"systemAccount":"6007224640988461","currency":"RUB","xalfa":13827.635,"operation":"CR"},{"id":4744729009,"systemAccount":"6007221179476314","currency":"RUB","xalfa":62457.039,"operation":"CR"},{"id":4898636902,"systemAccount":"5181133620436542","currency":"RUB","xalfa":30329.578,"operation":"ZR"},{"id":4921681114,"systemAccount":"5382968514789663","currency":"RUB","xalfa":81226.543,"operation":"DR"},{"id":4964773611,"systemAccount":"6007228589811071","currency":"RUB","xalfa":17952.113,"operation":"ZR"},{"id":5003002828,"systemAccount":"340568963044552","currency":"RUB","xalfa":875.034,"operation":"CR"},{"id":5147514507,"systemAccount":"6007226047422457","currency":"RUB","xalfa":65746.783,"operation":"CR"},{"id":5297304204,"systemAccount":"1800264407925330","currency":"RUB","xalfa":89364.832,"operation":"DR"},{"id":5441922010,"systemAccount":"4152533141399731","currency":"RUB","xalfa":92961.04,"operation":"ZR"},{"id":5463737842,"systemAccount":"5019888483776569","currency":"RUB","xalfa":28199.35,"operation":"CR"},{"id":5503178355,"systemAccount":"38855224978810","currency":"RUB","xalfa":32486.943,"operation":"CR"},{"id":5536281376,"systemAccount":"2123649360197729","currency":"RUB","xalfa":4931.735,"operation":"DR"},{"id":5630395601,"systemAccount":"6516212989406066","currency":"RUB","xalfa":33539.318,"operation":"CR"},{"id":5655048934,"systemAccount":"6767381247873072","currency":"RUB","xalfa":35320.708,"operation":"CR"},{"id":5866375282,"systemAccount":"6759034552786625","currency":"RUB","xalfa":3272.474,"operation":"CR"},{"id":5916853277,"systemAccount":"5312309184585393","currency":"RUB","xalfa":85251.326,"operation":"ZR"},{"id":5996598311,"systemAccount":"676722389010998707","currency":"RUB","xalfa":64706.198,"operation":"CR"},{"id":6167257977,"systemAccount":"6007226072433437","currency":"RUB","xalfa":14725.532,"operation":"DR"},{"id":6537864326,"systemAccount":"38071068828059","currency":"RUB","xalfa":65905.711,"operation":"CR"},{"id":6655147972,"systemAccount":"303455420868937","currency":"RUB","xalfa":70168.358,"operation":"DR"},{"id":6800748625,"systemAccount":"2123408739266263","currency":"RUB","xalfa":48151.981,"operation":"ZR"},{"id":6859283106,"systemAccount":"4987434309350452","currency":"RUB","xalfa":38180.307,"operation":"CR"},{"id":7354443372,"systemAccount":"30219505786384","currency":"RUB","xalfa":90536.392,"operation":"CR"},{"id":7363335190,"systemAccount":"1800533359407129","currency":"RUB","xalfa":67317.764,"operation":"DR"},{"id":7369295923,"systemAccount":"6011208187995637","currency":"RUB","xalfa":82992.408,"operation":"CR"},{"id":7392481851,"systemAccount":"6011006931495213","currency":"RUB","xalfa":8259.555,"operation":"ZR"},{"id":7601878425,"systemAccount":"305356225158979","currency":"RUB","xalfa":22443.684,"operation":"CR"},{"id":7620279218,"systemAccount":"5542338284057005","currency":"RUB","xalfa":16937.727,"operation":"ZR"},{"id":7854510724,"systemAccount":"2123702188619695","currency":"RUB","xalfa":13809.673,"operation":"CR"},{"id":7883135653,"systemAccount":"30241052791823","currency":"RUB","xalfa":47078.523,"operation":"ZR"},{"id":7907474498,"systemAccount":"5019096297747087","currency":"RUB","xalfa":82626.678,"operation":"ZR"},{"id":7964655759,"systemAccount":"6516213901203383","currency":"RUB","xalfa":9531.671,"operation":"CR"},{"id":8010025977,"systemAccount":"349029168949005","currency":"RUB","xalfa":86870.858,"operation":"CR"},{"id":8063364358,"systemAccount":"6759033806147099481","currency":"RUB","xalfa":1140.645,"operation":"DR"},{"id":8082511109,"systemAccount":"6709509985601849","currency":"RUB","xalfa":49831.364,"operation":"DR"},{"id":8097916362,"systemAccount":"5019103509718623","currency":"RUB","xalfa":18307.56,"operation":"ZR"},{"id":8230127329,"systemAccount":"4604534831931662","currency":"RUB","xalfa":4586.893,"operation":"CR"},{"id":8568796805,"systemAccount":"6759469027125051294","currency":"RUB","xalfa":80302.599,"operation":"ZR"},{"id":8671427108,"systemAccount":"6759633327732119","currency":"RUB","xalfa":18864.593,"operation":"DR"},{"id":8790934717,"systemAccount":"6007220658887041","currency":"RUB","xalfa":73980.788,"operation":"CR"},{"id":8932793426,"systemAccount":"5019937048027404","currency":"RUB","xalfa":66361.53,"operation":"ZR"},{"id":8981506530,"systemAccount":"675958235365625436","currency":"RUB","xalfa":4821.544,"operation":"ZR"},{"id":8998477297,"systemAccount":"6771965637890649","currency":"RUB","xalfa":76820.136,"operation":"ZR"},{"id":9049198430,"systemAccount":"5019864200704283","currency":"RUB","xalfa":80798.855,"operation":"ZR"},{"id":9184520026,"systemAccount":"6706816958379151","currency":"RUB","xalfa":35993.916,"operation":"DR"},{"id":9195720883,"systemAccount":"343755896273955","currency":"RUB","xalfa":38035.787,"operation":"DR"},{"id":9357414338,"systemAccount":"2123892504459437","currency":"RUB","xalfa":27773.351,"operation":"CR"},{"id":9371368188,"systemAccount":"5544819054905950","currency":"RUB","xalfa":38269.735,"operation":"DR"},{"id":9403366744,"systemAccount":"6767709369248716509","currency":"RUB","xalfa":39932.345,"operation":"CR"},{"id":9418873080,"systemAccount":"6007225199665962","currency":"RUB","xalfa":20424.508,"operation":"CR"},{"id":9438788532,"systemAccount":"5019646887679270","currency":"RUB","xalfa":3921.373,"operation":"DR"},{"id":9460128634,"systemAccount":"6767065214312938332","currency":"RUB","xalfa":12040.567,"operation":"DR"},{"id":9477432920,"systemAccount":"676712027885328475","currency":"RUB","xalfa":97533.563,"operation":"ZR"},{"id":9625545389,"systemAccount":"4262562562757140","currency":"RUB","xalfa":48383.678,"operation":"CR"}]}
-2026-10-06 15:54:00.514 [producer-worker-thread-1] INFO  o.a.k.c.producer.ProducerConfig - ProducerConfig values: 
-	acks = -1
-	auto.include.jmx.reporter = true
-	batch.size = 16384
-	bootstrap.servers = [localhost:9092, localhost:9093, localhost:9094]
-	buffer.memory = 67108864
-	client.dns.lookup = use_all_dns_ips
-	client.id = publisher-change-food-card-producer-1
-	compression.type = none
-	connections.max.idle.ms = 540000
-	delivery.timeout.ms = 120000
-	enable.idempotence = true
-	enable.metrics.push = true
-	interceptor.classes = []
-	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
-	linger.ms = 0
-	max.block.ms = 60000
-	max.in.flight.requests.per.connection = 5
-	max.request.size = 1048576
-	metadata.max.age.ms = 300000
-	metadata.max.idle.ms = 300000
-	metric.reporters = []
-	metrics.num.samples = 2
-	metrics.recording.level = INFO
-	metrics.sample.window.ms = 30000
-	partitioner.adaptive.partitioning.enable = true
-	partitioner.availability.timeout.ms = 0
-	partitioner.class = null
-	partitioner.ignore.keys = false
-	receive.buffer.bytes = 32768
-	reconnect.backoff.max.ms = 1000
-	reconnect.backoff.ms = 50
-	request.timeout.ms = 30000
-	retries = 3
-	retry.backoff.max.ms = 1000
-	retry.backoff.ms = 100
-	sasl.client.callback.handler.class = null
-	sasl.jaas.config = null
-	sasl.kerberos.kinit.cmd = /usr/bin/kinit
-	sasl.kerberos.min.time.before.relogin = 60000
-	sasl.kerberos.service.name = null
-	sasl.kerberos.ticket.renew.jitter = 0.05
-	sasl.kerberos.ticket.renew.window.factor = 0.8
-	sasl.login.callback.handler.class = null
-	sasl.login.class = null
-	sasl.login.connect.timeout.ms = null
-	sasl.login.read.timeout.ms = null
-	sasl.login.refresh.buffer.seconds = 300
-	sasl.login.refresh.min.period.seconds = 60
-	sasl.login.refresh.window.factor = 0.8
-	sasl.login.refresh.window.jitter = 0.05
-	sasl.login.retry.backoff.max.ms = 10000
-	sasl.login.retry.backoff.ms = 100
-	sasl.mechanism = GSSAPI
-	sasl.oauthbearer.clock.skew.seconds = 30
-	sasl.oauthbearer.expected.audience = null
-	sasl.oauthbearer.expected.issuer = null
-	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
-	sasl.oauthbearer.jwks.endpoint.url = null
-	sasl.oauthbearer.scope.claim.name = scope
-	sasl.oauthbearer.sub.claim.name = sub
-	sasl.oauthbearer.token.endpoint.url = null
-	security.protocol = PLAINTEXT
-	security.providers = null
-	send.buffer.bytes = 131072
-	socket.connection.setup.timeout.max.ms = 30000
-	socket.connection.setup.timeout.ms = 10000
-	ssl.cipher.suites = null
-	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
-	ssl.endpoint.identification.algorithm = https
-	ssl.engine.factory.class = null
-	ssl.key.password = null
-	ssl.keymanager.algorithm = SunX509
-	ssl.keystore.certificate.chain = null
-	ssl.keystore.key = null
-	ssl.keystore.location = null
-	ssl.keystore.password = null
-	ssl.keystore.type = JKS
-	ssl.protocol = TLSv1.3
-	ssl.provider = null
-	ssl.secure.random.implementation = null
-	ssl.trustmanager.algorithm = PKIX
-	ssl.truststore.certificates = null
-	ssl.truststore.location = null
-	ssl.truststore.password = null
-	ssl.truststore.type = JKS
-	transaction.timeout.ms = 60000
-	transactional.id = null
-	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
-
-2026-10-06 15:54:00.515 [producer-worker-thread-1] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
-2026-10-06 15:54:00.527 [producer-worker-thread-1] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Instantiated an idempotent producer.
-2026-10-06 15:54:00.544 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
-2026-10-06 15:54:00.545 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
-2026-10-06 15:54:00.545 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791291240544
-2026-10-06 15:54:00.556 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  org.apache.kafka.clients.Metadata - [Producer clientId=publisher-change-food-card-producer-1] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
-2026-10-06 15:54:00.583 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.a.k.c.p.i.TransactionManager - [Producer clientId=publisher-change-food-card-producer-1] ProducerId set to 6000 with epoch 0
-2026-10-06 15:54:00.677 [producer-worker-thread-1] INFO  r.i.i.s.sender.KafkaProducerSender - Success produce in kafka topic: gru.balance.request, partition: 0, offset: 1
-2026-10-06 16:03:00.603 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.apache.kafka.clients.NetworkClient - [Producer clientId=publisher-change-food-card-producer-1] Node -1 disconnected.
-2026-10-06 16:03:00.605 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.apache.kafka.clients.NetworkClient - [Producer clientId=publisher-change-food-card-producer-1] Node -2 disconnected.
-2026-10-06 16:08:58.548 [scheduling-1] INFO  r.i.i.service.BadRowsService - Starting recovery job for stuck IN_PROCESS records...
-2026-10-06 16:08:58.552 [scheduling-1] INFO  r.i.i.service.BadRowsService - Recovery job finished successfully.
-2026-10-06 16:13:00.601 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.apache.kafka.clients.NetworkClient - [Producer clientId=publisher-change-food-card-producer-1] Node -2 disconnected.
+2026-10-11 12:03:47.475 [producer-worker-thread-1] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-10-11 12:03:47.489 [producer-worker-thread-1] INFO  o.a.k.clients.producer.KafkaProducer - [Producer clientId=publisher-change-food-card-producer-1] Instantiated an idempotent producer.
+2026-10-11 12:03:47.516 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2026-10-11 12:03:47.517 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2026-10-11 12:03:47.517 [producer-worker-thread-1] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791709427513
+2026-10-11 12:03:47.523 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.7.1
+2026-10-11 12:03:47.523 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: e2494e6ffb89f828
+2026-10-11 12:03:47.523 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1791709427523
+2026-10-11 12:03:47.528 [main] INFO  o.a.k.c.c.i.LegacyKafkaConsumer - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Subscribed to topic(s): gru.balance.response
+2026-10-11 12:03:47.536 [main] INFO  r.i.i.service.GruConsumerKafka - consumer [1] container started successfully
+2026-10-11 12:03:47.536 [main] INFO  r.i.i.сonfig.AppInitializer - Workers initialized. running=true, producers=1, consumers=1
+2026-10-11 12:03:47.538 [main] INFO  r.itone.illya4gurenko.AppAdapterRun - shutdown hook registered
+2026-10-11 12:03:47.993 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  org.apache.kafka.clients.Metadata - [Producer clientId=publisher-change-food-card-producer-1] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
+2026-10-11 12:03:47.993 [consumer-vista-container-1-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Cluster ID: HB3pMJ8PRamoaVuwRSMIpw
+2026-10-11 12:03:47.995 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-10-11 12:03:47.999 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
+2026-10-11 12:03:48.019 [kafka-producer-network-thread | publisher-change-food-card-producer-1] INFO  o.a.k.c.p.i.TransactionManager - [Producer clientId=publisher-change-food-card-producer-1] ProducerId set to 7000 with epoch 0
+2026-10-11 12:03:48.047 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-my-consumer-group-1-73a25513-8be5-4ff7-b242-530a932a5f90
+2026-10-11 12:03:48.048 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] (Re-)joining group
+2026-10-11 12:03:48.126 [producer-worker-thread-1] INFO  r.i.i.s.sender.KafkaProducerSender - Success produce in kafka topic: gru.balance.request, partition: 1, offset: 2
+2026-10-11 12:03:48.773 [producer-worker-thread-1] INFO  r.i.i.service.GruProducerService - request successfully sent to Kafka. requestId=cce593f6-fe7d-4f9f-ae21-236bbee7ee1f, topic=gru.balance.request, status=CONSUMER_WAIT
+2026-10-11 12:03:51.067 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully joined group with generation Generation{generationId=16, memberId='consumer-my-consumer-group-1-73a25513-8be5-4ff7-b242-530a932a5f90', protocol='range'}
+2026-10-11 12:03:51.074 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Finished assignment for group at generation 16: {consumer-my-consumer-group-1-73a25513-8be5-4ff7-b242-530a932a5f90=Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])}
+2026-10-11 12:03:51.144 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Successfully synced group in generation Generation{generationId=16, memberId='consumer-my-consumer-group-1-73a25513-8be5-4ff7-b242-530a932a5f90', protocol='range'}
+2026-10-11 12:03:51.144 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Notifying assignor about the new Assignment(partitions=[gru.balance.response-0, gru.balance.response-1, gru.balance.response-2])
+2026-10-11 12:03:51.149 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-my-consumer-group-1, groupId=my-consumer-group] Adding newly assigned partitions: gru.balance.response-0, gru.balance.response-1, gru.balance.response-2
+2026-10-11 12:03:51.150 [consumer-vista-container-1-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - my-consumer-group: partitions assigned: [gru.balance.response-0, gru.balance.response-1, gru.balance.response-2]
+2026-10-11 12:03:51.167 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-2 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional[0], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=13}}
+2026-10-11 12:03:51.167 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-1 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[2], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9094 (id: 3 rack: null)], epoch=16}}
+2026-10-11 12:03:51.167 [consumer-vista-container-1-C-1] INFO  o.a.k.c.c.internals.ConsumerUtils - Setting offset for partition gru.balance.response-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional[4], currentLeader=LeaderAndEpoch{leader=Optional[localhost:9093 (id: 2 rack: null)], epoch=14}}

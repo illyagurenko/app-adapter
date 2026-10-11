@@ -34,7 +34,9 @@ public class GruProducerService {
     private final KafkaProducerSender kafkaProducerSender;
 
     public boolean produce(String topicOut) {
+
         ProducerKafkaDto curDto = batchingService.batchAndUpdate(batchSize);
+
         if (curDto == null || curDto.getEvents() == null || curDto.getEvents().isEmpty()) {
             return false;
         }
@@ -42,24 +44,47 @@ public class GruProducerService {
         log.info("found batch {} rows requestId={}", curDto.getEvents().size(), curDto.getRequestId());
 
         String json = mapperUtils.tryMappingToStr(curDto);
-        if(json.isEmpty()) return false;
+
+        if (json == null || json.isEmpty()) {
+            log.error("failed to serialize producer message requestId={}", curDto.getRequestId());
+            return false;
+        }
 
         AppAdapterTrans trans = adapterEntityFactory.createTrans(curDto, json);
+
+        trans.setStatus(FocStatus.CONSUMER_WAIT)
+                .setRespCode(null)
+                .setRespDesc("Waiting for Kafka response");
+
         transDao.save(trans);
 
         try {
-            kafkaProducerSender.send(topicOut, curDto.getRequestId(), json);
+            kafkaProducerSender.send(
+                    topicOut,
+                    curDto.getRequestId(),
+                    json
+            );
 
-            trans.setStatus(FocStatus.SUCCESS).setRespCode("0").setRespDesc("Sent successfully to Kafka");
+            AppAdapterIoMsgs ioMsg = adapterEntityFactory.createIoMsg(trans.getId(), Dir.OUT, json, nodeId);
+
+            ioMsgsDao.save(ioMsg);
+
+            log.info("request successfully sent to Kafka. " + "requestId={}, topic={}, status={}", curDto.getRequestId(), topicOut, trans.getStatus());
+
+            return true;
+
         } catch (Exception e) {
-            trans.setStatus(FocStatus.ERROR).setRespCode("500").setRespDesc(e.getMessage());
-        } finally {
+
+            log.error("failed to send request to kafka. requestId={}", curDto.getRequestId(), e);
+
+            trans.setStatus(FocStatus.ERROR)
+                    .setRespCode("500")
+                    .setRespDesc(
+                            e.getMessage() != null ? e.getMessage() : "kafka producer error");
+
             transDao.updateStatus(trans);
 
-            AppAdapterIoMsgs ioMsgs = adapterEntityFactory.createIoMsg(trans.getId(), Dir.OUT, json, nodeId);
-            ioMsgsDao.save(ioMsgs);
+            return true;
         }
-
-        return true;
     }
 }

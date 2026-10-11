@@ -14,13 +14,20 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class GruProducerKafka implements Runnable {
 
     private final GruProducerService gruProducerService;
-    private final AtomicBoolean isActive = new AtomicBoolean(true);
+
+    private final AtomicBoolean isActive =
+            new AtomicBoolean(true);
 
     private String topicOut;
     private long delay;
     private int producerId;
 
-    public void init(String topicOut, long delay, int producerId) {
+    public void init(
+            String topicOut,
+            long delay,
+            int producerId
+    ) {
+
         this.topicOut = topicOut;
         this.delay = delay;
         this.producerId = producerId;
@@ -28,7 +35,7 @@ public class GruProducerKafka implements Runnable {
 
     @Override
     public void run() {
-        log.info("Producer [{}] started for topic: {}", producerId, topicOut);
+        log.info("producer [{}] started for topic: {}", producerId, topicOut);
 
         while (isActive.get()) {
             try {
@@ -37,23 +44,32 @@ public class GruProducerKafka implements Runnable {
                 if (!hasProcessedData) {
                     Thread.sleep(delay);
                 }
+
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                log.info("Producer [{}] interrupted", producerId);
+                log.info("producer [{}] interrupted", producerId);
                 break;
+
             } catch (Exception e) {
-                log.error("Producer [{}] tech error", producerId, e);
+                log.error("producer [{}] technical error", producerId, e);
+
                 try {
                     Thread.sleep(delay);
-                } catch (InterruptedException ie) {
+
+                } catch (InterruptedException interruptedException) {
+
                     Thread.currentThread().interrupt();
+                    log.info("producer [{}] interrupted during delay", producerId);
                     break;
                 }
             }
         }
+
+        log.info("producer [{}] stopped", producerId);
     }
 
     public void stop() {
+        log.info("stopping Producer [{}]...", producerId);
         isActive.set(false);
     }
 }
