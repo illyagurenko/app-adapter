@@ -4,16 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.itone.illya4gurenko.dao.AppAdapterIoMsgsDao;
 import ru.itone.illya4gurenko.dao.AppAdapterTransDao;
 import ru.itone.illya4gurenko.dto.ConsumerKafkaDto;
 import ru.itone.illya4gurenko.dto.ProducerKafkaDto;
-import ru.itone.illya4gurenko.entity.AppAdapterIoMsgs;
 import ru.itone.illya4gurenko.entity.AppAdapterTrans;
-import ru.itone.illya4gurenko.entity.enums.Dir;
 import ru.itone.illya4gurenko.entity.enums.FocStatus;
-import ru.itone.illya4gurenko.utils.AdapterEntityFactory;
 import ru.itone.illya4gurenko.utils.MapperUtils;
 
 @Service
@@ -26,12 +21,9 @@ public class GruConsumerService {
 
     private final MapperUtils mapperUtils;
     private final AppAdapterTransDao transDao;
-    private final AppAdapterIoMsgsDao ioMsgsDao;
-    private final AdapterEntityFactory adapterEntityFactory;
     private final GruValidateService gruValidateService;
     private final ConsumerStatusService consumerStatusService;
 
-    @Transactional
     public void consume(String json) {
 
         log.info("consume json:\n{}", json);
@@ -42,6 +34,7 @@ public class GruConsumerService {
             log.error("failed to parse ConsumerKafkaDto from Kafka message");
             return;
         }
+
         String requestId = consumerDto.getRequestId();
 
         if (requestId == null || requestId.isBlank()) {
@@ -49,6 +42,7 @@ public class GruConsumerService {
             return;
         }
 
+        //чтение без
         AppAdapterTrans trans = transDao.findByRequestId(requestId);
 
         if (trans == null) {
@@ -57,48 +51,45 @@ public class GruConsumerService {
         }
 
         if (trans.getStatus() == FocStatus.SUCCESS || trans.getStatus() == FocStatus.ERROR) {
-            log.warn("message with requestId='{}' already processed " + "with status={}. Skipping duplicate.", requestId, trans.getStatus());
+            log.warn("message with requestId='{}' already processed with status={}. Skipping duplicate.", requestId, trans.getStatus());
             return;
         }
 
         log.info("consumer starts processing requestId={}, previousStatus={}", requestId, trans.getStatus());
 
-        consumerStatusService.markInProcess(trans);
-        AppAdapterIoMsgs ioMsg = adapterEntityFactory.createIoMsg(trans.getId(), Dir.IN, json, numberPC);
-        ioMsgsDao.save(ioMsg);
+        // транзакция на смену статуса
+        consumerStatusService.startProcessing(trans, json, numberPC);
 
         ProducerKafkaDto sentDto = mapperUtils.tryMappingToProducerKafkaDto(trans.getData());
 
         if (sentDto == null) {
             log.error("failed to parse sent data for requestId={}", requestId);
-
-            trans.setStatus(FocStatus.ERROR)
-                    .setRespDesc("failed to parse sent data");
-            transDao.updateStatus(trans);
-
+            // транзакция на смену статуса
+            consumerStatusService.updateFinalStatus(trans, FocStatus.ERROR, null, "failed to parse sent data");
             return;
         }
 
         try {
+            // транзакция на проверку
             gruValidateService.processResult(consumerDto, sentDto);
 
             if ("ERROR".equalsIgnoreCase(consumerDto.getStatus())) {
-                trans.setStatus(FocStatus.ERROR)
-                        .setRespDesc("batch error processed");
-
+                // транзакция на смену статуса
+                consumerStatusService.updateFinalStatus(trans, FocStatus.ERROR, null, "batch error processed");
             } else {
-
-                trans.setStatus(FocStatus.SUCCESS)
-                        .setRespCode("0")
-                        .setRespDesc("SUCCESS");
+                // транзакция на смену статуса
+                consumerStatusService.updateFinalStatus(trans, FocStatus.SUCCESS, "0", "SUCCESS");
             }
-
-            transDao.updateStatus(trans);
 
             log.info("consumer finished requestId={}, finalStatus={}", requestId, trans.getStatus());
 
         } catch (Exception e) {
             log.error("technical error processing requestId={}", requestId, e);
+
+            String errorMsg = e.getMessage() != null ? e.getMessage() : "technical error";
+            // транзакция на смену статуса
+            consumerStatusService.updateFinalStatus(trans, FocStatus.ERROR, "500", "consumer failed: " + errorMsg);
+
             throw new IllegalStateException("consumer processing failed for requestId=" + requestId, e);
         }
     }

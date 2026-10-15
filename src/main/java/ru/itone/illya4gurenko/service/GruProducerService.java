@@ -4,13 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.itone.illya4gurenko.dao.AppAdapterIoMsgsDao;
-import ru.itone.illya4gurenko.dao.AppAdapterTransDao;
 import ru.itone.illya4gurenko.dto.ProducerKafkaDto;
-import ru.itone.illya4gurenko.entity.AppAdapterIoMsgs;
 import ru.itone.illya4gurenko.entity.AppAdapterTrans;
-import ru.itone.illya4gurenko.entity.enums.Dir;
-import ru.itone.illya4gurenko.entity.enums.FocStatus;
 import ru.itone.illya4gurenko.service.sender.KafkaProducerSender;
 import ru.itone.illya4gurenko.utils.AdapterEntityFactory;
 import ru.itone.illya4gurenko.utils.MapperUtils;
@@ -27,11 +22,11 @@ public class GruProducerService {
     private Long nodeId;
 
     private final BatchingService batchingService;
-    private final AppAdapterTransDao transDao;
-    private final AppAdapterIoMsgsDao ioMsgsDao;
     private final MapperUtils mapperUtils;
     private final AdapterEntityFactory adapterEntityFactory;
     private final KafkaProducerSender kafkaProducerSender;
+
+    private final ProducerStatusService producerStatusService;
 
     public boolean produce(String topicOut) {
 
@@ -52,11 +47,7 @@ public class GruProducerService {
 
         AppAdapterTrans trans = adapterEntityFactory.createTrans(curDto, json);
 
-        trans.setStatus(FocStatus.CONSUMER_WAIT)
-                .setRespCode(null)
-                .setRespDesc("Waiting for Kafka response");
-
-        transDao.save(trans);
+        producerStatusService.saveInitialTrans(trans);
 
         try {
             kafkaProducerSender.send(
@@ -65,11 +56,10 @@ public class GruProducerService {
                     json
             );
 
-            AppAdapterIoMsgs ioMsg = adapterEntityFactory.createIoMsg(trans.getId(), Dir.OUT, json, nodeId);
+            producerStatusService.saveSuccessLog(trans, json, nodeId);
 
-            ioMsgsDao.save(ioMsg);
-
-            log.info("request successfully sent to Kafka. " + "requestId={}, topic={}, status={}", curDto.getRequestId(), topicOut, trans.getStatus());
+            log.info("request successfully sent to Kafka. requestId={}, topic={}, status={}",
+                    curDto.getRequestId(), topicOut, trans.getStatus());
 
             return true;
 
@@ -77,12 +67,8 @@ public class GruProducerService {
 
             log.error("failed to send request to kafka. requestId={}", curDto.getRequestId(), e);
 
-            trans.setStatus(FocStatus.ERROR)
-                    .setRespCode("500")
-                    .setRespDesc(
-                            e.getMessage() != null ? e.getMessage() : "kafka producer error");
-
-            transDao.updateStatus(trans);
+            String errorMsg = e.getMessage() != null ? e.getMessage() : "kafka producer error";
+            producerStatusService.markAsError(trans, errorMsg);
 
             return true;
         }
