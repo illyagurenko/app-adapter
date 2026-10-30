@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+/**
+ * сервис периодического мониторинга заполненности буфера kafka producer через micrometer.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -13,6 +16,9 @@ public class KafkaBufferMonitor {
 
     private final MeterRegistry meterRegistry;
 
+    /**
+     * проверяет размер доступного буфера продюсера кафки и предупреждает при переполнении > 80%.
+     */
     @Scheduled(fixedRate = 30000)
     public void monitorProducerBuffer() {
         try {
@@ -33,12 +39,12 @@ public class KafkaBufferMonitor {
             double totalMb = totalBytes / (1024 * 1024);
 
             if (usedPercentage > 80.0) {
-                log.warn(" kafka buffer : Used {} MB of {} MB ({}.2f%)",
+                log.warn("kafka buffer warning: Used {} MB of {} MB ({}%)",
                         String.format("%.2f", usedMb),
                         String.format("%.2f", totalMb),
-                        usedPercentage);
+                        String.format("%.2f", usedPercentage));
             } else {
-                log.info(" kafka producer buffer: {} MB / {} MB used ({}%)",
+                log.info("kafka producer buffer: {} MB / {} MB used ({}%)",
                         String.format("%.2f", usedMb),
                         String.format("%.2f", totalMb),
                         String.format("%.1f", usedPercentage));

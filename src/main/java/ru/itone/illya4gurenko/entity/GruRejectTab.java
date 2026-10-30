@@ -6,6 +6,9 @@ import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * сущность таблицы забракованных записей GRU_REJECT_TAB.
+ */
 @Data
 @Accessors(chain = true)
 public class GruRejectTab {

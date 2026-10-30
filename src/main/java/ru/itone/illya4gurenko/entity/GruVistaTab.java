@@ -9,6 +9,9 @@ import ru.itone.illya4gurenko.entity.enums.Type;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * сущность для взаимодействия с таблицей GRU_VISTA_TAB (содержит исходные данные для обработки).
+ */
 @Data
 @Accessors(chain = true)
 public class GruVistaTab {
@@ -42,5 +45,7 @@ public class GruVistaTab {
     private LocalDateTime focTS;
 
     private ProcType focType;
+
+    private LocalDateTime focStatusTs;
 
 }

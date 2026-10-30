@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import ru.itone.illya4gurenko.entity.enums.FocStatus;
 
+/**
+ * dto отдельного события в ответе от кафки с результатом обработки строки.
+ */
 @Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)

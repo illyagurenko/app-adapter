@@ -7,6 +7,9 @@ import ru.itone.illya4gurenko.entity.enums.MsgType;
 
 import java.time.LocalDateTime;
 
+/**
+ * сущность таблицы аудита входящих и исходящих сырых json-сообщений APP_ADAPTER_IO_MSGS.
+ */
 @Data
 @Accessors(chain = true)
 public class AppAdapterIoMsgs {

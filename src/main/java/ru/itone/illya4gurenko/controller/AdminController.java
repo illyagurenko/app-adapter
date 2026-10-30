@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.itone.illya4gurenko.controller.dto.AdminResponse;
-import ru.itone.illya4gurenko.сonfig.AppInitializer;
+import ru.itone.illya4gurenko.config.AppInitializer;
 
+/**
+ * контроллер для ручного администрирования жизненного цикла фоновых потоков адаптера.
+ */
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
@@ -20,7 +23,7 @@ public class AdminController {
     private final AppInitializer appInitializer;
 
     /**
-     * текущее состояние worker-потоков.
+     * возвращает текущее состояние worker-потоков сервиса.
      */
     @GetMapping("/status")
     public ResponseEntity<AdminResponse> status() {
@@ -30,7 +33,7 @@ public class AdminController {
     }
 
     /**
-     * перечитать APP_ADAPTER_CONFIG и пересоздать все workers.
+     * перезачитывает таблицу APP_ADAPTER_CONFIG и перезапускает все потоки.
      */
     @PostMapping("/restart")
     public ResponseEntity<AdminResponse> restart() {
@@ -46,8 +49,7 @@ public class AdminController {
     }
 
     /**
-     * остановить producer и consumer.
-     * REST-сервис продолжает работать.
+     * останавливает фоновые потоки отправки и чтения, сохраняя работу rest-сервиса.
      */
     @PostMapping("/workers/stop")
     public ResponseEntity<AdminResponse> stopWorkers() {
@@ -61,9 +63,7 @@ public class AdminController {
     }
 
     /**
-     * Полное завершение JVM
-     * Ответ HTTP сначала возвращается клиенту,
-     * затем System.exit(0) инициирует shutdown
+     * инициирует корректное выключение приложения и завершение jvm.
      */
     @PostMapping("/shutdown")
     public ResponseEntity<AdminResponse> shutdown() {
@@ -94,6 +94,9 @@ public class AdminController {
                 );
     }
 
+    /**
+     * формирует объект ответа с текущим статусом сервиса.
+     */
     private AdminResponse buildResponse(String message) {
         return new AdminResponse(
                 message,
@@ -102,6 +105,4 @@ public class AdminController {
                 appInitializer.getConsumerCount()
         );
     }
-
-
 }

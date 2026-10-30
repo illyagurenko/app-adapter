@@ -8,6 +8,9 @@ import ru.itone.illya4gurenko.entity.enums.MsgType;
 
 import java.time.LocalDateTime;
 
+/**
+ * сущность таблицы конфигурации адаптера APP_ADAPTER_CONFIG.
+ */
 @Data
 @Accessors(chain = true)
 public class AppAdapterConfig {

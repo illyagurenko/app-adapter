@@ -1,4 +1,4 @@
-package ru.itone.illya4gurenko.service;
+package ru.itone.illya4gurenko.service.consumer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * сервис валидации ответа от kafka и применения изменений к таблицам GRU_VISTA_TAB и GRU_REJECT_TAB.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -24,6 +27,9 @@ public class GruValidateService {
     private final GruRejectDao gruRejectDao;
     private final AdapterEntityFactory adapterEntityFactory;
 
+    /**
+     * сопоставляет отправленные и полученные данные, обновляет балансы при успехе либо фиксирует брак при ошибках.
+     */
     @Transactional
     public void processResult(ConsumerKafkaDto consumerDto, ProducerKafkaDto sentDto) {
         if ("ERROR".equalsIgnoreCase(consumerDto.getStatus()) || consumerDto.getEvents() == null) {
@@ -36,6 +42,7 @@ public class GruValidateService {
         Set<Long> sentIds = sentDto.getEvents().stream().map(ProducerEventDto::getId).collect(Collectors.toSet());
         Set<Long> receivedIds = consumerDto.getEvents().stream().map(ConsumerEventDto::getEntityId).collect(Collectors.toSet());
 
+        // проверка полноты пачки: если хотя бы один id потерян, вся пачка бракуется по ТЗ
         if (!receivedIds.containsAll(sentIds)) {
             log.error("Not all ENTITY_IDs received. Sent: {}, Got: {}", sentIds, receivedIds);
             rejectEntireBatch(sentDto, "Not all rows returned in response");
@@ -45,7 +52,8 @@ public class GruValidateService {
         for (ConsumerEventDto event : consumerDto.getEvents()) {
             Long entityId = event.getEntityId();
 
-            if ("SUCCESS".equalsIgnoreCase(event.getStatus().name())) {
+            // ИСПРАВЛЕНО: безопасное сравнение вместо event.getStatus().name() во избежание NPE
+            if (FocStatus.SUCCESS.equals(event.getStatus())) {
                 EventDataDto data = event.getData();
                 gruVistaDao.updateBalanceAndStatus(
                         entityId,
@@ -61,6 +69,9 @@ public class GruValidateService {
         }
     }
 
+    /**
+     * бракует целиком всю пачку отправленных записей с указанием причины.
+     */
     private void rejectEntireBatch(ProducerKafkaDto sentDto, String reason) {
         List<Long> sentIds = sentDto.getEvents().stream().map(ProducerEventDto::getId).toList();
         gruVistaDao.updateStatusByIds(sentIds, FocStatus.ERROR);

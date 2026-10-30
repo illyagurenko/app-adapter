@@ -6,6 +6,9 @@ import ru.itone.illya4gurenko.entity.enums.Type;
 
 import java.math.BigDecimal;
 
+/**
+ * dto с финансовыми данными остатков до и после выполнения операции.
+ */
 @Data
 @Accessors(chain = true)
 public class EventDataDto {

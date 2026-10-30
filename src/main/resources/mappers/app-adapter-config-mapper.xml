@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.itone.illya4gurenko.repository.AppAdapterConfigRepository">
 
+    <!-- сохраняет конфигурацию адаптера в базу данных -->
     <insert id="save">
         <selectKey keyProperty="id"
                    resultType="java.lang.Long"
@@ -37,6 +38,7 @@
         )
     </insert>
 
+    <!-- получает все записи конфигурации из бд -->
     <select id="findAll" resultMap="AppAdapterConfigMap">
         SELECT
         ID, SYSTEMID, EVENT_TYPE, ENTITY_TYPE, TOPIC_IN, STATUS_IN,
@@ -44,12 +46,13 @@
         FROM ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
     </select>
 
+    <!-- ищет конфигурацию адаптера по идентификатору системы (systemId) -->
     <select id="findBySystemId" resultMap="AppAdapterConfigMap">
         SELECT
         ID, SYSTEMID, EVENT_TYPE, ENTITY_TYPE, TOPIC_IN, STATUS_IN,
         TOPIC_OUT, STATUS_OUT, INS_TS, UPD_TS
         FROM ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
-        WHERE SYSTEMID = 'GRU'
+        WHERE SYSTEMID = #{systemId} <!-- ИСПРАВЛЕНО: хардкод 'GRU' заменен на параметр -->
     </select>
 
     <resultMap id="AppAdapterConfigMap" type="AppAdapterConfig" autoMapping="true">

@@ -8,12 +8,12 @@
             SELECT GRU.GRU_VISTA_SEQ.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO GRU.GRU_VISTA_TAB (
-        SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
+        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE
         )
         VALUES (
-        #{systemAccount}, #{currency}, #{xalfa}, #{operation}, #{timeStamp},
+        #{id}, #{systemAccount}, #{currency}, #{xalfa}, #{operation}, #{timeStamp},
         #{pomId}, #{uterrario}, #{oldTBal}, #{newTBal}, #{addInfo},
         #{fileId}, #{focStatus}, #{focTS}, #{focType}
         )
@@ -27,46 +27,52 @@
         FROM GRU.GRU_VISTA_TAB
     </select>
 
+    <!-- Выбираем ТОЛЬКО записи со статусом WAIT и с учетом времени для INTIME -->
     <select id="fetchBatchForUpdate" resultMap="GruVistaTabMap">
         SELECT ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE
         FROM GRU.GRU_VISTA_TAB
-        WHERE ID IN (
-            SELECT ID FROM (
-                SELECT ID FROM GRU.GRU_VISTA_TAB
-                WHERE FOC_STATUS != 'IN_PROCESS'
-                ORDER BY id ASC
-            ) WHERE ROWNUM &lt;= #{limit}
+        WHERE FOC_STATUS = 'WAIT'
+        AND (
+        FOC_TYPE = 'IMMEDIATE'
+        OR (
+        FOC_TYPE = 'INTIME'
+        AND FOC_TS &lt;= SYSDATE
         )
+        )
+        AND ROWNUM &lt;= #{limit}
         FOR UPDATE SKIP LOCKED
     </select>
 
+    <!-- Финализация балансов и установка статуса SUCCESS / ERROR -->
     <update id="updateBalanceAndStatus">
         UPDATE GRU.GRU_VISTA_TAB
         SET OLDTBAL = #{oldTBal},
         NEWTBAL = #{newTBal},
         FOC_STATUS = #{status},
-        FOC_TS = SYSDATE
+        FOC_STATUS_TS = SYSDATE
         WHERE ID = #{id}
     </update>
 
+    <!-- Перевод пачки в статус IN_PROCESS перед отправкой в Kafka -->
     <update id="updateStatusByIds">
         UPDATE GRU.GRU_VISTA_TAB
         SET FOC_STATUS = #{newStatus},
-        FOC_TS = SYSDATE
-        WHERE id IN
+        FOC_STATUS_TS = SYSDATE
+        WHERE ID IN
         <foreach item="id" collection="ids" open="(" separator="," close=")">
             #{id}
         </foreach>
     </update>
 
-    <!-- Запрос для возврата зависших записей -->
+    <!-- Возврат зависших записей обратно в WAIT по времени смены статуса FOC_STATUS_TS -->
     <update id="resetStuckRecords">
         UPDATE GRU.GRU_VISTA_TAB
-        SET FOC_STATUS = 'WAIT'
+        SET FOC_STATUS = 'WAIT',
+        FOC_STATUS_TS = SYSDATE
         WHERE FOC_STATUS = 'IN_PROCESS'
-        AND FOC_TS &lt; SYSDATE - (#{minutes} / 1440)
+        AND FOC_STATUS_TS &lt; SYSDATE - (#{minutes} / 1440)
     </update>
 
     <resultMap id="GruVistaTabMap" type="GruVistaTab" autoMapping="true">

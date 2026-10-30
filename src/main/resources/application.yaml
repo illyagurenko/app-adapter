@@ -19,7 +19,7 @@ spring:
     password: root
     driver-class-name: oracle.jdbc.OracleDriver
   kafka:
-    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+    bootstrap-servers: localhost:9092
     consumer:
       group-id: my-consumer-group
 mybatis:

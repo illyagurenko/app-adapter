@@ -5,10 +5,12 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import ru.itone.illya4gurenko.entity.enums.EntityType;
 import ru.itone.illya4gurenko.entity.enums.EventType;
-import ru.itone.illya4gurenko.entity.enums.MsgType;
 
 import java.util.List;
 
+/**
+ * корневой dto входящего сообщения из кафки от внешней системы (например, SMART).
+ */
 @Data
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -21,5 +23,4 @@ public class ConsumerKafkaDto {
     private String status;
     private ErrorDto error;
     private List<ConsumerEventDto> events;
-
 }

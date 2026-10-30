@@ -1,4 +1,4 @@
-package ru.itone.illya4gurenko.service;
+package ru.itone.illya4gurenko.service.consumer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +13,9 @@ import ru.itone.illya4gurenko.entity.enums.Dir;
 import ru.itone.illya4gurenko.entity.enums.FocStatus;
 import ru.itone.illya4gurenko.utils.AdapterEntityFactory;
 
+/**
+ * сервис управления промежуточными и финальными статусами транзакций при обработке входящих ответов.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -22,6 +25,9 @@ public class ConsumerStatusService {
     private final AppAdapterIoMsgsDao ioMsgsDao;
     private final AdapterEntityFactory adapterEntityFactory;
 
+    /**
+     * переводит транзакцию в статус CONSUMER_IN_PROCESS и сохраняет входящее сырое сообщение в таблицу аудита.
+     */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void startProcessing(AppAdapterTrans trans, String json, Long nodeId) {
         trans.setStatus(FocStatus.CONSUMER_IN_PROCESS)
@@ -38,6 +44,9 @@ public class ConsumerStatusService {
         );
     }
 
+    /**
+     * фиксирует финальный статус (SUCCESS/ERROR), код и описание завершения обработки транзакции.
+     */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateFinalStatus(AppAdapterTrans trans, FocStatus status, String respCode, String respDesc) {
         trans.setStatus(status)

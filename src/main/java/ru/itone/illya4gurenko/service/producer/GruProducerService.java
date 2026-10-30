@@ -1,4 +1,4 @@
-package ru.itone.illya4gurenko.service;
+package ru.itone.illya4gurenko.service.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.itone.illya4gurenko.dto.ProducerKafkaDto;
 import ru.itone.illya4gurenko.entity.AppAdapterTrans;
-import ru.itone.illya4gurenko.service.sender.KafkaProducerSender;
 import ru.itone.illya4gurenko.utils.AdapterEntityFactory;
 import ru.itone.illya4gurenko.utils.MapperUtils;
 
+/**
+ * основной сервис координации процесса отправки: получение пачки, сериализация, учет транзакции и отправка в топик.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,13 +23,15 @@ public class GruProducerService {
     @Value("${pc.number}")
     private Long nodeId;
 
-    private final BatchingService batchingService;
+    private final GruBatchingService batchingService;
     private final MapperUtils mapperUtils;
     private final AdapterEntityFactory adapterEntityFactory;
     private final KafkaProducerSender kafkaProducerSender;
-
     private final ProducerStatusService producerStatusService;
 
+    /**
+     * выполняет один цикл вычитки пачки, создания транзакции и отправки сообщения в kafka.
+     */
     public boolean produce(String topicOut) {
 
         ProducerKafkaDto curDto = batchingService.batchAndUpdate(batchSize);
@@ -46,7 +50,6 @@ public class GruProducerService {
         }
 
         AppAdapterTrans trans = adapterEntityFactory.createTrans(curDto, json);
-
         producerStatusService.saveInitialTrans(trans);
 
         try {
@@ -70,7 +73,8 @@ public class GruProducerService {
             String errorMsg = e.getMessage() != null ? e.getMessage() : "kafka producer error";
             producerStatusService.markAsError(trans, errorMsg);
 
-            return true;
+            // ИСПРАВЛЕНО: возвращаем false, чтобы при падении кафки воркер засыпал, а не сжигал CPU в цикле
+            return false;
         }
     }
 }

@@ -8,6 +8,9 @@ import ru.itone.illya4gurenko.entity.enums.MsgType;
 
 import java.time.LocalDateTime;
 
+/**
+ * сущность транзакционного журнала пакетов запросов APP_ADAPTER_TRANS.
+ */
 @Data
 @Accessors(chain = true)
 public class AppAdapterTrans {

@@ -1,4 +1,4 @@
-package ru.itone.illya4gurenko.сonfig;
+package ru.itone.illya4gurenko.config;
 
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import ru.itone.illya4gurenko.dao.AppAdapterConfigDao;
 import ru.itone.illya4gurenko.entity.AppAdapterConfig;
-import ru.itone.illya4gurenko.service.GruConsumerKafka;
-import ru.itone.illya4gurenko.service.GruProducerKafka;
+import ru.itone.illya4gurenko.service.consumer.AppKafkaConsumer;
+import ru.itone.illya4gurenko.service.consumer.GruConsumerService;
+import ru.itone.illya4gurenko.worker.GruProducerWorker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * компонент инициализации жизненного цикла адаптера: загружает конфигурацию из бд и стартует пулы воркеров.
+ */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -28,6 +32,7 @@ public class AppInitializer implements CommandLineRunner {
 
     private final AppAdapterConfigDao configDao;
     private final ApplicationContext applicationContext;
+    private final GruConsumerService gruConsumerService;
 
     @Value("${batch.timeout.worker.delay:10000}")
     private long delay;
@@ -40,20 +45,23 @@ public class AppInitializer implements CommandLineRunner {
 
     private final Object lifecycleMonitor = new Object();
 
-    private final List<GruProducerKafka> producers = new ArrayList<>();
-    private final List<GruConsumerKafka> consumers = new ArrayList<>();
+    private final List<GruProducerWorker> producers = new ArrayList<>();
+    private final List<AppKafkaConsumer> consumers = new ArrayList<>();
 
     private ExecutorService producerExecutor;
 
     private volatile boolean running = false;
 
+    /**
+     * автоматически запускается при старте spring boot приложения.
+     */
     @Override
     public void run(String... args) {
         startWorkers();
     }
 
     /**
-     * Читает актуальный APP_ADAPTER_CONFIG и запускает workers.
+     * читает актуальный APP_ADAPTER_CONFIG и запускает воркеры продюсеров и консьюмеров.
      */
     public void startWorkers() {
         synchronized (lifecycleMonitor) {
@@ -62,8 +70,7 @@ public class AppInitializer implements CommandLineRunner {
     }
 
     /**
-     * Останавливает текущие workers, перечитывает APP_ADAPTER_CONFIG
-     * и создаёт producer/consumer заново.
+     * перезапускает все воркеры с перечитыванием параметров из бд.
      */
     public void restartWorkers() {
         synchronized (lifecycleMonitor) {
@@ -81,8 +88,7 @@ public class AppInitializer implements CommandLineRunner {
     }
 
     /**
-     * Останавливает только рабочие producer/consumer потоки.
-     * Spring Boot / REST / DataSource продолжают работать.
+     * останавливает только рабочие потоки продюсеров и консьюмеров без остановки веб-сервиса.
      */
     public void stopWorkers() {
         synchronized (lifecycleMonitor) {
@@ -90,6 +96,9 @@ public class AppInitializer implements CommandLineRunner {
         }
     }
 
+    /**
+     * внутренний метод загрузки настроек и старта пулов потоков.
+     */
     private void startWorkersInternal() {
         if (running) {
             log.warn("Workers are already running");
@@ -139,6 +148,9 @@ public class AppInitializer implements CommandLineRunner {
         }
     }
 
+    /**
+     * инициализирует и запускает пул потоков продюсера для выгрузки данных.
+     */
     private void initProducers(AppAdapterConfig config) {
         if (!Long.valueOf(1L).equals(config.getStatusOut())) {
             log.warn("Producer disabled by APP_ADAPTER_CONFIG STATUS_OUT={}",
@@ -182,8 +194,8 @@ public class AppInitializer implements CommandLineRunner {
         );
 
         for (int i = 0; i < producerPoolSize; i++) {
-            GruProducerKafka producer =
-                    applicationContext.getBean(GruProducerKafka.class);
+            GruProducerWorker producer =
+                    applicationContext.getBean(GruProducerWorker.class);
 
             producer.init(
                     config.getTopicOut(),
@@ -196,6 +208,9 @@ public class AppInitializer implements CommandLineRunner {
         }
     }
 
+    /**
+     * инициализирует и стартует контейнеры консьюмеров для чтения ответов.
+     */
     private void initConsumers(AppAdapterConfig config) {
         if (!Long.valueOf(1L).equals(config.getStatusIn())) {
             log.warn("Consumer disabled by APP_ADAPTER_CONFIG STATUS_IN={}",
@@ -221,18 +236,22 @@ public class AppInitializer implements CommandLineRunner {
         );
 
         for (int i = 0; i < consumerPoolSize; i++) {
-            GruConsumerKafka consumer =
-                    applicationContext.getBean(GruConsumerKafka.class);
+            AppKafkaConsumer consumer =
+                    applicationContext.getBean(AppKafkaConsumer.class);
 
             consumer.start(
                     config.getTopicIn(),
-                    i + 1
+                    i + 1,
+                    gruConsumerService
             );
 
             consumers.add(consumer);
         }
     }
 
+    /**
+     * выполняет безопасную остановку всех запущенных воркеров и пула потоков продюсера.
+     */
     private void stopWorkersInternal() {
         log.info(
                 "Stopping workers. Producers={}, Consumers={}",
@@ -240,7 +259,7 @@ public class AppInitializer implements CommandLineRunner {
                 consumers.size()
         );
 
-        for (GruProducerKafka producer : producers) {
+        for (GruProducerWorker producer : producers) {
             try {
                 producer.stop();
             } catch (Exception e) {
@@ -263,7 +282,7 @@ public class AppInitializer implements CommandLineRunner {
             producerExecutor = null;
         }
 
-        for (GruConsumerKafka consumer : consumers) {
+        for (AppKafkaConsumer consumer : consumers) {
             try {
                 consumer.stop();
             } catch (Exception e) {
@@ -279,22 +298,41 @@ public class AppInitializer implements CommandLineRunner {
         log.info("All app-adapter workers stopped");
     }
 
+    /**
+     * возвращает признак работы сервисов отправки и чтения.
+     */
+    public boolean conscientiousRunningCheck() {
+        return running;
+    }
+
+    /**
+     * возвращает признак запущенного состояния.
+     */
     public boolean isRunning() {
         return running;
     }
 
+    /**
+     * возвращает количество активных продюсеров.
+     */
     public int getProducerCount() {
         synchronized (lifecycleMonitor) {
             return producers.size();
         }
     }
 
+    /**
+     * возвращает количество активных консьюмеров.
+     */
     public int getConsumerCount() {
         synchronized (lifecycleMonitor) {
             return consumers.size();
         }
     }
 
+    /**
+     * корректно глушит воркеры при выгрузке spring-контекста (@PreDestroy).
+     */
     @PreDestroy
     public void shutdown() {
         synchronized (lifecycleMonitor) {

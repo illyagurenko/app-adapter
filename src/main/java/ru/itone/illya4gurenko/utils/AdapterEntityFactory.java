@@ -9,6 +9,7 @@ import ru.itone.illya4gurenko.entity.AppAdapterTrans;
 import ru.itone.illya4gurenko.entity.GruRejectTab;
 import ru.itone.illya4gurenko.entity.GruVistaTab;
 import ru.itone.illya4gurenko.entity.enums.Dir;
+import ru.itone.illya4gurenko.entity.enums.EntityType;
 import ru.itone.illya4gurenko.entity.enums.EventType;
 import ru.itone.illya4gurenko.entity.enums.FocStatus;
 import ru.itone.illya4gurenko.entity.enums.MsgType;
@@ -17,11 +18,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * фабричный компонент для создания сущностей бд и dto объектов адаптера.
+ */
 @Component
 public class AdapterEntityFactory {
 
     /**
-     * Создание записи транзакции при отправке батча
+     * создает новую запись транзакции при отправке батча сообщений.
      */
     public AppAdapterTrans createTrans(ProducerKafkaDto dto, String json) {
         return new AppAdapterTrans()
@@ -34,8 +38,7 @@ public class AdapterEntityFactory {
     }
 
     /**
-     * Создание записи лога ввода/вывода (IO_MSGS)
-     * DTO сюда не передаем, так как эта сущность привязана к ID транзакции и железу (nodeId)
+     * создает запись журнала аудита ввода-вывода (IO_MSGS).
      */
     public AppAdapterIoMsgs createIoMsg(Long transId, Dir dir, String json, Long nodeId) {
         return new AppAdapterIoMsgs()
@@ -48,7 +51,7 @@ public class AdapterEntityFactory {
     }
 
     /**
-     * Создание записи RejectTab на основе отправленного DTO (когда отклоняем ВЕСЬ батч)
+     * создает запись в таблице брака на основе отправленного события (при ошибке всей пачки).
      */
     public GruRejectTab createRejectTab(ProducerEventDto eventDto, String errorMsg) {
         return new GruRejectTab()
@@ -60,7 +63,7 @@ public class AdapterEntityFactory {
     }
 
     /**
-     * Создание записи RejectTab на основе полученного из Кафки DTO (когда отклоняем конкретную запись)
+     * создает запись в таблице брака на основе полученного ответа из кафки (при ошибке конкретной строки).
      */
     public GruRejectTab createRejectTab(ConsumerEventDto eventDto, String defaultErrorMsg) {
         String errorMsg = eventDto.getError() != null
@@ -76,7 +79,7 @@ public class AdapterEntityFactory {
     }
 
     /**
-     * Создание DTO для отправки в Kafka на основе списка сущностей БД
+     * создает исходящий корневой dto для отправки в kafka на основе списка строк из бд.
      */
     public ProducerKafkaDto createProducerKafkaDto(List<GruVistaTab> rows) {
         List<ProducerEventDto> events = rows.stream()
@@ -88,11 +91,12 @@ public class AdapterEntityFactory {
                 .setSystemId(MsgType.GRU)
                 .setRequestId(UUID.randomUUID().toString())
                 .setEventType(EventType.BALANCE)
+                .setEntityType(EntityType.ACCOUNT)
                 .setEvents(events);
     }
 
     /**
-     * Вспомогательный метод (маппер одной строки в DTO)
+     * преобразует одну строку сущности GruVistaTab в событие ProducerEventDto.
      */
     private ProducerEventDto toEventDto(GruVistaTab row) {
         return new ProducerEventDto()
