@@ -1,202 +1,245 @@
+
 # App-adapter Service
 
-Сервис обработки записей `GRU.GRU_VISTA_TAB` и интеграции с Kafka.
+Сервис пакетной вычитки финансовых записей из `GRU.GRU_VISTA_TAB`, публикации батчей в Apache Kafka и обработки входящих ответов с фиксацией результатов в Oracle.
+
+---
 
 ## Назначение
 
-`app-adapter` читает готовые к обработке записи из Oracle, объединяет их в batch, формирует Kafka request и публикует его во внешний контур.
+`app-adapter` выполняет роль интеграционного шлюза между учетной системой Oracle и внешним процессингом (SMART / Kafka):
 
-Ответ из Kafka обрабатывается consumer-ом и используется для обновления статусов и балансов в Oracle.
+1. **Producer-контур:** вычитывает порции записей (батчи по 100 шт.) со статусом `WAIT`, переводит их в `IN_PROCESS`, формирует транзакцию `APP_ADAPTER_TRANS`, упаковывает события в JSON и публикует в Kafka-топик запросов.
+2. **Consumer-контур:** асинхронно считывает ответы из Kafka-топика ответов, проверяет целостность пачки, обновляет остатки (`OLDTBAL`, `NEWTBAL`) и статус в `GRU_VISTA_TAB`, а ошибочные записи регистрирует в таблице брака `GRU_REJECT_TAB`.
+3. **Recovery-контур:** периодически сбрасывает зависшие в `IN_PROCESS` записи обратно в `WAIT` при сбоях сети или инстансов.
 
-Основной поток:
-
-```text
-GRU.GRU_VISTA_TAB
-        ↓
-      WAIT
-        ↓
-App-adapter producer
-        ↓
-    IN_PROCESS
-        ↓
-gru.balance.request
-        ↓
-внешний обработчик / mock
-        ↓
-gru.balance.response
-        ↓
-App-adapter consumer
-        ↓
-SUCCESS / ERROR
-```
-
-## Стек
-
-- Java 21
-- Spring Boot 3.3.5
-- MyBatis
-- Oracle
-- Spring Kafka
-- Liquibase
-- Spring Boot Actuator
-- Gradle
-
-## Порт
+### Схема движения данных
 
 ```text
-8082
+               [ ORACLE: GRU.GRU_VISTA_TAB ]
+                             │
+                      (FOC_STATUS = WAIT)
+                             │
+                             ▼
+              [ GruBatchingService (FOR UPDATE) ]
+                             │
+                  (FOC_STATUS = IN_PROCESS)
+                             │
+                             ▼
+                    [ GruProducerWorker ]
+                             │
+              (Запись в APP_ADAPTER_TRANS: CONSUMER_WAIT)
+              (Запись в APP_ADAPTER_IO_MSGS: DIR = OUT)
+                             │
+                             ▼
+              [ Kafka: gru.balance.request ]
+                             │
+                             ▼
+                   Внешний процессинг (SMART)
+                             │
+                             ▼
+              [ Kafka: gru.balance.response ]
+                             │
+                             ▼
+                   [ AppKafkaConsumer ]
+                             │
+                    [ GruConsumerService ]
+                             │
+              (Запись в APP_ADAPTER_TRANS: CONSUMER_IN_PROCESS)
+              (Запись в APP_ADAPTER_IO_MSGS: DIR = IN)
+                             │
+                             ▼
+                   [ GruValidateService ]
+                 /                        \
+                ▼                          ▼
+      (Успешные строки)             (Ошибки / Сбой пачки)
+      FOC_STATUS = SUCCESS          FOC_STATUS = ERROR
+      Обновление OLDTBAL/NEWTBAL    Запись в GRU_REJECT_TAB
 ```
 
-## Oracle
+---
 
-Пользователь:
+## Стек технологий
+
+- **Java:** 21 (Records, Pattern Matching)
+- **Фреймворк:** Spring Boot 3.3.5
+- **База данных:** Oracle Database (XE / Enterprise)
+- **ORM / Data Access:** MyBatis 3 (вынесенный SQL в XML-мапперах)
+- **Брокер сообщений:** Apache Kafka (`spring-kafka`)
+- **Миграции БД:** Liquibase
+- **Мониторинг:** Spring Boot Actuator, Micrometer
+- **Сборщик:** Gradle
+
+---
+
+## Структура пакетов проекта
 
 ```text
-ACC_APP_ADAPTER
+ru.itone.illya4gurenko/
+├── AppAdapterRun.java                      # главный класс запуска и регистрация shutdown hook
+├── config/                                 # конфигурации и управление жизненным циклом
+│   ├── AppInitializer.java                 # динамический старт/стоп воркеров по данным из бд
+│   └── KafkaConfig.java                    # настройки продюсера и консьюмера kafka
+├── controller/                             # административное rest api
+│   ├── AdminController.java                # эндпоинты статуса, перезапуска и выключения
+│   └── dto/
+│       └── AdminResponse.java              # dto ответа состояния адаптера
+├── dao/                                    # слой изоляции доступа к данным (dao)
+│   ├── AppAdapterConfigDao.java
+│   ├── AppAdapterIoMsgsDao.java
+│   ├── AppAdapterTransDao.java
+│   ├── GruRejectDao.java
+│   └── GruVistaDao.java
+├── dto/                                    # dto модели обмена через kafka
+│   ├── ConsumerEventDto.java               # элемент массива событий в ответе
+│   ├── ConsumerKafkaDto.java               # корневое входящее сообщение
+│   ├── ErrorDto.java                       # описание ошибки (код + сообщение)
+│   ├── EventDataDto.java                   # данные балансов (oldTbal, newTbal)
+│   ├── ProducerEventDto.java               # элемент массива событий в запросе
+│   └── ProducerKafkaDto.java               # корневое исходящее сообщение
+├── entity/                                 # сущности таблиц бд
+│   ├── AppAdapterConfig.java
+│   ├── AppAdapterIoMsgs.java
+│   ├── AppAdapterTrans.java
+│   ├── GruRejectTab.java
+│   ├── GruVistaTab.java
+│   └── enums/                              # перечисления бизнес- и системных статусов
+│       ├── Dir.java                        # IN / OUT
+│       ├── EntityType.java                 # CARD / ACCOUNT
+│       ├── EventType.java                  # BALANCE / FOOD
+│       ├── FocStatus.java                  # WAIT, IN_PROCESS, CONSUMER_WAIT, CONSUMER_IN_PROCESS, SUCCESS, ERROR
+│       ├── MsgType.java                    # GRU
+│       ├── ProcType.java                   # IMMEDIATE / INTIME
+│       └── Type.java                       # DR / CR / ZR
+├── monitor/                                # сервисы метрик
+│   └── KafkaBufferMonitor.java             # шедулер мониторинга буфера kafka producer
+├── repository/                             # mybatis mapper-интерфейсы
+│   ├── AppAdapterConfigRepository.java
+│   ├── AppAdapterIoMsgsRepository.java
+│   ├── AppAdapterTransRepository.java
+│   ├── GruRejectTabRepository.java
+│   └── GruVistaTabRepository.java
+├── service/                                # бизнес-логика
+│   ├── consumer/                           # обработка ответов из kafka
+│   │   ├── AppKafkaConsumer.java           # универсальный слушатель контейнера kafka
+│   │   ├── ConsumerStatusService.java      # транзакционное управление статусами консьюмера
+│   │   ├── GruConsumerService.java         # координатор парсинга и вызова валидации
+│   │   ├── GruValidateService.java         # сверка пачки, обновление балансов и брак в reject
+│   │   └── MessageConsumer.java            # интерфейс потребителя сообщений
+│   ├── producer/                           # подготовка и публикация запросов
+│   │   ├── GruBatchingService.java         # блокировка и выборка батча (FOR UPDATE SKIP LOCKED)
+│   │   ├── GruProducerService.java         # координатор упаковки и вызова отправки
+│   │   ├── KafkaProducerSender.java        # синхронная отправка в kafka template
+│   │   └── ProducerStatusService.java      # транзакционное управление статусами продюсера
+│   └── recovery/                           # фоновые регламентные задачи
+│       └── StuckRecordsRecoveryService.java # автоматический возврат зависших записей
+├── utils/                                  # утилитарные компоненты
+│   ├── AdapterEntityFactory.java           # фабрика маппинга сущностей и dto
+│   ├── MapperUtils.java                    # json сериализация / десериализация (jackson)
+│   └── TimeAndSizeUtils.java               # конвертер единиц времени и памяти
+└── worker/                                 # рабочие потоки (runnable)
+    └── GruProducerWorker.java              # цикл опроса бд и засыпания продюсера
 ```
 
-Пароль локального тестового контура:
+---
 
-```text
-root
+## Жизненный цикл статусов
+
+### 1. Таблица `GRU.GRU_VISTA_TAB` (бизнес-записи)
+* `WAIT` — запись ожидает отправки. Учитывается поле `FOC_TYPE`:
+    * `IMMEDIATE` — готова к отправке сразу;
+    * `INTIME` — готова только при наступлении времени `FOC_TS <= SYSDATE`.
+* `IN_PROCESS` — пачка заблокирована воркером и отправляется в Kafka.
+* `SUCCESS` — из Kafka получен успешный ответ, обновлены `OLDTBAL` и `NEWTBAL`.
+* `ERROR` — запись отклонена внешней системой или нарушена целостность пачки (запись дублируется в `GRU_REJECT_TAB`).
+
+### 2. Таблица `ACC_APP_ADAPTER.APP_ADAPTER_TRANS` (транзакции батчей)
+* `CONSUMER_WAIT` — пачка успешно опубликована в топик запросов `gru.balance.request`, ожидается ответ.
+* `CONSUMER_IN_PROCESS` — ответ из топика `gru.balance.response` получен консьюмером и взят в обработку.
+* `SUCCESS` — ответ успешно провалидирован, бизнес-данные обновлены.
+* `ERROR` — техническая ошибка сериализации, сбой отправки в Kafka или отклонение внешней системой.
+
+---
+
+## Форматы Kafka DTO
+
+### Исходящее сообщение (`gru.balance.request`)
+
+```json
+{
+  "actualTimestamp": 1729000000000,
+  "systemId": "GRU",
+  "requestId": "d8f07b46-0b1a-4d2a-8742-56453965b123",
+  "eventType": "BALANCE",
+  "entityType": "ACCOUNT",
+  "events": [
+    {
+      "id": 10001,
+      "systemAccount": "40817810000000001234",
+      "currency": "RUB",
+      "xalfa": 500.00,
+      "operation": "CR"
+    }
+  ]
+}
 ```
 
-Локальный JDBC URL:
+### Входящее сообщение (`gru.balance.response`)
 
-```text
-jdbc:oracle:thin:@//localhost:1521/XE
+**Успешный ответ (или частичный отказ строк):**
+```json
+{
+  "actualTimestamp": 1729000001000,
+  "systemId": "SMART",
+  "requestId": "d8f07b46-0b1a-4d2a-8742-56453965b123",
+  "eventType": "BALANCE",
+  "entityType": "ACCOUNT",
+  "status": "SUCCESS",
+  "events": [
+    {
+      "entityValue": "40817810000000001234",
+      "entityId": 10001,
+      "data": {
+        "oldTbal": 1500.00,
+        "newTbal": 2000.00,
+        "operation": "CR"
+      },
+      "status": "SUCCESS"
+    },
+    {
+      "entityValue": "40817810000000005678",
+      "entityId": 10002,
+      "status": "ERROR",
+      "error": {
+        "code": "ERR-042",
+        "message": "Account is blocked"
+      }
+    }
+  ]
+}
 ```
 
-Основные схемы:
-
-```text
-GRU
-ACC_APP_ADAPTER
+**Полный отказ пачки:**
+```json
+{
+  "actualTimestamp": 1729000001000,
+  "systemId": "SMART",
+  "requestId": "d8f07b46-0b1a-4d2a-8742-56453965b123",
+  "eventType": "BALANCE",
+  "entityType": "ACCOUNT",
+  "status": "ERROR",
+  "error": {
+    "code": "FATAL-001",
+    "message": "System unavailable"
+  }
+}
 ```
 
-Adapter читает бизнес-данные из:
+> **Важно:** если в ответе возвращены не все `entityId`, которые отправлялись в батче, адаптер признает пачку неконсистентной и переводит **все** записи батча в статус `ERROR` с занесением в `GRU_REJECT_TAB`.
 
-```text
-GRU.GRU_VISTA_TAB
-```
+---
 
-и хранит технические данные в:
-
-```text
-ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
-ACC_APP_ADAPTER.APP_ADAPTER_TRANS
-ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS
-```
-
-## APP_ADAPTER_CONFIG
-
-Конфигурация потоков читается из:
-
-```text
-ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
-```
-
-Для `GRU` должно быть:
-
-```text
-SYSTEMID    = GRU
-EVENT_TYPE  = BALANCE
-ENTITY_TYPE = ACCOUNT
-
-TOPIC_IN    = gru.balance.response
-STATUS_IN   = 1
-
-TOPIC_OUT   = gru.balance.request
-STATUS_OUT  = 1
-```
-
-Проверка:
-
-```sql
-SELECT
-    SYSTEMID,
-    TOPIC_IN,
-    STATUS_IN,
-    TOPIC_OUT,
-    STATUS_OUT
-FROM ACC_APP_ADAPTER.APP_ADAPTER_CONFIG
-WHERE SYSTEMID = 'GRU';
-```
-
-## Kafka
-
-Локальный кластер:
-
-```text
-localhost:9092
-localhost:9093
-localhost:9094
-```
-
-Топики:
-
-```text
-gru.balance.request
-gru.balance.response
-```
-
-Направление:
-
-```text
-Adapter producer
-    ↓
-gru.balance.request
-
-gru.balance.response
-    ↓
-Adapter consumer
-```
-
-### Создание топиков
-
-Топики создаются вручную, а не через application YAML.
-
-Request:
-
-```cmd
-docker exec kafka1 kafka-topics ^
-  --bootstrap-server kafka1:29092 ^
-  --create ^
-  --topic gru.balance.request ^
-  --partitions 3 ^
-  --replication-factor 3
-```
-
-Response:
-
-```cmd
-docker exec kafka1 kafka-topics ^
-  --bootstrap-server kafka1:29092 ^
-  --create ^
-  --topic gru.balance.response ^
-  --partitions 3 ^
-  --replication-factor 3
-```
-
-Проверка:
-
-```cmd
-docker exec kafka1 kafka-topics ^
-  --bootstrap-server kafka1:29092 ^
-  --describe ^
-  --topic gru.balance.request
-```
-
-Ожидается:
-
-```text
-PartitionCount: 3
-ReplicationFactor: 3
-```
-
-## `application.yaml`
-
-Пример локального контура:
+## Конфигурация приложения (`application.yaml`)
 
 ```yaml
 server:
@@ -215,7 +258,6 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
-
     consumer:
       group-id: my-consumer-group
 
@@ -227,7 +269,6 @@ mybatis:
 
 batch:
   size: 100
-
   timeout:
     worker:
       delay: 10000
@@ -236,7 +277,6 @@ app:
   adapter:
     producer:
       pool-size: 1
-
     consumer:
       pool-size: 1
 
@@ -251,470 +291,96 @@ dynamic:
     path: ./logs/gru-adapter
 ```
 
-## MyBatis
+---
 
-Конфигурация остаётся в XML.
+## База данных и Liquibase
 
-Структура:
+### Управление схемами
+* Схема `ACC_APP_ADAPTER` — техническая схема адаптера (управляется через Liquibase проекта):
+    * `APP_ADAPTER_CONFIG` — параметры топиков и флаги активности потоков (`STATUS_IN`, `STATUS_OUT`).
+    * `APP_ADAPTER_TRANS` — журнал отправленных пакетов и их статусов.
+    * `APP_ADAPTER_IO_MSGS` — аудит сырых входящих и исходящих JSON-сообщений с привязкой к ноде (`pc.number`).
+* Схема `GRU` — бизнес-схема (внешняя):
+    * `GRU.GRU_VISTA_TAB` — очередь финансовых проводок к обработке.
+    * `GRU.GRU_REJECT_TAB` — реестр отклоненных проводок.
 
-```text
-src/main/resources/
-├── application.yaml
-├── mybatis-config.xml
-└── mappers/
-    ├── app-adapter-config-mapper.xml
-    ├── app-adapter-io-msgs-mapper.xml
-    ├── app-adapter-trans-mapper.xml
-    ├── gru-reject-tab-mapper.xml
-    └── gru-vista-tab-mapper.xml
-```
+### Инициализация конфигурации (`APP_ADAPTER_CONFIG`)
 
-`mybatis-config.xml`:
-
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
-<configuration>
-
-    <settings>
-        <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <setting name="defaultEnumTypeHandler"
-                 value="org.apache.ibatis.type.EnumTypeHandler"/>
-        <setting name="jdbcTypeForNull" value="NULL"/>
-    </settings>
-
-    <typeAliases>
-        <package name="ru.itone.illya4gurenko.entity"/>
-    </typeAliases>
-
-    <mappers>
-        <mapper resource="mappers/app-adapter-config-mapper.xml"/>
-        <mapper resource="mappers/app-adapter-io-msgs-mapper.xml"/>
-        <mapper resource="mappers/app-adapter-trans-mapper.xml"/>
-        <mapper resource="mappers/gru-reject-tab-mapper.xml"/>
-        <mapper resource="mappers/gru-vista-tab-mapper.xml"/>
-    </mappers>
-
-</configuration>
-```
-
-## Выбор batch
-
-Adapter должен выбирать только записи:
-
-```text
-FOC_STATUS = WAIT
-```
-
-и учитывать тип обработки:
-
-```text
-IMMEDIATE
-```
-
-или:
-
-```text
-INTIME AND FOC_TS <= SYSDATE
-```
-
-Пример SQL:
+При накате Liquibase создается начальная запись для системы `GRU`:
 
 ```sql
-SELECT *
-FROM GRU.GRU_VISTA_TAB
-WHERE ID IN (
-    SELECT ID
-    FROM (
-        SELECT ID
-        FROM GRU.GRU_VISTA_TAB
-        WHERE FOC_STATUS = 'WAIT'
-          AND (
-              FOC_TYPE = 'IMMEDIATE'
-              OR (
-                  FOC_TYPE = 'INTIME'
-                  AND FOC_TS <= SYSDATE
-              )
-          )
-        ORDER BY ID ASC
-    )
-    WHERE ROWNUM <= :limit
-)
-FOR UPDATE SKIP LOCKED;
+SELECT SYSTEMID, TOPIC_IN, STATUS_IN, TOPIC_OUT, STATUS_OUT 
+FROM ACC_APP_ADAPTER.APP_ADAPTER_CONFIG 
+WHERE SYSTEMID = 'GRU';
 ```
 
-Размер batch:
+Значения:
+* `SYSTEMID` = `'GRU'`
+* `TOPIC_IN` = `'gru.balance.response'`
+* `STATUS_IN` = `1` (консьюмер включен)
+* `TOPIC_OUT` = `'gru.balance.request'`
+* `STATUS_OUT` = `1` (продюсер включен)
 
-```yaml
-batch:
-  size: 100
-```
+---
 
-## Worker lifecycle
+## Регламентное восстановление (`StuckRecordsRecoveryService`)
 
-При старте `AppInitializer`:
+Если во время отправки произошел аварийный сбой инстанса, записи в `GRU_VISTA_TAB` останутся в статусе `IN_PROCESS`.
 
-1. вызывает `APP_ADAPTER_CONFIG`;
-2. получает конфигурацию `GRU`;
-3. при `STATUS_OUT = 1` создаёт producer worker-ы;
-4. при `STATUS_IN = 1` создаёт consumer worker-ы.
-
-Producer worker-ы запускаются через `ExecutorService`.
-
-Consumer worker-ы создают `KafkaMessageListenerContainer`.
-
-## Admin REST API
-
-Базовый URL:
-
-```text
-http://localhost:8082/api/admin
-```
-
-### Получить состояние
-
-```http
-GET /api/admin/status
-```
-
-Пример ответа:
-
-```json
-{
-  "message": "Current app-adapter state",
-  "running": true,
-  "producers": 1,
-  "consumers": 1
-}
-```
-
-`running=true` означает, что worker-ы были созданы и не были остановлены.
-
-Это **не является Kafka health-check**. Kafka может быть недоступна, а worker-ы при этом продолжают существовать и пытаться reconnect.
-
-### Остановить worker-ы
-
-```http
-POST /api/admin/workers/stop
-```
-
-Пример:
-
-```json
-{
-  "message": "All workers stopped",
-  "running": false,
-  "producers": 0,
-  "consumers": 0
-}
-```
-
-При этом Spring Boot и REST API продолжают работать.
-
-### Перезапустить worker-ы
-
-```http
-POST /api/admin/restart
-```
-
-Последовательность:
-
-```text
-stop current workers
-        ↓
-повторный SELECT APP_ADAPTER_CONFIG
-        ↓
-создание новых producer workers
-        ↓
-создание новых consumer workers
-```
-
-Пример ответа:
-
-```json
-{
-  "message": "APP_ADAPTER_CONFIG reloaded and workers restarted",
-  "running": true,
-  "producers": 1,
-  "consumers": 1
-}
-```
-
-### Полностью выключить сервис
-
-```http
-POST /api/admin/shutdown
-```
-
-Endpoint возвращает:
-
-```text
-202 Accepted
-```
-
-после чего вызывает завершение JVM.
-
-## Shutdown hook / SIGTERM
-
-В `AppAdapterRun` регистрируется:
-
-```java
-Runtime.getRuntime().addShutdownHook(
-        new Thread(() -> {
-            log.info("Shutdown hook started");
-
-            try {
-                appInitializer.stopWorkers();
-            } catch (Exception e) {
-                log.error("Error during shutdown", e);
-            }
-
-            log.info("Shutdown hook finished");
-        }, "app-adapter-shutdown-hook")
-);
-```
-
-Hook регистрируется **один раз при запуске приложения**.
-
-В REST endpoint `/shutdown` повторно регистрировать hook не нужно.
-
-Цепочка REST shutdown:
-
-```text
-POST /api/admin/shutdown
-        ↓
-System.exit(0)
-        ↓
-JVM shutdown
-        ↓
-shutdown hook
-        ↓
-stopWorkers()
-```
-
-Цепочка Linux:
-
-```text
-kill -15 <PID>
-        ↓
-SIGTERM
-        ↓
-JVM shutdown
-        ↓
-shutdown hook
-        ↓
-stopWorkers()
-```
-
-Для Docker:
-
-```bash
-docker stop app-adapter
-```
-
-Docker сначала отправляет процессу `SIGTERM`, поэтому используется тот же shutdown flow.
-
-`@PreDestroy` в `AppInitializer` можно оставить как дополнительный механизм безопасной остановки.
-
-## Liquibase
-
-Adapter владеет только объектами схемы:
-
-```text
-ACC_APP_ADAPTER
-```
-
-Рекомендуемая структура:
-
-```text
-src/main/resources/db/changelog/
-├── db.changelog-master.yaml
-├── 001-adapter-sequences.sql
-├── 002-adapter-tables.sql
-├── 003-adapter-constraints-indexes.sql
-└── 004-adapter-config.sql
-```
-
-Создаются:
-
-```text
-APP_ADAPTER_CONFIG
-APP_ADAPTER_TRANS
-APP_ADAPTER_IO_MSGS
-
-APP_ADAPTER_CONFIG_SEQ
-APP_ADAPTER_TRANS_SEQ
-APP_ADAPTER_IO_MSGS_SEQ
-```
-
-Не изменяйте уже применённый Liquibase changeset после его применения.
-
-Для изменения данных конфигурации создавайте новый changeset.
-
-## Сборка
-
-Windows:
-
-```cmd
-gradlew.bat clean build
-```
-
-Без тестов:
-
-```cmd
-gradlew.bat clean build -x test
-```
-
-Запуск:
-
-```cmd
-gradlew.bat bootRun
-```
-
-## Проверка Kafka
-
-Request topic:
-
-```cmd
-docker exec -it kafka1 kafka-console-consumer ^
-  --bootstrap-server kafka1:29092 ^
-  --topic gru.balance.request ^
-  --from-beginning
-```
-
-Response topic:
-
-```cmd
-docker exec -it kafka1 kafka-console-consumer ^
-  --bootstrap-server kafka1:29092 ^
-  --topic gru.balance.response ^
-  --from-beginning
-```
-
-Consumer group:
-
-```cmd
-docker exec kafka1 kafka-consumer-groups ^
-  --bootstrap-server kafka1:29092 ^
-  --describe ^
-  --group my-consumer-group
-```
-
-## Проверка Admin API в Postman
-
-Порядок:
-
-```text
-GET  /api/admin/status
-        ↓
-POST /api/admin/workers/stop
-        ↓
-GET  /api/admin/status
-        ↓
-POST /api/admin/restart
-        ↓
-GET  /api/admin/status
-        ↓
-POST /api/admin/shutdown
-```
-
-Body для этих endpoint-ов не нужен.
-
-## E2E-тест request-части
-
-1. Поднять Oracle.
-2. Поднять Kafka.
-3. Запустить `food-card`.
-4. Запустить `app-adapter`.
-5. Запустить console consumer на `gru.balance.request`.
-6. Через generator создать файл.
-7. Food-card должен записать строки в `GRU.GRU_VISTA_TAB` со статусом `WAIT`.
-8. Adapter должен найти batch и отправить JSON в:
-
-```text
-gru.balance.request
-```
-
-## Очистка тестовых данных
-
-Очистить VISTA:
-
+Каждые **15 минут** (`fixedDelay = 900_000`) запускается задача:
 ```sql
-TRUNCATE TABLE GRU.GRU_VISTA_TAB;
+UPDATE GRU.GRU_VISTA_TAB
+SET FOC_STATUS = 'WAIT',
+    FOC_STATUS_TS = SYSDATE
+WHERE FOC_STATUS = 'IN_PROCESS'
+  AND FOC_STATUS_TS < SYSDATE - (30 / 1440);
+```
+Записи, находящиеся в обработке более 30 минут, безопасно возвращаются в статус `WAIT` для повторной обработки.
+
+---
+
+## Административное REST API
+
+Базовый путь: `http://localhost:8082/api/admin`
+
+| Метод | Путь | Описание |
+| :--- | :--- | :--- |
+| `GET` | `/api/admin/status` | Получить состояние адаптера (активность, число продюсеров и консьюмеров) |
+| `POST` | `/api/admin/workers/stop` | Принудительно остановить рабочие потоки Kafka без остановки REST-сервиса |
+| `POST` | `/api/admin/restart` | Перечитать `APP_ADAPTER_CONFIG` из БД и пересоздать все воркеры |
+| `POST` | `/api/admin/shutdown` | Запустить процесс безопасного завершения JVM (код 202 Accepted) |
+
+---
+
+## Запуск и проверка локального контура
+
+### 1. Создание топиков Kafka
+
+```cmd
+docker exec kafka1 kafka-topics --bootstrap-server kafka1:29092 --create --topic gru.balance.request --partitions 3 --replication-factor 3
+docker exec kafka1 kafka-topics --bootstrap-server kafka1:29092 --create --topic gru.balance.response --partitions 3 --replication-factor 3
 ```
 
-Посмотреть статусы:
+### 2. Сборка и запуск приложения
 
-```sql
-SELECT FOC_STATUS, COUNT(*)
-FROM GRU.GRU_VISTA_TAB
-GROUP BY FOC_STATUS;
+Сборка jar без тестов:
+```cmd
+gradlew clean build -x test
 ```
 
-## Поведение Kafka при недоступных брокерах
-
-Kafka producer/consumer по умолчанию выполняют reconnect.
-
-Поэтому при выключенном Kafka-кластере в логах могут повторяться сообщения:
-
-```text
-Connection to node ... could not be established
-Bootstrap broker ... disconnected
+Запуск сервиса:
+```cmd
+gradlew bootRun
 ```
 
-Это не означает бесконечный Java loop в admin-коде: reconnect выполняется Kafka client.
+### 3. Просмотр исходящих запросов в консоли
 
-Чтобы временно прекратить эти попытки, можно остановить workers:
-
-```http
-POST /api/admin/workers/stop
+```cmd
+docker exec -it kafka1 kafka-console-consumer --bootstrap-server kafka1:29092 --topic gru.balance.request --from-beginning
 ```
 
-После восстановления Kafka:
+---
 
-```http
-POST /api/admin/restart
-```
+## Безопасность (Security Notice)
 
-## Важный TODO для полного response-flow
-
-Необходимо проверить `GruProducerService`.
-
-Правильная модель состояния транзакции:
-
-```text
-создана транзакция
-      ↓
-IN_PROCESS
-      ↓
-request успешно отправлен в Kafka
-      ↓
-остается IN_PROCESS
-      ↓
-получен response
-      ↓
-SUCCESS / ERROR
-```
-
-Если producer сразу после успешного `KafkaTemplate.send()` выставляет:
-
-```text
-SUCCESS
-```
-
-то текущий consumer может расценить response как уже обработанный и пропустить его.
-
-Финальный `SUCCESS/ERROR` должен устанавливать consumer после обработки `gru.balance.response`.
-
-## Security
-
-Admin endpoint-ы позволяют:
-
-- останавливать workers;
-- перезапускать workers;
-- полностью выключать JVM.
-
-В production `/api/admin/**` необходимо закрыть авторизацией и/или сетевыми ограничениями.
+Эндпоинты `/api/admin/**` управляют состоянием процессов и завершением JVM. В промышленной среде они **должны быть защищены** сетевыми политиками (Firewall / Ingress), либо закрыты с помощью Spring Security (Basic / OAuth2).
