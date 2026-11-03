@@ -6,7 +6,7 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
   application:
-    name: publisher-change-food-card
+    name: adapter
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
@@ -18,6 +18,8 @@ spring:
     username: acc_app_adapter
     password: root
     driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      maximum-pool-size: 20
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -29,13 +31,13 @@ batch:
   size: 100
   timeout:
     worker:
-      delay: 10000
+      delay: 3000
 app:
   adapter:
     producer:
-      pool-size: 1
+      pool-size: 3
     consumer:
-      pool-size: 1
+      pool-size: 3
 pc:
   number: 162
 

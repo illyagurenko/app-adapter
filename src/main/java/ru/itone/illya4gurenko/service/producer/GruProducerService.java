@@ -33,14 +33,14 @@ public class GruProducerService {
      * выполняет один цикл вычитки пачки, создания транзакции и отправки сообщения в kafka.
      */
     public boolean produce(String topicOut) {
-
+        long begin = System.currentTimeMillis();
         ProducerKafkaDto curDto = batchingService.batchAndUpdate(batchSize);
-
+        long endBatchAndUpdate = System.currentTimeMillis() - begin;
         if (curDto == null || curDto.getEvents() == null || curDto.getEvents().isEmpty()) {
             return false;
         }
 
-        log.info("found batch {} rows requestId={}", curDto.getEvents().size(), curDto.getRequestId());
+        log.info("TIME found batch {} rows requestId={} time: {}", curDto.getEvents().size(), curDto.getRequestId(), endBatchAndUpdate);
 
         String json = mapperUtils.tryMappingToStr(curDto);
 

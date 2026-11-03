@@ -3,16 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.itone.illya4gurenko.repository.AppAdapterIoMsgsRepository">
 
+    <!-- сохраняет запись входящего или исходящего json-сообщения без суррогатного id -->
     <insert id="save">
-        <selectKey keyProperty="id"
-                   resultType="java.lang.Long"
-                   order="BEFORE">
-            SELECT ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS_SEQ.NEXTVAL
-            FROM DUAL
-        </selectKey>
-
         INSERT INTO ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS (
-        ID,
         TRANS_ID,
         MSG_TYPE,
         DIR,
@@ -21,7 +14,6 @@
         NODE_ID
         )
         VALUES (
-        #{id},
         #{transId},
         #{msgType},
         #{dir},
@@ -31,9 +23,10 @@
         )
     </insert>
 
+    <!-- возвращает все записи аудита сообщений -->
     <select id="findAll" resultMap="AppAdapterIoMsgsMap">
         SELECT
-        ID, TRANS_ID, MSG_TYPE, DIR, MSG, INS_TS, NODE_ID
+        TRANS_ID, MSG_TYPE, DIR, MSG, INS_TS, NODE_ID
         FROM ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS
     </select>
 

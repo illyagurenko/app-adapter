@@ -1,22 +1,15 @@
 <configuration>
 
-    <!-- 1. Вывод в консоль -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <!-- 2. Вывод в файл с автоматической ротацией -->
+    <!-- Вывод в файл с автоматической ротацией -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- Активный файл лога -->
-        <file>${dynamic.log.path:-logs/app.log}</file>
+        <file>${dynamic.log.path:-logs}/app.log</file>
         <append>true</append>
 
         <!-- Политика ротации: по размеру (25МБ) и времени (3 дня) -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <!-- Шаблон архивов: logs/app.2023-10-25.0.log.gz -->
-            <fileNamePattern>${dynamic.log.path:-logs/app}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!-- Шаблон архивов: logs/app.2026-11-01.0.log.gz -->
+            <fileNamePattern>${dynamic.log.path:-logs}/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
 
             <!-- Максимальный объем одного файла лога — 25 Мегабайт -->
             <maxFileSize>25MB</maxFileSize>
@@ -24,7 +17,7 @@
             <!-- Срок хранения архивов логов — максимум 3 дня -->
             <maxHistory>3</maxHistory>
 
-            <!-- Опционально: суммарный лимит всех архивов на диске -->
+            <!-- Суммарный лимит всех архивов на диске -->
             <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
 
@@ -33,9 +26,8 @@
         </encoder>
     </appender>
 
-    <!-- Корневой уровень логирования -->
+    <!-- Корневой уровень логирования (вывод подключен только к файлу) -->
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
 

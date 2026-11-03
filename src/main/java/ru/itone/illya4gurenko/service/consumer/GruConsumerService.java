@@ -64,6 +64,7 @@ public class GruConsumerService implements MessageConsumer {
 
         log.info("consumer starts processing requestId={}, previousStatus={}", requestId, trans.getStatus());
 
+
         consumerStatusService.startProcessing(trans, json, numberPC);
 
         ProducerKafkaDto sentDto = mapperUtils.tryMappingToProducerKafkaDto(trans.getData());
@@ -75,15 +76,21 @@ public class GruConsumerService implements MessageConsumer {
         }
 
         try {
+            long begin = System.currentTimeMillis();
             gruValidateService.processResult(consumerDto, sentDto);
-
+            long endValidateIDs = System.currentTimeMillis() - begin;
+            log.info("Validate data in consumer: {}", endValidateIDs);
             if ("ERROR".equalsIgnoreCase(consumerDto.getStatus())) {
                 consumerStatusService.updateFinalStatus(trans, FocStatus.ERROR, null, "batch error processed");
             } else {
+                long begin1 = System.currentTimeMillis();
                 consumerStatusService.updateFinalStatus(trans, FocStatus.SUCCESS, "0", "SUCCESS");
+                long endUpdateStatusSuccess = System.currentTimeMillis() - begin1;
+                log.info("final operation success: {}", endUpdateStatusSuccess);
             }
 
-            log.info("consumer finished requestId={}, finalStatus={}", requestId, trans.getStatus());
+
+            log.info("consumer finished requestId={}, finalStatus={} with time: {}", requestId, trans.getStatus(), endValidateIDs);
 
         } catch (Exception e) {
             log.error("technical error processing requestId={}", requestId, e);

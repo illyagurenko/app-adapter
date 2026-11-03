@@ -2,6 +2,7 @@ package ru.itone.illya4gurenko.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import ru.itone.illya4gurenko.controller.dto.ConsumerMetricsResponse;
 import ru.itone.illya4gurenko.entity.AppAdapterTrans;
 
 import java.util.List;
@@ -31,4 +32,8 @@ public interface AppAdapterTransRepository {
      * выполняет поиск транзакции по уникальному идентификатору requestId.
      */
     AppAdapterTrans findByRequestId(@Param("requestId") String requestId);
+    /**
+     * вычисляет агрегированные метрики времени обработки завершенных транзакций.
+     */
+    ConsumerMetricsResponse calculateMetrics();
 }

@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.itone.illya4gurenko.controller.dto.AdminResponse;
+import ru.itone.illya4gurenko.controller.dto.ConsumerMetricsResponse;
+import ru.itone.illya4gurenko.dao.AppAdapterTransDao;
 import ru.itone.illya4gurenko.config.AppInitializer;
 
 /**
- * контроллер для ручного администрирования жизненного цикла фоновых потоков адаптера.
+ * контроллер для ручного администрирования фоновых процессов и мониторинга скорости адаптера.
  */
 @RestController
 @RequestMapping("/api/admin")
@@ -21,6 +23,7 @@ import ru.itone.illya4gurenko.config.AppInitializer;
 public class AdminController {
 
     private final AppInitializer appInitializer;
+    private final AppAdapterTransDao transDao;
 
     /**
      * возвращает текущее состояние worker-потоков сервиса.
@@ -33,6 +36,44 @@ public class AdminController {
     }
 
     /**
+     * возвращает агрегированные метрики времени обработки транзакций консьюмером.
+     */
+    @GetMapping("/metrics")
+    public ResponseEntity<ConsumerMetricsResponse> metrics() {
+        ConsumerMetricsResponse raw = transDao.getMetrics();
+
+        if (raw == null || raw.totalCompleted() == 0) {
+            return ResponseEntity.ok(new ConsumerMetricsResponse(
+                    0, null, null, 0.0, "0 secs", 0.0, 0.0, 0.0, 0
+            ));
+        }
+
+        double totalSec = raw.totalDurationSeconds();
+        long minutes = (long) (totalSec / 60);
+        double remainingSec = totalSec % 60;
+        String formatted = minutes > 0
+                ? String.format("%d mins %.2f secs", minutes, remainingSec)
+                : String.format("%.2f secs", remainingSec);
+
+        double batchesPerSec = totalSec > 0 ? (raw.totalCompleted() / totalSec) : 0;
+        long estimatedRows = raw.totalCompleted() * 100L;
+
+        ConsumerMetricsResponse enriched = new ConsumerMetricsResponse(
+                raw.totalCompleted(),
+                raw.firstStartTime(),
+                raw.lastFinishTime(),
+                totalSec,
+                formatted,
+                raw.avgDurationSeconds(),
+                raw.maxDurationSeconds(),
+                Math.round(batchesPerSec * 100.0) / 100.0,
+                estimatedRows
+        );
+
+        return ResponseEntity.ok(enriched);
+    }
+
+    /**
      * перезачитывает таблицу APP_ADAPTER_CONFIG и перезапускает все потоки.
      */
     @PostMapping("/restart")
@@ -42,9 +83,7 @@ public class AdminController {
         appInitializer.restartWorkers();
 
         return ResponseEntity.ok(
-                buildResponse(
-                        "APP_ADAPTER_CONFIG reloaded and workers restarted"
-                )
+                buildResponse("APP_ADAPTER_CONFIG reloaded and workers restarted")
         );
     }
 
@@ -87,11 +126,7 @@ public class AdminController {
 
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                .body(
-                        buildResponse(
-                                "Application shutdown initiated"
-                        )
-                );
+                .body(buildResponse("Application shutdown initiated"));
     }
 
     /**

@@ -78,7 +78,23 @@
         INS_TS,
         UPD_TS
         FROM ACC_APP_ADAPTER.APP_ADAPTER_TRANS
-        WHERE REQUEST_ID = #{requestId}
+        WHERE STATUS NOT IN ('SUCCESS','ERROR') AND REQUEST_ID = #{requestId}
+    </select>
+
+    <!-- вычисляет общее, среднее и максимальное время обработки транзакций -->
+    <select id="calculateMetrics" resultType="ru.itone.illya4gurenko.controller.dto.ConsumerMetricsResponse">
+        SELECT
+        COUNT(*)                                                    AS totalCompleted,
+        MIN(INS_TS)                                                 AS firstStartTime,
+        MAX(UPD_TS)                                                 AS lastFinishTime,
+        NVL(ROUND((MAX(UPD_TS) - MIN(INS_TS)) * 86400, 2), 0)     AS totalDurationSeconds,
+        NULL                                                        AS formattedDuration,
+        NVL(ROUND(AVG((UPD_TS - INS_TS) * 86400), 4), 0)           AS avgDurationSeconds,
+        NVL(ROUND(MAX((UPD_TS - INS_TS) * 86400), 4), 0)           AS maxDurationSeconds,
+        0                                                           AS batchesPerSecond,
+        0                                                           AS estimatedRowsProcessed
+        FROM ACC_APP_ADAPTER.APP_ADAPTER_TRANS
+        WHERE STATUS IN ('SUCCESS', 'ERROR')
     </select>
 
     <resultMap id="AppAdapterTransMap"

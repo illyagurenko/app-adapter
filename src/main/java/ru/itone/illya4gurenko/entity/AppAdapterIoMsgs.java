@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class AppAdapterIoMsgs {
 
-    private Long id;
-
     private Long transId;
 
     private MsgType msgType;

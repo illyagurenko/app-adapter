@@ -21,7 +21,8 @@ public class KafkaProducerSender {
      */
     public void send(String topic, String key, String payload) {
         try {
-            SendResult<String, String> res = kafkaTemplate.send(topic, key, payload).get();
+            SendResult<String, String> res = kafkaTemplate.send(topic, key, payload)
+                    .get(5, java.util.concurrent.TimeUnit.SECONDS);
             log.info("Success produce in kafka topic: {}, partition: {}, offset: {}",
                     topic, res.getRecordMetadata().partition(), res.getRecordMetadata().offset());
         } catch (InterruptedException e) {

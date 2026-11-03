@@ -52,7 +52,6 @@ public class GruValidateService {
         for (ConsumerEventDto event : consumerDto.getEvents()) {
             Long entityId = event.getEntityId();
 
-            // ИСПРАВЛЕНО: безопасное сравнение вместо event.getStatus().name() во избежание NPE
             if (FocStatus.SUCCESS.equals(event.getStatus())) {
                 EventDataDto data = event.getData();
                 gruVistaDao.updateBalanceAndStatus(

@@ -1,14 +1,5 @@
 --liquibase formatted sql
 
---changeset illya:adapter-001-io-sequence
-CREATE SEQUENCE ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS_SEQ
-    START WITH 1
-    INCREMENT BY 1
-    NOCACHE;
-
---rollback DROP SEQUENCE ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS_SEQ;
-
-
 --changeset illya:adapter-002-trans-sequence
 CREATE SEQUENCE ACC_APP_ADAPTER.APP_ADAPTER_TRANS_SEQ
     START WITH 1

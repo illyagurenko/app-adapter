@@ -2,6 +2,7 @@ package ru.itone.illya4gurenko.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.itone.illya4gurenko.controller.dto.ConsumerMetricsResponse;
 import ru.itone.illya4gurenko.entity.AppAdapterTrans;
 import ru.itone.illya4gurenko.repository.AppAdapterTransRepository;
 
@@ -33,4 +34,12 @@ public class AppAdapterTransDao {
     public AppAdapterTrans findByRequestId(String requestId) {
         return repository.findByRequestId(requestId);
     }
+
+    /**
+     * запрашивает агрегированные метрики времени выполнения из базы.
+     */
+    public ConsumerMetricsResponse getMetrics() {
+        return repository.calculateMetrics();
+    }
+
 }
