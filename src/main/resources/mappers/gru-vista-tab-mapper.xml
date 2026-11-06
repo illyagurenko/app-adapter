@@ -28,7 +28,7 @@
     </select>
 
     <!-- Выбираем ТОЛЬКО записи со статусом WAIT и с учетом времени для INTIME -->
-    <select id="fetchBatchForUpdate" resultMap="GruVistaTabMap">
+    <select id="fetchBatchForUpdate" resultMap="GruVistaTabMap" fetchSize="100">
         SELECT ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE

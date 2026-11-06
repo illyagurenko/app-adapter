@@ -39,7 +39,7 @@ app:
     consumer:
       pool-size: 3
 pc:
-  number: 162
+  number: 161
 
 logging:
   config: classpath:file-logback.xml
