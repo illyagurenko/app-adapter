@@ -212,8 +212,7 @@ Z<CodeBank(3)><CodeFilial(3)>.<NameAES>_ENROLL<Number>.<JulianDay(3)>
     * `FILE_ID (NUMBER)` — Связь с `pom.file.id`.
     * `FOC_STATUS (VARCHAR2 64)` — `WAIT`, `IN_PROCESS`, `SUCCESS`, `ERROR`.
     * `FOC_TYPE (VARCHAR2 10)` — `IMMEDIATE` или `INTIME`.
-    * `FOC_TS (TIMESTAMP)` — Плановое время отложенного исполнения.
-    * `FOC_STATUS_TS (TIMESTAMP)` — Время последнего изменения статуса.
+    * `FOC_TS (TIMESTAMP)` — Время смены статуса / плановое время исполнения.
 * `GRU.GRU_REJECT_TAB`:
     * `ID (NUMBER PK)` — Sequence `GRU_REJECT_SEQ`.
     * `VISTA_TAB_ID (NUMBER 12)` — Ссылка на запись `GRU_VISTA_TAB.ID`.
@@ -265,7 +264,7 @@ Z<CodeBank(3)><CodeFilial(3)>.<NameAES>_ENROLL<Number>.<JulianDay(3)>
 ### 2. Затирание бизнес-времени `FOC_TS`
 * **Файл:** `app-adapter/src/main/resources/mappers/gru-vista-tab-mapper.xml`
 * **Проблема:** Метод `updateStatusByIds` выполняет `SET FOC_STATUS = #{newStatus}, FOC_TS = SYSDATE`. Поле `FOC_TS` хранит запланированное время исполнения отложенного платежа. Перезапись его текущим временем уничтожает исходные данные.
-* **Исправление:** Обновлять техническое поле времени смены статуса `FOC_STATUS_TS = SYSDATE`, не затрагивая `FOC_TS`.
+* **Примечание:** В таблице `GRU.GRU_VISTA_TAB` используется колонка `FOC_TS = SYSDATE` для фиксации времени обновления статуса.
 
 ### 3. Производительность вставки в `food-card` (N+1 Inserts)
 * **Файл:** `food-card/.../service/visitor/EnrollVisitor.java`

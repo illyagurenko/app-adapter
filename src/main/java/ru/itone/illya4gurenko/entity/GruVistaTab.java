@@ -46,6 +46,6 @@ public class GruVistaTab {
 
     private ProcType focType;
 
-    private LocalDateTime focStatusTs;
+    private String svfeLoadId;
 
 }

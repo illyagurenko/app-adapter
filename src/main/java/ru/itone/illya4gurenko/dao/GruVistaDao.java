@@ -1,12 +1,17 @@
 package ru.itone.illya4gurenko.dao;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.itone.illya4gurenko.entity.GruVistaTab;
 import ru.itone.illya4gurenko.entity.enums.FocStatus;
 import ru.itone.illya4gurenko.repository.GruVistaTabRepository;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,12 +21,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GruVistaDao {
     private final GruVistaTabRepository repository;
+    private final SqlSessionFactory factory;
 
     /**
-     * выбирает порцию записей в статусе WAIT и блокирует их от других потоков (FOR UPDATE SKIP LOCKED).
+     * выбирает порцию записей в статусе WAIT и блокирует их (FOR UPDATE SKIP LOCKED).
      */
     public List<GruVistaTab> fetchBatchForUpdate(int limit) {
         return repository.fetchBatchForUpdate(limit);
+    }
+
+    /**
+     * ищет записи по идентификатору пакета svfeLoadId (requestId).
+     */
+    public List<GruVistaTab> findBySvfeLoadId(String svfeLoadId) {
+        if (svfeLoadId == null || svfeLoadId.isBlank()) {
+            return Collections.emptyList();
+        }
+        return repository.findBySvfeLoadId(svfeLoadId);
+    }
+
+    /**
+     * пакетно обновляет статус обработки и проставляет svfeLoadId для переданного списка идентификаторов.
+     */
+    public void updateBatchStatusAndSvfeLoadId(List<Long> ids, FocStatus newStatus, String svfeLoadId) {
+        if (ids == null || ids.isEmpty()) {
+            return;
+        }
+        repository.updateBatchStatusAndSvfeLoadId(ids, newStatus, svfeLoadId);
     }
 
     /**
@@ -43,9 +69,42 @@ public class GruVistaDao {
     }
 
     /**
-     * сбрасывает зависшие в IN_PROCESS записи обратно в WAIT, если прошло больше указанных минут.
+     * пакетно обновляет остатки балансов и финальные статусы (SUCCESS/ERROR) для списка записей за один JDBC-батч.
      */
-    public void resetStuckRecords(int minutes) {
-        repository.resetStuckRecords(minutes);
+    @Transactional
+    public void finalUpdateGru(List<GruVistaTab> gruVistaTabs) {
+        if (gruVistaTabs == null || gruVistaTabs.isEmpty()) {
+            return;
+        }
+        try (SqlSession session = factory.openSession(ExecutorType.BATCH, false)) {
+            try {
+                GruVistaTabRepository mapper = session.getMapper(GruVistaTabRepository.class);
+                for (GruVistaTab vistaTab : gruVistaTabs) {
+                    mapper.updateBalanceAndStatus(
+                            vistaTab.getId(),
+                            vistaTab.getOldTBal(),
+                            vistaTab.getNewTBal(),
+                            vistaTab.getFocStatus()
+                    );
+                }
+                session.flushStatements();
+                session.commit();
+            } catch (Exception e) {
+                try {
+                    session.rollback();
+                } catch (Exception rollbackEx) {
+                    e.addSuppressed(rollbackEx);
+                }
+                throw new IllegalStateException("Failed to batch update GRU_VISTA_TAB", e);
+            }
+        }
+    }
+
+    /**
+     * интеллектуально возвращает брошенные в IN_PROCESS записи обратно в статус WAIT
+     * (только если для них НЕТ активной транзакции в APP_ADAPTER_TRANS).
+     */
+    public int resetOrphanedStuckRecords() {
+        return repository.resetOrphanedStuckRecords();
     }
 }

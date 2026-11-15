@@ -29,15 +29,21 @@ mybatis:
 
 batch:
   size: 100
+  fetch-size: 10000
   timeout:
     worker:
-      delay: 3000
+      delay: 1000
+
+recovery:
+  stuck-records:
+    delay: 300000
+
 app:
   adapter:
     producer:
-      pool-size: 3
+      pool-size: 2
     consumer:
-      pool-size: 3
+      pool-size: 2
 pc:
   number: 161
 

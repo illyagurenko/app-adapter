@@ -10,12 +10,12 @@
         INSERT INTO GRU.GRU_VISTA_TAB (
         ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
-        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE
+        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         )
         VALUES (
         #{id}, #{systemAccount}, #{currency}, #{xalfa}, #{operation}, #{timeStamp},
         #{pomId}, #{uterrario}, #{oldTBal}, #{newTBal}, #{addInfo},
-        #{fileId}, #{focStatus}, #{focTS}, #{focType}
+        #{fileId}, #{focStatus}, #{focTS}, #{focType}, #{svfeLoadId}
         )
     </insert>
 
@@ -23,15 +23,14 @@
         SELECT
         ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
-        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE
+        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         FROM GRU.GRU_VISTA_TAB
     </select>
 
-    <!-- Выбираем ТОЛЬКО записи со статусом WAIT и с учетом времени для INTIME -->
-    <select id="fetchBatchForUpdate" resultMap="GruVistaTabMap" fetchSize="100">
+    <select id="fetchBatchForUpdate" resultMap="GruVistaTabMap" fetchSize="10000">
         SELECT ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
-        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE
+        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         FROM GRU.GRU_VISTA_TAB
         WHERE FOC_STATUS = 'WAIT'
         AND (
@@ -45,34 +44,66 @@
         FOR UPDATE SKIP LOCKED
     </select>
 
+    <!-- Поиск строк батча по SVFE_LOAD_ID (requestId) для валидации консьюмером -->
+    <select id="findBySvfeLoadId" resultMap="GruVistaTabMap" fetchSize="100">
+        SELECT /*+ INDEX(GRU_VISTA_TAB IDX_GRU_VISTA_SVFE_LOAD_ID) */
+        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
+        POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
+        FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
+        FROM GRU.GRU_VISTA_TAB
+        WHERE SVFE_LOAD_ID = #{svfeLoadId}
+    </select>
+
     <!-- Финализация балансов и установка статуса SUCCESS / ERROR -->
     <update id="updateBalanceAndStatus">
         UPDATE GRU.GRU_VISTA_TAB
         SET OLDTBAL = #{oldTBal},
         NEWTBAL = #{newTBal},
         FOC_STATUS = #{status},
-        FOC_STATUS_TS = SYSDATE
+        FOC_TS = SYSDATE
         WHERE ID = #{id}
     </update>
 
-    <!-- Перевод пачки в статус IN_PROCESS перед отправкой в Kafka -->
-    <update id="updateStatusByIds">
+    <!-- Перевод пачки в статус IN_PROCESS с фиксацией requestId в SVFE_LOAD_ID перед отправкой в Kafka -->
+    <update id="updateBatchStatusAndSvfeLoadId">
         UPDATE GRU.GRU_VISTA_TAB
         SET FOC_STATUS = #{newStatus},
-        FOC_STATUS_TS = SYSDATE
+            FOC_TS = SYSDATE,
+            SVFE_LOAD_ID = #{svfeLoadId}
         WHERE ID IN
         <foreach item="id" collection="ids" open="(" separator="," close=")">
             #{id}
         </foreach>
     </update>
 
-    <!-- Возврат зависших записей обратно в WAIT по времени смены статуса FOC_STATUS_TS -->
-    <update id="resetStuckRecords">
+    <!-- Перевод пачки в статус IN_PROCESS / ERROR -->
+    <update id="updateStatusByIds">
         UPDATE GRU.GRU_VISTA_TAB
-        SET FOC_STATUS = 'WAIT',
-        FOC_STATUS_TS = SYSDATE
-        WHERE FOC_STATUS = 'IN_PROCESS'
-        AND FOC_STATUS_TS &lt; SYSDATE - (#{minutes} / 1440)
+        SET FOC_STATUS = #{newStatus},
+        FOC_TS = SYSDATE
+        WHERE ID IN
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <!-- Интеллектуальный сброс брошенных записей IN_PROCESS старше 2 минут, для которых НЕТ активной транзакции в APP_ADAPTER_TRANS -->
+    <update id="resetOrphanedStuckRecords">
+        UPDATE GRU.GRU_VISTA_TAB v
+        SET v.FOC_STATUS = 'WAIT',
+            v.FOC_TS = SYSDATE,
+            v.SVFE_LOAD_ID = 'None'
+        WHERE v.FOC_STATUS = 'IN_PROCESS'
+        AND v.FOC_TS &lt; SYSDATE - INTERVAL '2' MINUTE
+        AND (
+            v.SVFE_LOAD_ID IS NULL
+            OR v.SVFE_LOAD_ID = 'None'
+            OR NOT EXISTS (
+                SELECT 1 FROM ACC_APP_ADAPTER.APP_ADAPTER_TRANS t
+                WHERE t.REQUEST_ID = v.SVFE_LOAD_ID
+                AND t.STATUS IN ('CONSUMER_WAIT', 'CONSUMER_IN_PROCESS')
+            )
+        )
     </update>
 
     <resultMap id="GruVistaTabMap" type="GruVistaTab" autoMapping="true">
@@ -80,5 +111,6 @@
         <result property="systemAccount" column="SYSTEMACCOUNT"/>
         <result property="oldTBal" column="OLDTBAL"/>
         <result property="newTBal" column="NEWTBAL"/>
+        <result property="svfeLoadId" column="SVFE_LOAD_ID"/>
     </resultMap>
 </mapper>

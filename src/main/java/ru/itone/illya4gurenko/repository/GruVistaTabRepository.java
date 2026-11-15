@@ -30,6 +30,18 @@ public interface GruVistaTabRepository {
     List<GruVistaTab> fetchBatchForUpdate(@Param("limit") int limit);
 
     /**
+     * ищет записи по идентификатору пакета svfeLoadId (requestId).
+     */
+    List<GruVistaTab> findBySvfeLoadId(@Param("svfeLoadId") String svfeLoadId);
+
+    /**
+     * массово переводит записи по их id в новый статус и проставляет svfeLoadId.
+     */
+    void updateBatchStatusAndSvfeLoadId(@Param("ids") List<Long> ids,
+                                        @Param("newStatus") FocStatus newStatus,
+                                        @Param("svfeLoadId") String svfeLoadId);
+
+    /**
      * массово переводит записи по их id в новый статус.
      */
     void updateStatusByIds(@Param("ids") List<Long> ids, @Param("newStatus") FocStatus newStatus);
@@ -43,7 +55,8 @@ public interface GruVistaTabRepository {
                                 @Param("status") FocStatus status);
 
     /**
-     * возвращает зависшие в IN_PROCESS записи обратно в статус WAIT, если истек тайм-аут в минутах.
+     * интеллектуально возвращает брошенные в IN_PROCESS записи обратно в статус WAIT
+     * (только если для них НЕТ активной транзакции в APP_ADAPTER_TRANS).
      */
-    void resetStuckRecords(@Param("minutes") int minutes);
+    int resetOrphanedStuckRecords();
 }

@@ -3,15 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ru.itone.illya4gurenko.repository.GruRejectTabRepository">
 
-    <insert id="save">
-        <selectKey keyProperty="id"
-                   resultType="java.lang.Long"
-                   order="BEFORE">
-            SELECT GRU.GRU_REJECT_SEQ.NEXTVAL
-            FROM DUAL
-        </selectKey>
-
-        INSERT INTO GRU.GRU_REJECT_TAB (
+    <sql id="rejectInsertColumns">
         ID,
         SYSTEMACCOUNT,
         VISTA_TAB_ID,
@@ -26,9 +18,9 @@
         CHECK_USER,
         CHECK_TIMESTAMP,
         SVFE_LOAD_ID
-        )
-        VALUES (
-        #{id},
+    </sql>
+
+    <sql id="rejectInsertValuesTail">
         #{systemAccount},
         #{vistaTabId},
         #{uterrario},
@@ -42,6 +34,33 @@
         #{checkUser},
         #{checkTimestamp},
         #{svfeLoadId}
+    </sql>
+
+    <insert id="save">
+        <selectKey keyProperty="id"
+                   resultType="java.lang.Long"
+                   order="BEFORE">
+            SELECT GRU.GRU_REJECT_SEQ.NEXTVAL
+            FROM DUAL
+        </selectKey>
+
+        INSERT INTO GRU.GRU_REJECT_TAB (
+        <include refid="rejectInsertColumns"/>
+        )
+        VALUES (
+        #{id},
+        <include refid="rejectInsertValuesTail"/>
+        )
+    </insert>
+
+    <!-- пакетная вставка записи брака без дополнительного selectKey запроса к DUAL -->
+    <insert id="saveBatchItem">
+        INSERT INTO GRU.GRU_REJECT_TAB (
+        <include refid="rejectInsertColumns"/>
+        )
+        VALUES (
+        GRU.GRU_REJECT_SEQ.NEXTVAL,
+        <include refid="rejectInsertValuesTail"/>
         )
     </insert>
 

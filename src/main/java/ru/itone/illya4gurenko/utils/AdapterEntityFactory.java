@@ -27,12 +27,11 @@ public class AdapterEntityFactory {
     /**
      * создает новую запись транзакции при отправке батча сообщений.
      */
-    public AppAdapterTrans createTrans(ProducerKafkaDto dto, String json) {
+    public AppAdapterTrans createTrans(ProducerKafkaDto dto) {
         return new AppAdapterTrans()
                 .setSystemId(dto.getSystemId())
                 .setRequestId(dto.getRequestId())
                 .setEventType(dto.getEventType())
-                .setData(json)
                 .setStatus(FocStatus.IN_PROCESS)
                 .setInsTs(LocalDateTime.now());
     }
@@ -53,10 +52,14 @@ public class AdapterEntityFactory {
     /**
      * создает запись в таблице брака на основе отправленного события (при ошибке всей пачки).
      */
-    public GruRejectTab createRejectTab(ProducerEventDto eventDto, String errorMsg) {
+    public GruRejectTab createRejectTab(GruVistaTab row, String requestId, String errorMsg) {
         return new GruRejectTab()
-                .setVistaTabId(eventDto.getId())
-                .setSystemAccount(eventDto.getSystemAccount())
+                .setVistaTabId(row.getId())
+                .setSystemAccount(row.getSystemAccount())
+                .setUterrario(row.getUterrario() != null ? row.getUterrario() : null)
+                .setOldTBal(row.getOldTBal())
+                .setNewTBal(row.getNewTBal())
+                .setSvfeLoadId(requestId != null ? requestId : row.getSvfeLoadId())
                 .setRejectDesc(errorMsg)
                 .setFrontStatus("ERR")
                 .setFrontTimestamp(LocalDateTime.now());
@@ -65,23 +68,35 @@ public class AdapterEntityFactory {
     /**
      * создает запись в таблице брака на основе полученного ответа из кафки (при ошибке конкретной строки).
      */
-    public GruRejectTab createRejectTab(ConsumerEventDto eventDto, String defaultErrorMsg) {
+    public GruRejectTab createRejectTab(ConsumerEventDto eventDto, GruVistaTab row, String requestId, String defaultErrorMsg) {
         String errorMsg = eventDto.getError() != null
                 ? (eventDto.getError().getCode() + ": " + eventDto.getError().getMessage())
                 : defaultErrorMsg;
 
-        return new GruRejectTab()
+        GruRejectTab reject = new GruRejectTab()
                 .setVistaTabId(eventDto.getEntityId())
                 .setSystemAccount(eventDto.getEntityValue())
+                .setSvfeLoadId(requestId)
                 .setRejectDesc(errorMsg)
                 .setFrontStatus("ERR")
                 .setFrontTimestamp(LocalDateTime.now());
+
+        if (row != null) {
+            reject.setUterrario(row.getUterrario() != null ? row.getUterrario() : null)
+                    .setOldTBal(row.getOldTBal())
+                    .setNewTBal(row.getNewTBal());
+            if (reject.getSystemAccount() == null) {
+                reject.setSystemAccount(row.getSystemAccount());
+            }
+        }
+
+        return reject;
     }
 
     /**
-     * создает исходящий корневой dto для отправки в kafka на основе списка строк из бд.
+     * создает исходящий корневой dto для отправки в kafka с заданным requestId на основе списка строк из бд.
      */
-    public ProducerKafkaDto createProducerKafkaDto(List<GruVistaTab> rows) {
+    public ProducerKafkaDto createProducerKafkaDto(List<GruVistaTab> rows, String requestId) {
         List<ProducerEventDto> events = rows.stream()
                 .map(this::toEventDto)
                 .toList();
@@ -89,10 +104,17 @@ public class AdapterEntityFactory {
         return new ProducerKafkaDto()
                 .setActualTimestamp(System.currentTimeMillis())
                 .setSystemId(MsgType.GRU)
-                .setRequestId(UUID.randomUUID().toString())
+                .setRequestId(requestId)
                 .setEventType(EventType.BALANCE)
                 .setEntityType(EntityType.ACCOUNT)
                 .setEvents(events);
+    }
+
+    /**
+     * создает исходящий корневой dto для отправки в kafka на основе списка строк из бд со случайным requestId.
+     */
+    public ProducerKafkaDto createProducerKafkaDto(List<GruVistaTab> rows) {
+        return createProducerKafkaDto(rows, UUID.randomUUID().toString());
     }
 
     /**

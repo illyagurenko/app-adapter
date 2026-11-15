@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import ru.itone.illya4gurenko.dao.GruVistaDao;
 
 /**
- * регламентный сервис восстановления зависших записей, оставшихся в статусе IN_PROCESS при падениях.
+ * регламентный сервис восстановления брошенных записей, оставшихся в статусе IN_PROCESS
+ * при падениях JVM, обрывах сети или нештатных сбоях продюсера.
  */
 @Service
 @RequiredArgsConstructor
@@ -17,16 +18,19 @@ public class StuckRecordsRecoveryService {
     private final GruVistaDao gruVistaDao;
 
     /**
-     * периодически сбрасывает статус записей из IN_PROCESS обратно в WAIT, если обработка зависла дольше 30 минут.
+     * периодически сбрасывает статус брошенных записей из IN_PROCESS обратно в WAIT
+     * (только если для них НЕТ активной транзакции в APP_ADAPTER_TRANS).
+     * Безопасен для любого объема очереди (хоть 10 млн записей).
      */
-    @Scheduled(fixedDelay = 900_000)
+    @Scheduled(fixedDelayString = "${recovery.stuck-records.delay:60000}", initialDelay = 15000)
     public void recoverStuckRecords() {
-        log.info("Starting recovery job for stuck IN_PROCESS records...");
         try {
-            gruVistaDao.resetStuckRecords(30);
-            log.info("Recovery job finished successfully.");
+            int resetCount = gruVistaDao.resetOrphanedStuckRecords();
+            if (resetCount > 0) {
+                log.warn("Recovery job reset {} orphaned IN_PROCESS records back to WAIT", resetCount);
+            }
         } catch (Exception e) {
-            log.error("Error during recovery job", e);
+            log.error("Error during orphaned records recovery job", e);
         }
     }
 }

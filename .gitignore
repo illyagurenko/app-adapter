@@ -43,3 +43,4 @@ bin/
 .DS_Store
 /app-adapter-info/
 /logs/
+/adapter.md

@@ -17,6 +17,11 @@ public interface GruRejectTabRepository {
     void save(GruRejectTab rejectTab);
 
     /**
+     * пакетная вставка записи с описанием ошибки без дополнительного запроса selectKey.
+     */
+    void saveBatchItem(GruRejectTab rejectTab);
+
+    /**
      * возвращает все записи забракованных транзакций.
      */
     List<GruRejectTab> findAll();

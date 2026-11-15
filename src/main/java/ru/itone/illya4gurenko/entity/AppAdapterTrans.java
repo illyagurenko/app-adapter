@@ -23,8 +23,6 @@ public class AppAdapterTrans {
 
     private EventType eventType;
 
-    private String data;
-
     private FocStatus status;
 
     private String respCode;

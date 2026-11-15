@@ -127,12 +127,10 @@ ru.itone.illya4gurenko/
 │   │   ├── GruValidateService.java         # сверка пачки, обновление балансов и брак в reject
 │   │   └── MessageConsumer.java            # интерфейс потребителя сообщений
 │   ├── producer/                           # подготовка и публикация запросов
-│   │   ├── GruBatchingService.java         # блокировка и выборка батча (FOR UPDATE SKIP LOCKED)
+│   │   ├── GruBatchingService.java         # блокировка и выгрузка пачки (FOR UPDATE SKIP LOCKED) с нарезкой по 100
 │   │   ├── GruProducerService.java         # координатор упаковки и вызова отправки
 │   │   ├── KafkaProducerSender.java        # синхронная отправка в kafka template
 │   │   └── ProducerStatusService.java      # транзакционное управление статусами продюсера
-│   └── recovery/                           # фоновые регламентные задачи
-│       └── StuckRecordsRecoveryService.java # автоматический возврат зависших записей
 ├── utils/                                  # утилитарные компоненты
 │   ├── AdapterEntityFactory.java           # фабрика маппинга сущностей и dto
 │   ├── MapperUtils.java                    # json сериализация / десериализация (jackson)
@@ -320,22 +318,6 @@ WHERE SYSTEMID = 'GRU';
 * `STATUS_IN` = `1` (консьюмер включен)
 * `TOPIC_OUT` = `'gru.balance.request'`
 * `STATUS_OUT` = `1` (продюсер включен)
-
----
-
-## Регламентное восстановление (`StuckRecordsRecoveryService`)
-
-Если во время отправки произошел аварийный сбой инстанса, записи в `GRU_VISTA_TAB` останутся в статусе `IN_PROCESS`.
-
-Каждые **15 минут** (`fixedDelay = 900_000`) запускается задача:
-```sql
-UPDATE GRU.GRU_VISTA_TAB
-SET FOC_STATUS = 'WAIT',
-    FOC_STATUS_TS = SYSDATE
-WHERE FOC_STATUS = 'IN_PROCESS'
-  AND FOC_STATUS_TS < SYSDATE - (30 / 1440);
-```
-Записи, находящиеся в обработке более 30 минут, безопасно возвращаются в статус `WAIT` для повторной обработки.
 
 ---
 
