@@ -1,0 +1,47 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: adapter-test
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:h2:mem:adapter_it_db;DB_CLOSE_DELAY=-1;MODE=Oracle
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: test-group
+    listener:
+      auto-startup: false
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+batch:
+  size: 100
+  fetch-size: 10000
+  timeout:
+    worker:
+      delay: 1000
+
+recovery:
+  stuck-records:
+    delay: 300000
+
+app:
+  adapter:
+    producer:
+      pool-size: 0
+    consumer:
+      pool-size: 0
+
+pc:
+  number: 161
+
+dynamic:
+  log:
+    path: ./logs/test-adapter
