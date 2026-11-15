@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  # Экземпляр 1 (Нода 161)
+  app-adapter-1:
+    image: app-adapter:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_adapter_1
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//food_card_oracle:1521/XE
+      SPRING_DATASOURCE_USERNAME: acc_app_adapter
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: test_kafka:29092
+      PC_NUMBER: 161
+      SERVER_PORT: 8082
+      DYNAMIC_LOG_PATH: /app/logs/gru-adapter-161
+      TZ: Europe/Moscow
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - food_bridge
+
+  # Экземпляр 2 (Нода 162)
+  app-adapter-2:
+    image: app-adapter:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_adapter_2
+    ports:
+      - "8083:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//food_card_oracle:1521/XE
+      SPRING_DATASOURCE_USERNAME: acc_app_adapter
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: test_kafka:29092
+      PC_NUMBER: 162
+      SERVER_PORT: 8082
+      DYNAMIC_LOG_PATH: /app/logs/gru-adapter-162
+      TZ: Europe/Moscow
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - food_bridge
+
+networks:
+  food_bridge:
+    external: true

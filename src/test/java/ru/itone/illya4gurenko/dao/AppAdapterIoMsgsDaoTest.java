@@ -1,3 +1,4 @@
+
 package ru.itone.illya4gurenko.dao;
 
 import org.junit.jupiter.api.DisplayName;
@@ -23,4 +24,3 @@ class AppAdapterIoMsgsDaoTest {
         verify(repository).save(msg);
     }
 }
-

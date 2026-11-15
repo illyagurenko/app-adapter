@@ -334,31 +334,88 @@ WHERE SYSTEMID = 'GRU';
 
 ---
 
-## Запуск и проверка локального контура
+## Запуск и развертывание
 
-### 1. Создание топиков Kafka
+### 1. Запуск в Docker Compose (2 экземпляра)
 
-```cmd
-docker exec kafka1 kafka-topics --bootstrap-server kafka1:29092 --create --topic gru.balance.request --partitions 3 --replication-factor 3
-docker exec kafka1 kafka-topics --bootstrap-server kafka1:29092 --create --topic gru.balance.response --partitions 3 --replication-factor 3
+Сервис упакован в классический Dockerfile (`eclipse-temurin:21-jre-jammy`) и разворачивается в двух параллельных экземплярах для высокой доступности и параллельной обработки очереди Oracle через `FOR UPDATE SKIP LOCKED`.
+
+Контейнеры подключены к общей внешней сети `food_bridge`.
+
+```bash
+# Сборка JAR и запуск двух инстансов
+gradlew build -x test
+docker compose up -d
 ```
 
-### 2. Сборка и запуск приложения
+Инстансы и порты:
+* **`app_adapter_1`:** порт `8082`, `PC_NUMBER: 161`, логи в `./logs/gru-adapter-161`
+* **`app_adapter_2`:** порт `8083`, `PC_NUMBER: 162`, логи в `./logs/gru-adapter-162`
 
-Сборка jar без тестов:
-```cmd
+Проверка статуса:
+```bash
+curl http://localhost:8082/api/admin/status
+curl http://localhost:8083/api/admin/status
+```
+
+---
+
+### 2. Локальный запуск через Gradle
+
+```bash
+# Сборка jar без тестов
 gradlew clean build -x test
-```
 
-Запуск сервиса:
-```cmd
+# Запуск приложения
 gradlew bootRun
 ```
 
-### 3. Просмотр исходящих запросов в консоли
+---
 
-```cmd
-docker exec -it kafka1 kafka-console-consumer --bootstrap-server kafka1:29092 --topic gru.balance.request --from-beginning
+## Тестирование
+
+Проект содержит модульные и интеграционные тесты с соблюдением требований к покрытию кода (Jacoco >= 80%) и краткими названиями `@DisplayName` в нижнем регистре.
+
+* **Модульные тесты (`src/test/java`):** изолированное тестирование DAO, сервисов валидации, продюсера и консьюмера с Mockito/H2.
+* **Интеграционные тесты (`src/IntegrationTest/java`):** 
+  * Проверка успешного поднятия Spring-контекста.
+  * Тест работы продюсера (вычитка из БД и отправка в Kafka).
+  * Тест консьюмера с проверкой позитивного и негативного сценариев (успешная финализация и брак).
+
+```bash
+# Запуск модульных тестов с отчетом Jacoco
+gradlew test
+
+# Запуск интеграционных тестов
+gradlew integrationTest
+```
+
+---
+
+## Запросы для мониторинга и замера скорости
+
+### Замер времени и скорости обработки по `GRU_VISTA_TAB`:
+```sql
+SELECT 
+    COUNT(*)                                                               AS PROCESSED_ROWS,
+    TO_CHAR(MIN(FOC_TS), 'YYYY-MM-DD HH24:MI:SS')                          AS START_TIME,
+    TO_CHAR(MAX(FOC_TS), 'YYYY-MM-DD HH24:MI:SS')                          AS END_TIME,
+    ROUND((MAX(FOC_TS) - MIN(FOC_TS)) * 86400, 1)                          AS DURATION_SEC,
+    ROUND((MAX(FOC_TS) - MIN(FOC_TS)) * 1440, 2)                           AS DURATION_MIN,
+    ROUND(COUNT(*) / NULLIF((MAX(FOC_TS) - MIN(FOC_TS)) * 86400, 0), 1)   AS ROWS_PER_SEC
+FROM GRU.GRU_VISTA_TAB
+WHERE FOC_STATUS IN ('SUCCESS', 'ERROR');
+```
+
+### Сводка по статусам в реальном времени:
+```sql
+SELECT 
+    COUNT(*)                                              AS TOTAL_ROWS,
+    COUNT(CASE WHEN FOC_STATUS = 'WAIT' THEN 1 END)       AS IN_WAIT,
+    COUNT(CASE WHEN FOC_STATUS = 'IN_PROCESS' THEN 1 END) AS IN_PROCESS,
+    COUNT(CASE WHEN FOC_STATUS = 'SUCCESS' THEN 1 END)    AS SUCCESS,
+    COUNT(CASE WHEN FOC_STATUS = 'ERROR' THEN 1 END)      AS ERROR
+FROM GRU.GRU_VISTA_TAB;
 ```
 
 ---
