@@ -1,0 +1,8 @@
+{
+  "direction": "PRODUCER_TO_CHANGER",
+  "status": "OK",
+  "requestId": "029e0cee-583b-455e-97d0-afe2aaef55f6",
+  "sentAt": "2026-11-19T14:09:46.92Z",
+  "receivedAt": "2026-11-19T14:09:46.91989Z",
+  "latencyMs": 0
+}

@@ -1,0 +1,11 @@
+{
+  "totalCompleted": 5309,
+  "firstStartTime": "2026-11-19T17:06:41",
+  "lastFinishTime": "2026-11-19T17:10:23",
+  "totalDurationSeconds": 222.0,
+  "formattedDuration": "3 mins 42.00 secs",
+  "avgDurationSeconds": 46.6755,
+  "maxDurationSeconds": 92.0,
+  "batchesPerSecond": 23.91,
+  "estimatedRowsProcessed": 530900
+}

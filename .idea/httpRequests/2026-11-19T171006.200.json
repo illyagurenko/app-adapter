@@ -1,0 +1,8 @@
+{
+  "direction": "CHANGER_TO_ADAPTER",
+  "status": "NOT_RECEIVED_BY_ADAPTER_YET",
+  "requestId": "55c4538d-53bb-4dd4-87ee-837eba4310c5",
+  "sentAt": "2026-11-19T14:10:06.069641Z",
+  "receivedAt": null,
+  "latencyMs": null
+}

@@ -1,3 +1,23 @@
+GET http://localhost:8082/api/admin/metrics
+
+<> 2026-11-19T171023.200.json
+
+###
+GET http://localhost:8080/api/io-msgs/latest?dir=OUT
+
+<> 2026-11-19T171013.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-changer
+
+<> 2026-11-19T171006.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-producer
+
+<> 2026-11-19T170947.200.json
+
+###
 GET http://localhost:8082/api/admin/latency/from-changer
 
 <> 2026-11-19T130357.200.json

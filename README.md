@@ -101,6 +101,20 @@
 3. **Changer REST Client:**
    `CHANGER_URL=http://app-changer-1:8080` (обращение по Docker DNS к сервису `app-changer-1`).
 
+Пример содержимого файла `.env`:
+```properties
+ORACLE_HOST_PRIMARY=food_card_oracle
+ORACLE_PORT_PRIMARY=1521
+ORACLE_HOST_STANDBY=food_card_oracle
+ORACLE_PORT_STANDBY=1521
+ORACLE_SERVICE_NAME=XE
+
+KAFKA_BROKER_PRIMARY=test_kafka:29092
+KAFKA_BROKER_STANDBY=test_kafka:29092
+
+CHANGER_URL=http://app-changer-1:8080
+```
+
 ---
 
 ## База данных и Liquibase
@@ -158,19 +172,38 @@ git clone https://github.com/illyagurenko/app-adapter
 cd app-adapter
 ```
 
-### Шаг 2. Проверка Docker-сети
+### Шаг 2. Настройка переменных окружения (`.env`)
+Создайте файл `.env` в корне проекта (или скопируйте из `.env.example`):
+```bash
+cp .env.example .env
+```
+Пример содержимого `.env`:
+```properties
+ORACLE_HOST_PRIMARY=food_card_oracle
+ORACLE_PORT_PRIMARY=1521
+ORACLE_HOST_STANDBY=food_card_oracle
+ORACLE_PORT_STANDBY=1521
+ORACLE_SERVICE_NAME=XE
+
+KAFKA_BROKER_PRIMARY=test_kafka:29092
+KAFKA_BROKER_STANDBY=test_kafka:29092
+
+CHANGER_URL=http://app-changer-1:8080
+```
+
+### Шаг 3. Проверка Docker-сети
 Убедитесь, что общая сеть создана:
 ```bash
 docker network create food_bridge
 ```
 
-### Шаг 3. Проверка инфраструктуры
+### Шаг 4. Проверка инфраструктуры
 Для работы адаптера должны быть предварительно запущены:
 * Oracle XE (`food_card_oracle` на порту `1521`).
 * Apache Kafka (`test_kafka` на порту `9092`).
 * Пользователь `ACC_APP_ADAPTER` в Oracle (создается автоматически при старте контейнера `food_card_oracle` в сервисе `publisher-change-food-card`).
 
-### Шаг 4. Сборка JAR-файла через Gradle
+### Шаг 5. Сборка JAR-файла через Gradle
 * **Для Windows (PowerShell / CMD):**
   ```powershell
   .\gradlew.bat clean build -x test
@@ -180,13 +213,13 @@ docker network create food_bridge
   ./gradlew clean build -x test
   ```
 
-### Шаг 5. Сборка Docker-образа и запуск двух инстансов
+### Шаг 6. Сборка Docker-образа и запуск двух инстансов
 ```bash
 docker compose build
 docker compose up -d
 ```
 
-### Шаг 6. Проверка работоспособности
+### Шаг 7. Проверка работоспособности
 1. **Проверка контейнеров:**
    ```bash
    docker compose ps
