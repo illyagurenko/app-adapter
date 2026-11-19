@@ -1,15 +1,18 @@
 <configuration>
 
+    <!-- Поддержка свойства Spring Boot dynamic.log.path и переменной DYNAMIC_LOG_PATH -->
+    <springProperty scope="context" name="dynamicLogPath" source="dynamic.log.path" defaultValue="logs"/>
+
     <!-- Вывод в файл с автоматической ротацией -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- Активный файл лога -->
-        <file>${dynamic.log.path:-logs}/app.log</file>
+        <file>${dynamicLogPath}/app.log</file>
         <append>true</append>
 
         <!-- Политика ротации: по размеру (25МБ) и времени (3 дня) -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <!-- Шаблон архивов: logs/app.2026-11-01.0.log.gz -->
-            <fileNamePattern>${dynamic.log.path:-logs}/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!-- Шаблон архивов -->
+            <fileNamePattern>${dynamicLogPath}/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
 
             <!-- Максимальный объем одного файла лога — 25 Мегабайт -->
             <maxFileSize>25MB</maxFileSize>

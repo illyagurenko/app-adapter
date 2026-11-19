@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.itone.illya4gurenko.controller.dto.AdminResponse;
 import ru.itone.illya4gurenko.controller.dto.ConsumerMetricsResponse;
+import ru.itone.illya4gurenko.controller.dto.KafkaLatencyResponse;
 import ru.itone.illya4gurenko.dao.AppAdapterTransDao;
 import ru.itone.illya4gurenko.config.AppInitializer;
+import ru.itone.illya4gurenko.service.KafkaLatencyService;
 
 /**
  * контроллер для ручного администрирования фоновых процессов и мониторинга скорости адаптера.
@@ -24,6 +26,7 @@ public class AdminController {
 
     private final AppInitializer appInitializer;
     private final AppAdapterTransDao transDao;
+    private final KafkaLatencyService kafkaLatencyService;
 
     /**
      * возвращает текущее состояние worker-потоков сервиса.
@@ -71,6 +74,22 @@ public class AdminController {
         );
 
         return ResponseEntity.ok(enriched);
+    }
+
+    /**
+     * возвращает время получения адаптером ответа из kafka от app-changer (changer OUT -> adapter IN).
+     */
+    @GetMapping("/latency/from-changer")
+    public ResponseEntity<KafkaLatencyResponse> latencyFromChanger() {
+        return ResponseEntity.ok(kafkaLatencyService.calculateReceiveFromKafkaLatency());
+    }
+
+    /**
+     * возвращает время получения записи ченджером от продюсера адаптера (adapter OUT -> changer IN).
+     */
+    @GetMapping("/latency/from-producer")
+    public ResponseEntity<KafkaLatencyResponse> latencyFromProducer() {
+        return ResponseEntity.ok(kafkaLatencyService.calculateReceiveFromProducerLatency());
     }
 
     /**

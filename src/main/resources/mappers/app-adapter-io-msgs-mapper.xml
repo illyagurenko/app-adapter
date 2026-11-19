@@ -30,5 +30,18 @@
         FROM ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS
     </select>
 
+    <!-- возвращает запись аудита по requestId транзакции и направлению (IN / OUT) -->
+    <select id="findByRequestIdAndDir" resultMap="AppAdapterIoMsgsMap">
+        SELECT * FROM (
+            SELECT m.TRANS_ID, m.MSG_TYPE, m.DIR, m.MSG, m.INS_TS, m.NODE_ID
+            FROM ACC_APP_ADAPTER.APP_ADAPTER_IO_MSGS m
+            JOIN ACC_APP_ADAPTER.APP_ADAPTER_TRANS t ON t.ID = m.TRANS_ID
+            WHERE t.REQUEST_ID = #{requestId}
+              AND m.DIR = #{dir}
+            ORDER BY m.INS_TS DESC
+        )
+        WHERE ROWNUM = 1
+    </select>
+
     <resultMap id="AppAdapterIoMsgsMap" type="AppAdapterIoMsgs" autoMapping="true"/>
 </mapper>

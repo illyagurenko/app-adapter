@@ -1,0 +1,10 @@
+{
+  "id": 20034,
+  "transId": 10017,
+  "requestId": "1def1e25-ea63-46f9-a8d8-56e4867946ae",
+  "protocolType": "KAFKA",
+  "msgType": "GRU",
+  "dir": "OUT",
+  "nodeId": "161",
+  "insTs": "2026-11-19T09:59:45.069262Z"
+}

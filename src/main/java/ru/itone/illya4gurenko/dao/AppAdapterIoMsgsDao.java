@@ -3,6 +3,7 @@ package ru.itone.illya4gurenko.dao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.itone.illya4gurenko.entity.AppAdapterIoMsgs;
+import ru.itone.illya4gurenko.entity.enums.Dir;
 import ru.itone.illya4gurenko.repository.AppAdapterIoMsgsRepository;
 
 /**
@@ -19,5 +20,15 @@ public class AppAdapterIoMsgsDao {
      */
     public void save(AppAdapterIoMsgs ioMsgs) {
         repository.save(ioMsgs);
+    }
+
+    /**
+     * ищет запись аудита по requestId транзакции и направлению (IN / OUT).
+     */
+    public AppAdapterIoMsgs findByRequestIdAndDir(String requestId, Dir dir) {
+        if (requestId == null || requestId.isBlank() || dir == null) {
+            return null;
+        }
+        return repository.findByRequestIdAndDir(requestId, dir);
     }
 }

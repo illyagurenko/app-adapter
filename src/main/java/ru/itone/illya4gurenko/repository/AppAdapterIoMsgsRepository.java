@@ -1,7 +1,9 @@
 package ru.itone.illya4gurenko.repository;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import ru.itone.illya4gurenko.entity.AppAdapterIoMsgs;
+import ru.itone.illya4gurenko.entity.enums.Dir;
 
 import java.util.List;
 
@@ -20,4 +22,10 @@ public interface AppAdapterIoMsgsRepository {
      * возвращает полный список записей аудита сообщений.
      */
     List<AppAdapterIoMsgs> findAll();
+
+    /**
+     * ищет запись аудита по requestId транзакции и направлению сообщения (IN / OUT).
+     */
+    AppAdapterIoMsgs findByRequestIdAndDir(@Param("requestId") String requestId,
+                                           @Param("dir") Dir dir);
 }

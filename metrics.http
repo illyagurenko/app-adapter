@@ -1,0 +1,17 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+
+### общая метрика
+GET http://localhost:8082/api/admin/metrics
+
+### время пути от продюсера Адаптера в Kafka до вычитки сообщения Ченджером (Adapter OUT → Kafka → Changer IN)
+GET http://localhost:8082/api/admin/latency/from-producer
+
+### время пути ответа от Ченджера через Kafka в Адаптер (Changer OUT → Kafka → Adapter IN)
+GET http://localhost:8082/api/admin/latency/from-changer
+
+### возвращает последнюю зафиксированную запись аудита из PostgreSQL
+GET http://localhost:8080/api/io-msgs/latest?dir=OUT

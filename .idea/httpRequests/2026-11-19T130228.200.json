@@ -1,0 +1,8 @@
+{
+  "direction": "CHANGER_TO_ADAPTER",
+  "status": "OK",
+  "requestId": "1def1e25-ea63-46f9-a8d8-56e4867946ae",
+  "sentAt": "2026-11-19T09:59:45.069262Z",
+  "receivedAt": "2026-11-19T10:00:15.713Z",
+  "latencyMs": 30643
+}

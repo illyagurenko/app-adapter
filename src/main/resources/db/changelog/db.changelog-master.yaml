@@ -14,3 +14,11 @@ databaseChangeLog:
   - include:
       file: 004-adapter-config.sql
       relativeToChangelogFile: true
+
+  - include:
+      file: 005-io-msgs-timestamp.sql
+      relativeToChangelogFile: true
+
+  - include:
+      file: 006-performance-optimizations.sql
+      relativeToChangelogFile: true

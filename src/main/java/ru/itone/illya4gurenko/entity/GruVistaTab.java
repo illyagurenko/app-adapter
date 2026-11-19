@@ -28,6 +28,8 @@ public class GruVistaTab {
 
     private LocalDateTime timeStamp;
 
+    private LocalDateTime timeStampUpdate;
+
     private Long pomId;
 
     private Long uterrario;

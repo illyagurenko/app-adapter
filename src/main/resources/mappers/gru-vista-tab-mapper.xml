@@ -8,12 +8,12 @@
             SELECT GRU.GRU_VISTA_SEQ.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO GRU.GRU_VISTA_TAB (
-        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
+        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP, TIME_STAMP_UPDATE,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         )
         VALUES (
-        #{id}, #{systemAccount}, #{currency}, #{xalfa}, #{operation}, #{timeStamp},
+        #{id}, #{systemAccount}, #{currency}, #{xalfa}, #{operation}, #{timeStamp}, #{timeStampUpdate},
         #{pomId}, #{uterrario}, #{oldTBal}, #{newTBal}, #{addInfo},
         #{fileId}, #{focStatus}, #{focTS}, #{focType}, #{svfeLoadId}
         )
@@ -21,14 +21,14 @@
 
     <select id="findAll" resultMap="GruVistaTabMap">
         SELECT
-        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
+        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP, TIME_STAMP_UPDATE,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         FROM GRU.GRU_VISTA_TAB
     </select>
 
     <select id="fetchBatchForUpdate" resultMap="GruVistaTabMap" fetchSize="10000">
-        SELECT ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
+        SELECT ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP, TIME_STAMP_UPDATE,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         FROM GRU.GRU_VISTA_TAB
@@ -47,7 +47,7 @@
     <!-- Поиск строк батча по SVFE_LOAD_ID (requestId) для валидации консьюмером -->
     <select id="findBySvfeLoadId" resultMap="GruVistaTabMap" fetchSize="100">
         SELECT /*+ INDEX(GRU_VISTA_TAB IDX_GRU_VISTA_SVFE_LOAD_ID) */
-        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP,
+        ID, SYSTEMACCOUNT, CURRENCY, XALFA, OPERATION, TIME_STAMP, TIME_STAMP_UPDATE,
         POM_ID, UTERRARIO, OLDTBAL, NEWTBAL, ADD_INFO,
         FILE_ID, FOC_STATUS, FOC_TS, FOC_TYPE, SVFE_LOAD_ID
         FROM GRU.GRU_VISTA_TAB
@@ -59,8 +59,10 @@
         UPDATE GRU.GRU_VISTA_TAB
         SET OLDTBAL = #{oldTBal},
         NEWTBAL = #{newTBal},
-        FOC_STATUS = #{status},
-        FOC_TS = SYSDATE
+        FOC_STATUS = #{status}
+        <if test="status != null and status.name() == 'SUCCESS'">
+            , TIME_STAMP_UPDATE = SYSDATE
+        </if>
         WHERE ID = #{id}
     </update>
 
@@ -68,7 +70,6 @@
     <update id="updateBatchStatusAndSvfeLoadId">
         UPDATE GRU.GRU_VISTA_TAB
         SET FOC_STATUS = #{newStatus},
-            FOC_TS = SYSDATE,
             SVFE_LOAD_ID = #{svfeLoadId}
         WHERE ID IN
         <foreach item="id" collection="ids" open="(" separator="," close=")">
@@ -79,8 +80,7 @@
     <!-- Перевод пачки в статус IN_PROCESS / ERROR -->
     <update id="updateStatusByIds">
         UPDATE GRU.GRU_VISTA_TAB
-        SET FOC_STATUS = #{newStatus},
-        FOC_TS = SYSDATE
+        SET FOC_STATUS = #{newStatus}
         WHERE ID IN
         <foreach item="id" collection="ids" open="(" separator="," close=")">
             #{id}
@@ -91,10 +91,9 @@
     <update id="resetOrphanedStuckRecords">
         UPDATE GRU.GRU_VISTA_TAB v
         SET v.FOC_STATUS = 'WAIT',
-            v.FOC_TS = SYSDATE,
             v.SVFE_LOAD_ID = 'None'
         WHERE v.FOC_STATUS = 'IN_PROCESS'
-        AND v.FOC_TS &lt; SYSDATE - INTERVAL '2' MINUTE
+        AND GREATEST(v.TIME_STAMP, NVL(v.FOC_TS, v.TIME_STAMP)) &lt; SYSDATE - INTERVAL '2' MINUTE
         AND (
             v.SVFE_LOAD_ID IS NULL
             OR v.SVFE_LOAD_ID = 'None'
@@ -109,6 +108,8 @@
     <resultMap id="GruVistaTabMap" type="GruVistaTab" autoMapping="true">
         <id property="id" column="ID"/>
         <result property="systemAccount" column="SYSTEMACCOUNT"/>
+        <result property="timeStamp" column="TIME_STAMP"/>
+        <result property="timeStampUpdate" column="TIME_STAMP_UPDATE"/>
         <result property="oldTBal" column="OLDTBAL"/>
         <result property="newTBal" column="NEWTBAL"/>
         <result property="svfeLoadId" column="SVFE_LOAD_ID"/>

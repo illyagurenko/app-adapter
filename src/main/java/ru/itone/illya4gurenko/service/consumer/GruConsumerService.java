@@ -43,7 +43,7 @@ public class GruConsumerService implements MessageConsumer {
     @Override
     public void consume(String json) {
 
-        log.info("consume json:\n{}", json);
+        log.debug("consume json:\n{}", json);
 
         ConsumerKafkaDto consumerDto = mapperUtils.tryMappingToConsumerKafkaDto(json);
 

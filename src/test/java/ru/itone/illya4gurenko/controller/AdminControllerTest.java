@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import ru.itone.illya4gurenko.config.AppInitializer;
 import ru.itone.illya4gurenko.controller.dto.AdminResponse;
 import ru.itone.illya4gurenko.controller.dto.ConsumerMetricsResponse;
+import ru.itone.illya4gurenko.controller.dto.KafkaLatencyResponse;
 import ru.itone.illya4gurenko.dao.AppAdapterTransDao;
+import ru.itone.illya4gurenko.service.KafkaLatencyService;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +24,8 @@ class AdminControllerTest {
 
     private final AppInitializer appInitializer = Mockito.mock(AppInitializer.class);
     private final AppAdapterTransDao transDao = Mockito.mock(AppAdapterTransDao.class);
-    private final AdminController controller = new AdminController(appInitializer, transDao);
+    private final KafkaLatencyService latencyService = Mockito.mock(KafkaLatencyService.class);
+    private final AdminController controller = new AdminController(appInitializer, transDao, latencyService);
 
     @Test
     @DisplayName("получение статуса работы адаптера")
@@ -98,6 +102,38 @@ class AdminControllerTest {
         assertAll(
                 () -> assertEquals(200, response.getStatusCode().value()),
                 () -> verify(appInitializer).stopWorkers()
+        );
+    }
+
+    @Test
+    @DisplayName("получение задержки доставки ответа от ченджера")
+    void testLatencyFromChanger() {
+        KafkaLatencyResponse expected = new KafkaLatencyResponse(
+                "CHANGER_TO_ADAPTER", "OK", "req-1", ZonedDateTime.now(), ZonedDateTime.now(), 25L
+        );
+        when(latencyService.calculateReceiveFromKafkaLatency()).thenReturn(expected);
+
+        ResponseEntity<KafkaLatencyResponse> response = controller.latencyFromChanger();
+
+        assertAll(
+                () -> assertEquals(200, response.getStatusCode().value()),
+                () -> assertEquals(expected, response.getBody())
+        );
+    }
+
+    @Test
+    @DisplayName("получение задержки доставки запроса от продюсера")
+    void testLatencyFromProducer() {
+        KafkaLatencyResponse expected = new KafkaLatencyResponse(
+                "PRODUCER_TO_CHANGER", "OK", "req-2", ZonedDateTime.now(), ZonedDateTime.now(), 15L
+        );
+        when(latencyService.calculateReceiveFromProducerLatency()).thenReturn(expected);
+
+        ResponseEntity<KafkaLatencyResponse> response = controller.latencyFromProducer();
+
+        assertAll(
+                () -> assertEquals(200, response.getStatusCode().value()),
+                () -> assertEquals(expected, response.getBody())
         );
     }
 }

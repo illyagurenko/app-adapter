@@ -14,14 +14,17 @@ spring:
       gruTopicIn: gru.balance.response
       gruTopicOut: gru.balance.request
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1521/xe
+    url: "jdbc:oracle:thin:@(DESCRIPTION=(CONNECT_TIMEOUT=5)(TRANSPORT_CONNECT_TIMEOUT=3)(RETRY_COUNT=3)(ADDRESS_LIST=(FAILOVER=ON)(LOAD_BALANCE=OFF)(ADDRESS=(PROTOCOL=TCP)(HOST=${ORACLE_HOST_PRIMARY:localhost})(PORT=${ORACLE_PORT_PRIMARY:1521}))(ADDRESS=(PROTOCOL=TCP)(HOST=${ORACLE_HOST_STANDBY:localhost})(PORT=${ORACLE_PORT_STANDBY:1521})))(CONNECT_DATA=(SERVICE_NAME=${ORACLE_SERVICE_NAME:XE})))"
     username: acc_app_adapter
     password: root
     driver-class-name: oracle.jdbc.OracleDriver
     hikari:
       maximum-pool-size: 20
+      connection-timeout: 30000
+      keepalive-time: 60000
+      max-lifetime: 1800000
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BROKER_PRIMARY:localhost:9092},${KAFKA_BROKER_STANDBY:localhost:9092}
     consumer:
       group-id: my-consumer-group
 mybatis:
@@ -53,3 +56,6 @@ logging:
 dynamic:
   log:
     path: ./logs/gru-adapter
+
+changer:
+  url: ${CHANGER_URL:http://localhost:8080}

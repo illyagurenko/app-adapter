@@ -1,0 +1,45 @@
+GET http://localhost:8082/api/admin/latency/from-changer
+
+<> 2026-11-19T130357.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-producer
+
+<> 2026-11-19T130340.200.json
+
+###
+GET http://localhost:8080/api/io-msgs/latest?dir=OUT
+
+<> 2026-11-19T130319.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-changer
+
+<> 2026-11-19T130228.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-changer
+
+<> 2026-11-19T130221.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-producer
+
+<> 2026-11-19T130137.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-producer
+
+<> 2026-11-19T130133.200.json
+
+###
+GET http://localhost:8082/api/admin/latency/from-producer
+
+<> 2026-11-19T130103.200.json
+
+###
+GET http://localhost:8082/api/admin/metrics
+
+<> 2026-11-19T125954.200.json
+
+###
